@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InfluencerOS — Miss Jones Brands</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #FF0080;
+    --pink-soft: rgba(255,0,128,0.08);
+    --dark: #2D2D2D;
+    --dark-2: #1a1a1a;
+    --cream: #F3ECB2;
+    --cream-soft: rgba(243,236,178,0.3);
+    --blue: #1A6BFF;
+    --blue-soft: rgba(26,107,255,0.1);
+    --white: #ffffff;
+    --gray-1: #f7f7f6;
+    --gray-2: #efefed;
+    --gray-3: #d4d4d0;
+    --gray-4: #9a9a94;
+    --gray-5: #6b6b65;
+    --sidebar-w: 228px;
+    --topbar-h: 60px;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+
+    /* Status colors */
+    --s-contacted: #94a3b8;
+    --s-brief: #60a5fa;
+    --s-content: #fbbf24;
+    --s-w9: #a78bfa;
+    --s-invoice: #fb923c;
+    --s-paid: #34d399;
+    --s-posted: #FF0080;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--gray-1);
+    color: var(--dark);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 14px;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    min-width: var(--sidebar-w);
+    background: var(--dark-2);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255,255,255,0.04);
+    position: relative;
+    z-index: 10;
+  }
+
+  .sidebar-logo {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .logo-dot {
+    width: 28px;
+    height: 28px;
+    background: var(--pink);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .logo-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+
+  .logo-sub {
+    font-size: 11px;
+    color: var(--gray-4);
+    margin-left: 38px;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 12px 0;
+    overflow-y: auto;
+  }
+
+  .nav-section-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gray-5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 20px 6px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 20px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.15s;
+    border-radius: 0;
+  }
+
+  .nav-item:hover { background: rgba(255,255,255,0.04); }
+
+  .nav-item.active {
+    background: rgba(255,0,128,0.12);
+  }
+
+  .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 4px; bottom: 4px;
+    width: 3px;
+    background: var(--pink);
+    border-radius: 0 3px 3px 0;
+  }
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  .nav-item.active .nav-icon { opacity: 1; }
+
+  .nav-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-4);
+    transition: color 0.15s;
+  }
+
+  .nav-item.active .nav-label { color: var(--white); font-weight: 600; }
+  .nav-item:hover .nav-label { color: var(--white); }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--pink);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 20px;
+    line-height: 16px;
+  }
+
+  .sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .brand-selector {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.15s;
+  }
+
+  .brand-selector:hover { background: rgba(255,255,255,0.1); }
+
+  .brand-info { display: flex; align-items: center; gap: 8px; }
+
+  .brand-avatar {
+    width: 24px; height: 24px;
+    background: var(--pink);
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .brand-role {
+    font-size: 10px;
+    color: var(--gray-4);
+  }
+
+  .brand-chevron { color: var(--gray-4); font-size: 12px; }
+
+  /* ── MAIN ── */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    height: var(--topbar-h);
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-2);
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .topbar-title {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--dark);
+  }
+
+  .topbar-controls { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
+  .select-control {
+    background: var(--gray-1);
+    border: 1px solid var(--gray-2);
+    border-radius: var(--radius-sm);
+    padding: 7px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--dark);
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b65' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--blue);
+    color: white;
+  }
+  .btn-primary:hover { background: #1558e0; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--gray-5);
+    border: 1px solid var(--gray-2);
+  }
+  .btn-ghost:hover { background: var(--gray-1); color: var(--dark); }
+
+  /* ── ALERT STRIP ── */
+  .alert-strip {
+    background: #fff8ed;
+    border-bottom: 1px solid #fde9b8;
+    padding: 9px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+
+  .alert-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #92400e;
+  }
+
+  .alert-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #f59e0b;
+    flex-shrink: 0;
+  }
+
+  .alert-sep { color: #fcd34d; font-size: 14px; }
+
+  /* ── PAGE CONTENT ── */
+  .page-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 28px;
+  }
+
+  /* ── SCREENS ── */
+  .screen { display: none; }
+  .screen.active { display: flex; flex-direction: column; height: 100%; gap: 0; }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    box-shadow: var(--shadow);
+    border-left: 3px solid var(--blue);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--gray-4);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── PIPELINE ── */
+  .pipeline-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .pipeline-col-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .pipeline-columns {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .pipeline-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    padding-right: 2px;
+  }
+
+  .pipeline-col::-webkit-scrollbar { width: 3px; }
+  .pipeline-col::-webkit-scrollbar-track { background: transparent; }
+  .pipeline-col::-webkit-scrollbar-thumb { background: var(--gray-3); border-radius: 2px; }
+
+  /* ── INFLUENCER CARD ── */
+  .inf-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 12px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    border-top: 3px solid transparent;
+    position: relative;
+  }
+
+  .inf-card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-soft), var(--blue-soft));
+    border: 1.5px solid var(--gray-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--dark);
+    flex-shrink: 0;
+  }
+
+  .card-info { flex: 1; min-width: 0; }
+
+  .card-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+    margin-bottom: 1px;
+  }
+
+  .card-handle {
+    font-size: 10px;
+    color: var(--gray-4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .card-divider {
+    height: 1px;
+    background: var(--gray-2);
+    margin: 8px 0;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-followers {
+    font-size: 10px;
+    color: var(--gray-4);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .card-price {
+    font-size: 11px;
+    font-weight: 700;
+    color: #059669;
+    background: #ecfdf5;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .card-deliverable {
+    font-size: 10px;
+    color: var(--gray-4);
+    margin-top: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── TABLE STYLES ── */
+  .table-container {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .table-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--gray-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .table-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  .search-input {
+    background: var(--gray-1);
+    border: 1px solid var(--gray-2);
+    border-radius: var(--radius-sm);
+    padding: 7px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    outline: none;
+    width: 220px;
+    color: var(--dark);
+    transition: border 0.15s;
+  }
+
+  .search-input:focus { border-color: var(--blue); }
+  .search-input::placeholder { color: var(--gray-4); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    text-align: left;
+    padding: 10px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--gray-1);
+    border-bottom: 1px solid var(--gray-2);
+  }
+
+  td {
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--dark);
+    border-bottom: 1px solid var(--gray-2);
+    vertical-align: middle;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:hover td { background: var(--gray-1); cursor: pointer; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .pill-green { background: #ecfdf5; color: #059669; }
+  .pill-yellow { background: #fefce8; color: #a16207; }
+  .pill-red { background: #fef2f2; color: #dc2626; }
+  .pill-blue { background: #eff6ff; color: #2563eb; }
+  .pill-gray { background: var(--gray-1); color: var(--gray-4); }
+  .pill-pink { background: var(--pink-soft); color: var(--pink); }
+
+  /* ── TOGGLE ── */
+  .toggle {
+    width: 36px; height: 20px;
+    border-radius: 20px;
+    background: var(--gray-3);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: none;
+    flex-shrink: 0;
+  }
+
+  .toggle.on { background: #059669; }
+
+  .toggle::after {
+    content: '';
+    position: absolute;
+    left: 2px; top: 2px;
+    width: 16px; height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .toggle.on::after { transform: translateX(16px); }
+
+  /* ── CHASE LIST ── */
+  .chase-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+    border-left: 3px solid #f59e0b;
+  }
+
+  .chase-days {
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+
+  /* ── DASHBOARD HOME ── */
+  .welcome-bar {
+    background: linear-gradient(135deg, var(--dark-2) 0%, #3a1a2e 100%);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .welcome-bar::after {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 200px; height: 200px;
+    background: var(--pink);
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+
+  .welcome-text h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .welcome-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ── FORM ── */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .form-input {
+    background: var(--white);
+    border: 1px solid var(--gray-2);
+    border-radius: var(--radius-sm);
+    padding: 9px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--dark);
+    outline: none;
+    transition: border 0.15s;
+  }
+
+  .form-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); }
+
+  .form-section {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+
+  .form-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gray-2);
+  }
+
+  /* ── PROFILE SLIDE-OUT ── */
+  .slideout-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 100;
+    backdrop-filter: blur(2px);
+  }
+
+  .slideout-overlay.open { display: block; }
+
+  .slideout-panel {
+    position: fixed;
+    right: 0; top: 0; bottom: 0;
+    width: 420px;
+    background: var(--white);
+    box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+    z-index: 101;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+  }
+
+  .slideout-overlay.open .slideout-panel {
+    transform: translateX(0);
+  }
+
+  .slideout-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--gray-2);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .profile-avatar-lg {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-soft), var(--blue-soft));
+    border: 2px solid var(--gray-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    flex-shrink: 0;
+  }
+
+  .slideout-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+  }
+
+  .profile-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .profile-stat {
+    background: var(--gray-1);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .profile-stat-val {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+
+  .profile-stat-lbl {
+    font-size: 10px;
+    color: var(--gray-4);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .history-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray-2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .history-item:last-child { border-bottom: none; }
+
+  .close-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--gray-4);
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+  }
+
+  .close-btn:hover { color: var(--dark); }
+
+  /* ── MISC ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-4);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 10px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--gray-4);
+    font-size: 13px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--cream-soft);
+    border: 1px solid rgba(243,236,178,0.8);
+    color: #7a6a00;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 4px;
+  }
+
+  .scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .pipeline-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">
+      <div class="logo-dot">IO</div>
+      <div class="logo-name">InfluencerOS</div>
+    </div>
+    <div class="logo-sub">Campaign Management</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Overview</div>
+    <div class="nav-item" onclick="showScreen('dashboard')">
+      <div class="nav-icon">⊞</div>
+      <div class="nav-label">Dashboard</div>
+    </div>
+
+    <div class="nav-section-label">Campaigns</div>
+    <div class="nav-item active" onclick="showScreen('campaign-board')">
+      <div class="nav-icon">◈</div>
+      <div class="nav-label">Campaign Board</div>
+    </div>
+    <div class="nav-item" onclick="showScreen('new-campaign')">
+      <div class="nav-icon">＋</div>
+      <div class="nav-label">New Campaign</div>
+    </div>
+
+    <div class="nav-section-label">Influencers</div>
+    <div class="nav-item" onclick="showScreen('rolodex')">
+      <div class="nav-icon">◎</div>
+      <div class="nav-label">Rolodex</div>
+    </div>
+
+    <div class="nav-section-label">Finance</div>
+    <div class="nav-item" onclick="showScreen('payment-queue')">
+      <div class="nav-icon">$</div>
+      <div class="nav-label">Payment Queue</div>
+      <div class="nav-badge">2</div>
+    </div>
+    <div class="nav-item" onclick="showScreen('chase-list')">
+      <div class="nav-icon">⚠</div>
+      <div class="nav-label">Chase List</div>
+      <div class="nav-badge">3</div>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="brand-selector">
+      <div class="brand-info">
+        <div class="brand-avatar">MJ</div>
+        <div>
+          <div class="brand-name">Miss Jones</div>
+          <div class="brand-role">Active Brand</div>
+        </div>
+      </div>
+      <div class="brand-chevron">⌄</div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar" id="topbar">
+    <div class="topbar-title" id="topbar-title">Campaign Board</div>
+    <div class="topbar-controls" id="topbar-controls">
+      <select class="select-control">
+        <option>WFM — Everyday Doughs Q1</option>
+        <option>WFM — Spring Dough Kits</option>
+        <option>Sprouts — Everyday Dough</option>
+        <option>Walmart — Girl Scouts</option>
+        <option>Costco — Protein Muffin</option>
+      </select>
+      <button class="btn btn-ghost" onclick="showScreen('rolodex')">View Rolodex</button>
+      <button class="btn btn-primary" onclick="showScreen('new-campaign')">+ New Campaign</button>
+    </div>
+  </div>
+
+  <!-- ALERT STRIP -->
+  <div class="alert-strip" id="alert-strip">
+    <div class="alert-item">
+      <div class="alert-dot"></div>
+      3 influencers past posting date with no content submitted
+    </div>
+    <div class="alert-sep">|</div>
+    <div class="alert-item">
+      <div class="alert-dot"></div>
+      2 invoices waiting to be paid
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <div class="page-content" id="page-content">
+
+    <!-- ── SCREEN: DASHBOARD ── -->
+    <div class="screen" id="screen-dashboard">
+      <div class="welcome-bar">
+        <div class="welcome-text">
+          <h2>Good morning, Angela 👋</h2>
+          <p>Q1 2026 is live across 3 campaigns. Here's where things stand.</p>
+        </div>
+        <button class="btn btn-primary" onclick="showScreen('new-campaign')">+ New Campaign</button>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card" style="border-left-color: var(--blue)">
+          <div class="stat-value" style="color:var(--blue)">66</div>
+          <div class="stat-label">Total Influencers</div>
+        </div>
+        <div class="stat-card" style="border-left-color: var(--pink)">
+          <div class="stat-value" style="color:var(--pink)">9</div>
+          <div class="stat-label">Active This Campaign</div>
+        </div>
+        <div class="stat-card" style="border-left-color: #059669">
+          <div class="stat-value" style="color:#059669">$2,625</div>
+          <div class="stat-label">Budget Allocated</div>
+        </div>
+        <div class="stat-card" style="border-left-color: #f59e0b">
+          <div class="stat-value" style="color:#f59e0b">$545</div>
+          <div class="stat-label">Paid Out</div>
+        </div>
+        <div class="stat-card" style="border-left-color: #dc2626">
+          <div class="stat-value" style="color:#dc2626">3</div>
+          <div class="stat-label">Overdue</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div class="table-container">
+          <div class="table-header">
+            <div class="table-title">🔥 Needs Attention</div>
+          </div>
+          <table>
+            <tr>
+              <td><strong>Andrea Ovard</strong><br><span style="color:var(--gray-4);font-size:11px">@dietitian.andie</span></td>
+              <td><span class="pill pill-yellow">Content Due</span></td>
+              <td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px">Chase →</button></td>
+            </tr>
+            <tr>
+              <td><strong>Krystal Goodman</strong><br><span style="color:var(--gray-4);font-size:11px">@thekleannutritionist</span></td>
+              <td><span class="pill pill-red">Invoice Overdue</span></td>
+              <td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px">Chase →</button></td>
+            </tr>
+            <tr>
+              <td><strong>Shayla Mackenzie</strong><br><span style="color:var(--gray-4);font-size:11px">@shaylamackenzie</span></td>
+              <td><span class="pill pill-yellow">3 Days Late</span></td>
+              <td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px">Chase →</button></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-container">
+          <div class="table-header">
+            <div class="table-title">📋 Active Campaigns</div>
+          </div>
+          <table>
+            <tr>
+              <td><strong>WFM — Everyday Doughs</strong></td>
+              <td><span class="pill pill-green">Q1 2026</span></td>
+              <td style="color:var(--gray-4);font-size:12px">9 influencers</td>
+            </tr>
+            <tr>
+              <td><strong>Sprouts — Everyday Dough</strong></td>
+              <td><span class="pill pill-blue">Q1 2026</span></td>
+              <td style="color:var(--gray-4);font-size:12px">4 influencers</td>
+            </tr>
+            <tr>
+              <td><strong>WMT — Girl Scouts</strong></td>
+              <td><span class="pill pill-yellow">Planning</span></td>
+              <td style="color:var(--gray-4);font-size:12px">0 assigned</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SCREEN: CAMPAIGN BOARD ── -->
+    <div class="screen active" id="screen-campaign-board">
+      <div class="stats-row" style="margin-bottom:16px">
+        <div class="stat-card" style="border-left-color:var(--blue)">
+          <div class="stat-value" style="color:var(--blue)">9</div>
+          <div class="stat-label">Influencers</div>
+        </div>
+        <div class="stat-card" style="border-left-color:var(--pink)">
+          <div class="stat-value" style="color:var(--pink)">$2,625</div>
+          <div class="stat-label">Budget Allocated</div>
+        </div>
+        <div class="stat-card" style="border-left-color:#059669">
+          <div class="stat-value" style="color:#059669">3 of 9</div>
+          <div class="stat-label">Content Received</div>
+        </div>
+        <div class="stat-card" style="border-left-color:#f59e0b">
+          <div class="stat-value" style="color:#f59e0b">$545</div>
+          <div class="stat-label">Paid Out</div>
+        </div>
+        <div class="stat-card" style="border-left-color:#dc2626">
+          <div class="stat-value" style="color:#dc2626">3</div>
+          <div class="stat-label">Overdue</div>
+        </div>
+      </div>
+
+      <div class="pipeline-wrapper">
+        <div class="pipeline-header">
+          <div class="pipeline-col-header" style="background:rgba(148,163,184,0.12); color:#64748b">
+            <div class="status-dot" style="background:var(--s-contacted)"></div> Contacted
+          </div>
+          <div class="pipeline-col-header" style="background:rgba(96,165,250,0.12); color:#2563eb">
+            <div class="status-dot" style="background:var(--s-brief)"></div> Brief Sent
+          </div>
+          <div class="pipeline-col-header" style="background:rgba(251,191,36,0.12); color:#a16207">
+            <div class="status-dot" style="background:var(--s-content)"></div> Content Recv'd
+          </div>
+          <div class="pipeline-col-header" style="background:rgba(167,139,250,0.12); color:#7c3aed">
+            <div class="status-dot" style="background:var(--s-w9)"></div> W9 Done
+          </div>
+          <div class="pipeline-col-header" style="background:rgba(251,146,60,0.12); color:#c2410c">
+            <div class="status-dot" style="background:var(--s-invoice)"></div> Invoice Recv'd
+          </div>
+          <div class="pipeline-col-header" style="background:rgba(52,211,153,0.12); color:#059669">
+            <div class="status-dot" style="background:var(--s-paid)"></div> Paid
+          </div>
+          <div class="pipeline-col-header" style="background:rgba(255,0,128,0.1); color:var(--pink)">
+            <div class="status-dot" style="background:var(--s-posted)"></div> Posted
+          </div>
+        </div>
+
+        <div class="pipeline-columns">
+          <!-- Contacted -->
+          <div class="pipeline-col">
+            <div class="inf-card" style="border-top-color:var(--s-contacted)" onclick="openProfile('Melanie Marroquin','@earsbymellie','16.2K','$175','UGC Reel','Mom/Kids Baking','WFM')">
+              <div class="card-top">
+                <div class="avatar">MM</div>
+                <div class="card-info">
+                  <div class="card-name">Melanie Marroquin</div>
+                  <div class="card-handle">@earsbymellie</div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-meta">
+                <div class="card-followers">👥 16.2K</div>
+                <div class="card-price">$175</div>
+              </div>
+              <div class="card-deliverable">UGC Reel</div>
+            </div>
+            <div class="inf-card" style="border-top-color:var(--s-contacted)" onclick="openProfile('Heather Brickell','@mysweetsavings','13K','$250','Reel & 2 Stories','Lifestyle','WFM')">
+              <div class="card-top">
+                <div class="avatar">HB</div>
+                <div class="card-info">
+                  <div class="card-name">Heather Brickell</div>
+                  <div class="card-handle">@mysweetsavings</div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-meta">
+                <div class="card-followers">👥 13K</div>
+                <div class="card-price">$250</div>
+              </div>
+              <div class="card-deliverable">Reel & 2 Stories</div>
+            </div>
+          </div>
+
+          <!-- Brief Sent -->
+          <div class="pipeline-col">
+            <div class="inf-card" style="border-top-color:var(--s-brief)" onclick="openProfile('Alyssa Barcena','@alyssabarcenaphotography','657','$200','Video, Photo, Stories','Food Photographer','WFM')">
+              <div class="card-top">
+                <div class="avatar">AB</div>
+                <div class="card-info">
+                  <div class="card-name">Alyssa Barcena</div>
+                  <div class="card-handle">@alyssabarcena</div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-meta">
+                <div class="card-followers">👥 657</div>
+                <div class="card-price">$200</div>
+              </div>
+              <div class="card-deliverable">Video, Photo, Stories</div>
+            </div>
+            <div class="inf-card" style="border-top-color:var(--s-brief)" onclick="openProfile('Shayla Mackenzie','@shaylamackenzie','12K','$300','IG Reel','Mom / Lifestyle','WFM')">
+              <div class="card-top">
+                <div class="avatar">SM</div>
+                <div class="card-info">
+                  <div class="card-name">Shayla Mackenzie</div>
+                  <div class="card-handle">@shaylamackenzie</div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-meta">
+                <div class="card-followers">👥 12K</div>
+                <div class="card-price">$300</div>
+              </div>
+              <div class="card-deliverable">IG Reel</div>
+            </div>
+          </div>
+
+          <!-- Content Received -->
+          <div class="pipeline-col">
+            <div class="inf-card" style="border-top-color:var(--s-content)" onclick="openProfile('Andrea Ovard','@dietitian.andie','64.9K','$350','IG Reel','Dietitian','WFM')">
+              <div class="card-top">
+                <div class="avatar">AO</div>
+                <div class="card-info">
+                  <div class="card-name">Andrea Ovard</div>
+                  <div class="card-handle">@dietitian.andie</div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-meta">
+                <div class="card-followers">👥 64.9K</div>
+                <div class="card-price">$350</div>
+              </div>
+              <div class="card-deliverable">IG Reel</div>
+            </div>
+          </div>
+
+          <!-- W9 Done -->
+          <div class="pipeline-col">
+            <div class="inf-card" style="border-top-color:var(--s-w9)" onclick="openProfile('Olivia & Connor','@stemandplate','3K','$330','10-sec Collab Reel','Healthy Recipes','WFM')">
+              <div class="card-top">
+                <div class="avatar">OC</div>
+                <div class="card-info">
+                  <div class="card-name">Olivia & Connor</div>
+                  <div class="card-handle">@stemandplate</div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-meta">
+                <div class="card-followers">👥 3K</div>
+                <div class="card-price">$330</div>
+              </div>
+              <div class="card-deliverable">10-sec Collab Reel</div>
+            </div>
+          </div>
+
+          <!-- Invoice Received -->
+          <div class="pipeline-col">
+            <div class="inf-card" style="border-top-color:var(--s-invoice)" onclick="openProfile('Krystal Goodman','@thekleannutritionist','11K','$250','IG Reel','Health/Wellness','WFM')">
+              <div class="card-top">
+                <div class="avatar">KG</div>
+                <div class="card-info">
+                  <div class="card-name">Krystal Goodman</div>
+                  <div class="card-handle">@thekleannutritionist</div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-meta">
+                <div class="card-followers">👥 11K</div>
+                <div class="card-price">$250</div>
+              </div>
+              <div class="card-deliverable">IG Reel</div>
+            </div>
+          </div>
+
+          <!-- Paid -->
+          <div class="pipeline-col">
+            <div class="inf-card" style="border-top-color:var(--s-paid)" onclick="openProfile('Tara McDonald','@taraalexandra_','34K','$195','TikTok + IG','Lifestyle','WFM')">
+              <div class="card-top">
+                <div class="avatar">TM</div>
+                <div class="card-info">
+                  <div class="card-name">Tara McDonald</div>
+                  <div class="card-handle">@taraalexandra_</div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-meta">
+                <div class="card-followers">👥 34K</div>
+                <div class="card-price">$195</div>
+              </div>
+              <div class="card-deliverable">TikTok + IG</div>
+            </div>
+          </div>
+
+          <!-- Posted -->
+          <div class="pipeline-col">
+            <div class="inf-card" style="border-top-color:var(--s-posted)" onclick="openProfile('Marissa Barcena','@marissaswholelife','99.3K','$300','UGC','Mom/Food','WFM')">
+              <div class="card-top">
+                <div class="avatar">MB</div>
+                <div class="card-info">
+                  <div class="card-name">Marissa Barcena</div>
+                  <div class="card-handle">@marissaswholelife</div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="card-meta">
+                <div class="card-followers">👥 99.3K</div>
+                <div class="card-price">$300</div>
+              </div>
+              <div class="card-deliverable">UGC Content</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SCREEN: ROLODEX ── -->
+    <div class="screen" id="screen-rolodex">
+      <div class="table-container">
+        <div class="table-header">
+          <div class="table-title">Influencer Rolodex</div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input class="search-input" placeholder="Search by name or handle..." />
+            <select class="select-control">
+              <option>All Content Types</option>
+              <option>Food / Recipes</option>
+              <option>Mom / Lifestyle</option>
+              <option>Health / Wellness</option>
+              <option>Vegan</option>
+              <option>Gluten Free</option>
+              <option>Costco Finds</option>
+            </select>
+            <select class="select-control">
+              <option>All Follower Ranges</option>
+              <option>Under 5K</option>
+              <option>5K – 25K</option>
+              <option>25K – 100K</option>
+              <option>100K+</option>
+            </select>
+            <button class="btn btn-primary">+ Add Influencer</button>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Influencer</th>
+              <th>Platform</th>
+              <th>Content Type</th>
+              <th>Location</th>
+              <th>Rate</th>
+              <th>Past Campaigns</th>
+              <th>Performance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr onclick="openProfile('Tara McDonald','@taraalexandra_','34.4K IG / 201.3K TT','$195','TikTok + IG Reel','Lifestyle / Food','WFM, Sprouts')">
+              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">TM</div><div><div style="font-weight:600">Tara McDonald</div><div style="font-size:11px;color:var(--gray-4)">taraalexandramcdonald@gmail.com</div></div></div></td>
+              <td><span class="pill pill-pink">IG + TikTok</span></td>
+              <td><span class="tag">Lifestyle / Food</span></td>
+              <td style="color:var(--gray-4);font-size:12px">Orlando, FL</td>
+              <td style="font-weight:600;color:#059669">$195/video</td>
+              <td><span class="pill pill-blue">3 campaigns</span></td>
+              <td><span class="pill pill-green">High Eng.</span></td>
+            </tr>
+            <tr onclick="openProfile('Shayla Mackenzie','@shaylamackenzie','12K IG / 112K TT','$300','IG Reel','Mom / Lifestyle','WFM')">
+              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SM</div><div><div style="font-weight:600">Shayla Mackenzie</div><div style="font-size:11px;color:var(--gray-4)">shaylamackenzieofficial@gmail.com</div></div></div></td>
+              <td><span class="pill pill-pink">IG + TikTok</span></td>
+              <td><span class="tag">Mom / Lifestyle</span></td>
+              <td style="color:var(--gray-4);font-size:12px">Rocklin, CA</td>
+              <td style="font-weight:600;color:#059669">$300/reel</td>
+              <td><span class="pill pill-blue">2 campaigns</span></td>
+              <td><span class="pill pill-yellow">Avg Eng.</span></td>
+            </tr>
+            <tr onclick="openProfile('Nicole Bruno','@nobread','218K','Custom','TBD','GF / Wellness','—')">
+              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">NB</div><div><div style="font-weight:600">Nicole Bruno</div><div style="font-size:11px;color:var(--gray-4)">via DM</div></div></div></td>
+              <td><span class="pill pill-blue">Instagram</span></td>
+              <td><span class="tag">GF / Wellness</span></td>
+              <td style="color:var(--gray-4);font-size:12px">—</td>
+              <td style="font-weight:600;color:var(--gray-4)">TBD</td>
+              <td><span class="pill pill-gray">Prospecting</span></td>
+              <td><span class="pill pill-gray">Unknown</span></td>
+            </tr>
+            <tr onclick="openProfile('Sophia Hoff','@wholesomelysophia','102K','$2,500/reel','IG Reel','Health / OT','—')">
+              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SH</div><div><div style="font-weight:600">Sophia Hoff</div><div style="font-size:11px;color:var(--gray-4)">sophiamhoff@gmail.com</div></div></div></td>
+              <td><span class="pill pill-blue">Instagram</span></td>
+              <td><span class="tag">Health / Wellness</span></td>
+              <td style="color:var(--gray-4);font-size:12px">Jax Beach, FL</td>
+              <td style="font-weight:600;color:#059669">$2,500/reel</td>
+              <td><span class="pill pill-gray">Prospecting</span></td>
+              <td><span class="pill pill-gray">Unknown</span></td>
+            </tr>
+            <tr onclick="openProfile('Jane & Margie','@noshing.sisters','25.3K TikTok','Custom','TikTok Video','Sisters / Food','—')">
+              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JM</div><div><div style="font-weight:600">Jane & Margie</div><div style="font-size:11px;color:var(--gray-4)">grandmasgonoshing@gmail.com</div></div></div></td>
+              <td><span class="pill pill-pink">TikTok + IG</span></td>
+              <td><span class="tag">Sisters / Noshing</span></td>
+              <td style="color:var(--gray-4);font-size:12px">—</td>
+              <td style="font-weight:600;color:var(--gray-4)">Negotiate</td>
+              <td><span class="pill pill-gray">Prospecting</span></td>
+              <td><span class="pill pill-gray">Unknown</span></td>
+            </tr>
+            <tr onclick="openProfile('Mariah Thomas','@seasonal_bridges','16K IG / 11.6K TT','$200–$400','Reel or Bundle','Cozy / Holiday','—')">
+              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MT</div><div><div style="font-weight:600">Mariah Thomas</div><div style="font-size:11px;color:var(--gray-4)">seasonalbridges@gmail.com</div></div></div></td>
+              <td><span class="pill pill-pink">IG + TikTok</span></td>
+              <td><span class="tag">Cozy / Lifestyle</span></td>
+              <td style="color:var(--gray-4);font-size:12px">—</td>
+              <td style="font-weight:600;color:#059669">$200–$400</td>
+              <td><span class="pill pill-gray">Prospecting</span></td>
+              <td><span class="pill pill-gray">Unknown</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── SCREEN: PAYMENT QUEUE ── -->
+    <div class="screen" id="screen-payment-queue">
+      <div class="table-container">
+        <div class="table-header">
+          <div class="table-title">Payment Queue</div>
+          <div style="color:var(--gray-4);font-size:12px">Content received — awaiting payment</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Influencer</th>
+              <th>Campaign</th>
+              <th>Deliverable</th>
+              <th>Amount</th>
+              <th>W9</th>
+              <th>Invoice</th>
+              <th>Paid</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:28px;height:28px;font-size:10px">OC</div><div><div style="font-weight:600">Olivia & Connor</div><div style="font-size:11px;color:var(--gray-4)">@stemandplate</div></div></div></td>
+              <td style="font-size:12px;color:var(--gray-4)">WFM Everyday Doughs</td>
+              <td style="font-size:12px">10-sec Collab Reel</td>
+              <td style="font-weight:700;color:var(--dark)">$330</td>
+              <td><span class="pill pill-green">✓ Done</span></td>
+              <td><span class="pill pill-yellow">Pending</span></td>
+              <td><button class="toggle" onclick="this.classList.toggle('on')"></button></td>
+              <td><button class="btn btn-ghost" style="padding:5px 10px;font-size:11px">Send Reminder</button></td>
+            </tr>
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:28px;height:28px;font-size:10px">KG</div><div><div style="font-weight:600">Krystal Goodman</div><div style="font-size:11px;color:var(--gray-4)">@thekleannutritionist</div></div></div></td>
+              <td style="font-size:12px;color:var(--gray-4)">WFM Everyday Doughs</td>
+              <td style="font-size:12px">IG Reel</td>
+              <td style="font-weight:700;color:var(--dark)">$250</td>
+              <td><span class="pill pill-green">✓ Done</span></td>
+              <td><span class="pill pill-red">Overdue</span></td>
+              <td><button class="toggle" onclick="this.classList.toggle('on')"></button></td>
+              <td><button class="btn btn-ghost" style="padding:5px 10px;font-size:11px">Send Reminder</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── SCREEN: CHASE LIST ── -->
+    <div class="screen" id="screen-chase-list">
+      <div style="margin-bottom:16px;display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:2px">Chase List</div>
+          <div style="font-size:12px;color:var(--gray-4)">Posting date passed — no content link submitted</div>
+        </div>
+        <button class="btn btn-primary">Send All Reminders</button>
+      </div>
+
+      <div class="chase-card">
+        <div class="avatar" style="width:36px;height:36px">AO</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">Andrea Ovard</div>
+          <div style="font-size:11px;color:var(--gray-4)">@dietitian.andie · WFM Everyday Doughs · IG Reel · $350</div>
+        </div>
+        <div class="chase-days">5 days overdue</div>
+        <button class="btn btn-ghost" style="font-size:12px">Send Chase Email</button>
+        <button class="btn btn-primary" style="font-size:12px">Mark Received</button>
+      </div>
+
+      <div class="chase-card">
+        <div class="avatar" style="width:36px;height:36px">SM</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">Shayla Mackenzie</div>
+          <div style="font-size:11px;color:var(--gray-4)">@shaylamackenzie · WFM Everyday Doughs · IG Reel · $300</div>
+        </div>
+        <div class="chase-days">3 days overdue</div>
+        <button class="btn btn-ghost" style="font-size:12px">Send Chase Email</button>
+        <button class="btn btn-primary" style="font-size:12px">Mark Received</button>
+      </div>
+
+      <div class="chase-card">
+        <div class="avatar" style="width:36px;height:36px">HB</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:13px">Heather Brickell</div>
+          <div style="font-size:11px;color:var(--gray-4)">@mysweetsavings · WFM Everyday Doughs · Reel & 2 Stories · $250</div>
+        </div>
+        <div class="chase-days">1 day overdue</div>
+        <button class="btn btn-ghost" style="font-size:12px">Send Chase Email</button>
+        <button class="btn btn-primary" style="font-size:12px">Mark Received</button>
+      </div>
+    </div>
+
+    <!-- ── SCREEN: NEW CAMPAIGN ── -->
+    <div class="screen" id="screen-new-campaign">
+      <div style="max-width:720px">
+        <div class="form-section">
+          <div class="form-section-title">Campaign Details</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Brand</label>
+              <select class="form-input">
+                <option>Miss Jones Brands</option>
+                <option>Winanola</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Retailer</label>
+              <select class="form-input">
+                <option>Whole Foods Market</option>
+                <option>Walmart</option>
+                <option>Sprouts</option>
+                <option>Costco</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Campaign Name</label>
+              <input class="form-input" placeholder="e.g. Spring Dough Kits" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Quarter</label>
+              <select class="form-input">
+                <option>Q1 2026</option>
+                <option>Q2 2026</option>
+                <option>Q3 2026</option>
+                <option>Q4 2026</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Products Being Featured</label>
+              <input class="form-input" placeholder="e.g. Sugar Cookie Dough Kit, Lemon Tart Dough Kit" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Budget ($)</label>
+              <input class="form-input" type="number" placeholder="3000" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Posting Deadline</label>
+              <input class="form-input" type="date" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title">Assign Influencers from Rolodex</div>
+          <div style="background:var(--gray-1);border:1px dashed var(--gray-3);border-radius:var(--radius-sm);padding:16px;text-align:center;color:var(--gray-4);font-size:13px;margin-bottom:12px">
+            Search your rolodex to add influencers to this campaign
+          </div>
+          <input class="search-input" style="width:100%;margin-bottom:10px" placeholder="Search influencers..." />
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <div style="background:var(--pink-soft);border:1px solid rgba(255,0,128,0.2);border-radius:20px;padding:5px 12px;font-size:12px;display:flex;align-items:center;gap:6px">
+              @taraalexandra_ <span style="cursor:pointer;color:var(--pink)">×</span>
+            </div>
+            <div style="background:var(--pink-soft);border:1px solid rgba(255,0,128,0.2);border-radius:20px;padding:5px 12px;font-size:12px;display:flex;align-items:center;gap:6px">
+              @earsbymellie <span style="cursor:pointer;color:var(--pink)">×</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-primary" style="padding:11px 28px">Create Campaign</button>
+          <button class="btn btn-ghost" style="padding:11px 20px">Save as Draft</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-content -->
+</div><!-- /main -->
+
+<!-- PROFILE SLIDE-OUT -->
+<div class="slideout-overlay" id="slideout-overlay" onclick="closeProfile(event)">
+  <div class="slideout-panel" id="slideout-panel">
+    <div class="slideout-header">
+      <div class="profile-avatar-lg" id="profile-avatar">TM</div>
+      <div>
+        <div style="font-size:16px;font-weight:700" id="profile-name">Tara McDonald</div>
+        <div style="font-size:12px;color:var(--gray-4);font-family:'DM Mono',monospace" id="profile-handle">@taraalexandra_</div>
+        <div style="margin-top:4px" id="profile-tag"><span class="tag">Lifestyle / Food</span></div>
+      </div>
+      <button class="close-btn" onclick="closeProfile()">×</button>
+    </div>
+
+    <div class="slideout-body">
+      <div class="profile-stat-row">
+        <div class="profile-stat">
+          <div class="profile-stat-val" id="ps-followers">34K</div>
+          <div class="profile-stat-lbl">Followers</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-val" id="ps-rate">$195</div>
+          <div class="profile-stat-lbl">Rate</div>
+        </div>
+        <div class="profile-stat">
+          <div class="profile-stat-val">3</div>
+          <div class="profile-stat-lbl">Campaigns</div>
+        </div>
+      </div>
+
+      <div class="section-label">Contact</div>
+      <div style="background:var(--gray-1);border-radius:var(--radius-sm);padding:12px;margin-bottom:16px;font-size:12px;font-family:'DM Mono',monospace;color:var(--gray-5)" id="profile-email">
+        taraalexandramcdonald@gmail.com
+      </div>
+
+      <div class="section-label">Current Deliverable</div>
+      <div style="background:var(--gray-1);border-radius:var(--radius-sm);padding:12px;margin-bottom:16px;font-size:13px" id="profile-deliverable">
+        TikTok + IG Reel
+      </div>
+
+      <div class="section-label">Campaign History</div>
+      <div>
+        <div class="history-item">
+          <span class="pill pill-green" style="font-size:10px">Posted</span>
+          <div style="flex:1;font-size:12px"><strong>WFM Dough Q4 2025</strong><br><span style="color:var(--gray-4)">Sugar Cookie Kit · $195</span></div>
+          <span style="font-size:11px;color:var(--gray-4)">Nov 2025</span>
+        </div>
+        <div class="history-item">
+          <span class="pill pill-green" style="font-size:10px">Posted</span>
+          <div style="flex:1;font-size:12px"><strong>WFM Dough Q3 2025</strong><br><span style="color:var(--gray-4)">Chocolate Chip Kit · $195</span></div>
+          <span style="font-size:11px;color:var(--gray-4)">Sep 2025</span>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="section-label">Performance Notes</div>
+        <div style="background:var(--cream-soft);border:1px solid rgba(243,236,178,0.8);border-radius:var(--radius-sm);padding:12px;font-size:12px;color:var(--dark)">
+          201K TikTok followers — strong performer on TikTok. Content reuses well on IG. High engagement rate relative to follower count.
+        </div>
+      </div>
+
+      <div style="margin-top:16px;display:flex;gap:8px">
+        <button class="btn btn-primary" style="flex:1">Add to Campaign</button>
+        <button class="btn btn-ghost">Edit Profile</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+    const screen = document.getElementById('screen-' + id);
+    if (screen) screen.classList.add('active');
+
+    const titles = {
+      'dashboard': 'Dashboard',
+      'campaign-board': 'Campaign Board',
+      'rolodex': 'Influencer Rolodex',
+      'payment-queue': 'Payment Queue',
+      'chase-list': 'Chase List',
+      'new-campaign': 'New Campaign'
+    };
+
+    document.getElementById('topbar-title').textContent = titles[id] || id;
+
+    const controlsMap = {
+      'campaign-board': `
+        <select class="select-control">
+          <option>WFM — Everyday Doughs Q1</option>
+          <option>WFM — Spring Dough Kits</option>
+          <option>Sprouts — Everyday Dough</option>
+          <option>Walmart — Girl Scouts</option>
+        </select>
+        <button class="btn btn-ghost" onclick="showScreen('rolodex')">View Rolodex</button>
+        <button class="btn btn-primary" onclick="showScreen('new-campaign')">+ New Campaign</button>`,
+      'rolodex': `<button class="btn btn-primary">+ Add Influencer</button>`,
+      'payment-queue': `<button class="btn btn-ghost">Export CSV</button>`,
+      'chase-list': `<button class="btn btn-primary">Send All Reminders</button>`,
+      'new-campaign': `<button class="btn btn-ghost" onclick="showScreen('campaign-board')">← Back</button>`,
+      'dashboard': `<button class="btn btn-primary" onclick="showScreen('new-campaign')">+ New Campaign</button>`
+    };
+
+    document.getElementById('topbar-controls').innerHTML = controlsMap[id] || '';
+
+    const alertScreens = ['campaign-board', 'dashboard'];
+    document.getElementById('alert-strip').style.display = alertScreens.includes(id) ? 'flex' : 'none';
+
+    // nav active state
+    const navMap = {
+      'dashboard': 0,
+      'campaign-board': 3,
+      'new-campaign': 4,
+      'rolodex': 6,
+      'payment-queue': 8,
+      'chase-list': 9
+    };
+
+    const navItems = document.querySelectorAll('.nav-item');
+    const idx = navMap[id];
+    if (idx !== undefined && navItems[idx]) navItems[idx].classList.add('active');
+  }
+
+  function openProfile(name, handle, followers, rate, deliverable, type, campaigns) {
+    const initials = name.split(' ').map(w => w[0]).join('').slice(0,2).toUpperCase();
+    document.getElementById('profile-avatar').textContent = initials;
+    document.getElementById('profile-name').textContent = name;
+    document.getElementById('profile-handle').textContent = handle;
+    document.getElementById('profile-tag').innerHTML = `<span class="tag">${type}</span>`;
+    document.getElementById('ps-followers').textContent = followers;
+    document.getElementById('ps-rate').textContent = rate;
+    document.getElementById('profile-deliverable').textContent = deliverable;
+    document.getElementById('profile-email').textContent = handle.replace('@','') + '@email.com';
+    document.getElementById('slideout-overlay').classList.add('open');
+  }
+
+  function closeProfile(event) {
+    if (!event || event.target === document.getElementById('slideout-overlay')) {
+      document.getElementById('slideout-overlay').classList.remove('open');
+    }
+  }
+</script>
+</body>
+</html>
