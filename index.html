@@ -15,13 +15,14 @@
     --cream-soft: rgba(243,236,178,0.3);
     --blue: #1A6BFF;
     --blue-soft: rgba(26,107,255,0.1);
+    --purple: #8B5CF6;
     --white: #ffffff;
     --gray-1: #f7f7f6;
     --gray-2: #efefed;
     --gray-3: #d4d4d0;
     --gray-4: #9a9a94;
     --gray-5: #6b6b65;
-    --sidebar-w: 228px;
+    --sidebar-w: 240px;
     --topbar-h: 60px;
     --radius: 10px;
     --radius-sm: 6px;
@@ -184,118 +185,105 @@
     position: relative;
   }
 
-  .brand-selector {
+  /* Brand switcher header label */
+  .brand-switcher-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--gray-5);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .brand-switcher-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
     background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: var(--radius);
-    padding: 14px 14px;
-    cursor: pointer;
+  }
+
+  /* Dual brand display — always visible */
+  .brand-list {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background 0.15s;
-    position: relative;
+    flex-direction: column;
+    gap: 6px;
   }
 
-  .brand-selector:hover { background: rgba(255,255,255,0.1); }
-
-  .brand-info { display: flex; align-items: center; gap: 10px; }
-
-  .brand-avatar {
-    width: 36px; height: 36px;
-    background: var(--pink);
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: background 0.2s;
-  }
-
-  .brand-name {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: -0.2px;
-  }
-
-  .brand-role {
-    font-size: 11px;
-    color: var(--gray-4);
-    margin-top: 1px;
-  }
-
-  .brand-chevron {
-    color: var(--gray-4);
-    font-size: 14px;
-    flex-shrink: 0;
-    transition: transform 0.2s;
-  }
-
-  /* Brand dropdown */
-  .brand-dropdown {
-    display: none;
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 0; right: 0;
-    background: #242424;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: 0 -8px 24px rgba(0,0,0,0.4);
-    z-index: 50;
-  }
-
-  .brand-dropdown.open { display: block; }
-
-  .brand-option {
+  .brand-pill {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 12px 14px;
+    padding: 10px 12px;
+    border-radius: var(--radius);
     cursor: pointer;
     transition: background 0.15s;
+    border: 1px solid transparent;
+    position: relative;
   }
 
-  .brand-option:hover { background: rgba(255,255,255,0.06); }
-  .brand-option.selected { background: rgba(255,0,128,0.1); }
-  .brand-option + .brand-option { border-top: 1px solid rgba(255,255,255,0.06); }
+  .brand-pill:hover {
+    background: rgba(255,255,255,0.06);
+  }
 
-  .brand-option-avatar {
-    width: 32px; height: 32px;
-    border-radius: 7px;
-    font-size: 11px;
+  .brand-pill.active-brand {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .brand-pill-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 13px;
     font-weight: 700;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    letter-spacing: 0.02em;
   }
 
-  .brand-option-name {
+  .brand-pill-text { flex: 1; min-width: 0; }
+
+  .brand-pill-name {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--white);
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .brand-option-sub {
+  .brand-pill-sub {
     font-size: 11px;
     color: var(--gray-4);
     margin-top: 1px;
   }
 
-  .brand-option-check {
-    margin-left: auto;
-    color: var(--pink);
-    font-size: 14px;
-    opacity: 0;
+  .brand-pill-badge {
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
-  .brand-option.selected .brand-option-check { opacity: 1; }
+  .brand-pill-badge.active {
+    background: rgba(255,0,128,0.2);
+    color: var(--pink);
+  }
+
+  .brand-pill-badge.inactive {
+    background: rgba(255,255,255,0.07);
+    color: var(--gray-4);
+  }
 
   /* ── MAIN ── */
   .main {
@@ -1036,36 +1024,28 @@
     </div>
   </nav>
 
+  <!-- ── BRAND SWITCHER ── -->
   <div class="sidebar-footer">
-    <div class="brand-selector" onclick="toggleBrandDropdown(event)">
-      <!-- Dropdown (opens upward) -->
-      <div class="brand-dropdown" id="brand-dropdown">
-        <div class="brand-option selected" onclick="selectBrand('Miss Jones Bakery', 'MJ', '#FF0080', event)">
-          <div class="brand-option-avatar" style="background:#FF0080">MJ</div>
-          <div>
-            <div class="brand-option-name">Miss Jones Bakery</div>
-            <div class="brand-option-sub">Active Brand</div>
-          </div>
-          <div class="brand-option-check">✓</div>
+    <div class="brand-switcher-label">Brands</div>
+    <div class="brand-list">
+      <!-- Miss Jones Bakery -->
+      <div class="brand-pill active-brand" id="brand-mj" onclick="selectBrand('mj')">
+        <div class="brand-pill-avatar" style="background:#FF0080">MJ</div>
+        <div class="brand-pill-text">
+          <div class="brand-pill-name">Miss Jones Bakery</div>
+          <div class="brand-pill-sub">67 influencers</div>
         </div>
-        <div class="brand-option" onclick="selectBrand('Wine and Cola', 'WC', '#8B5CF6', event)">
-          <div class="brand-option-avatar" style="background:#8B5CF6">WC</div>
-          <div>
-            <div class="brand-option-name">Wine and Cola</div>
-            <div class="brand-option-sub">No data yet</div>
-          </div>
-          <div class="brand-option-check">✓</div>
-        </div>
+        <div class="brand-pill-badge active" id="badge-mj">Active</div>
       </div>
-      <!-- Active brand display -->
-      <div class="brand-info">
-        <div class="brand-avatar" id="active-brand-avatar">MJ</div>
-        <div>
-          <div class="brand-name" id="active-brand-name">Miss Jones Bakery</div>
-          <div class="brand-role">Active Brand</div>
+      <!-- Wine and Cola -->
+      <div class="brand-pill" id="brand-wc" onclick="selectBrand('wc')">
+        <div class="brand-pill-avatar" style="background:#8B5CF6">WC</div>
+        <div class="brand-pill-text">
+          <div class="brand-pill-name">Wine and Cola</div>
+          <div class="brand-pill-sub">Coming soon</div>
         </div>
+        <div class="brand-pill-badge inactive" id="badge-wc">Setup</div>
       </div>
-      <div class="brand-chevron" id="brand-chevron">⌄</div>
     </div>
   </div>
 </aside>
@@ -1811,36 +1791,30 @@
     }
   }
 
-  function toggleBrandDropdown(event) {
-    event.stopPropagation();
-    const dd = document.getElementById('brand-dropdown');
-    const chevron = document.getElementById('brand-chevron');
-    dd.classList.toggle('open');
-    chevron.style.transform = dd.classList.contains('open') ? 'rotate(180deg)' : '';
-  }
+  function selectBrand(brandId) {
+    // Update active states
+    document.querySelectorAll('.brand-pill').forEach(p => p.classList.remove('active-brand'));
+    document.getElementById('brand-' + brandId).classList.add('active-brand');
 
-  function selectBrand(name, initials, color, event) {
-    event.stopPropagation();
-    document.getElementById('active-brand-name').textContent = name;
-    const avatar = document.getElementById('active-brand-avatar');
-    avatar.textContent = initials;
-    avatar.style.background = color;
+    // Update badges
+    document.querySelectorAll('.brand-pill-badge').forEach(b => {
+      b.classList.remove('active');
+      b.classList.add('inactive');
+      b.textContent = 'Setup';
+    });
 
-    document.querySelectorAll('.brand-option').forEach(opt => opt.classList.remove('selected'));
-    event.currentTarget.classList.add('selected');
+    const activeBadge = document.getElementById('badge-' + brandId);
+    activeBadge.classList.remove('inactive');
+    activeBadge.classList.add('active');
+    activeBadge.textContent = 'Active';
 
-    document.getElementById('brand-dropdown').classList.remove('open');
-    document.getElementById('brand-chevron').style.transform = '';
-  }
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', function() {
-    const dd = document.getElementById('brand-dropdown');
-    if (dd && dd.classList.contains('open')) {
-      dd.classList.remove('open');
-      document.getElementById('brand-chevron').style.transform = '';
+    // Reset the inactive badge labels
+    if (brandId === 'mj') {
+      document.getElementById('badge-wc').textContent = 'Setup';
+    } else {
+      document.getElementById('badge-mj').textContent = 'Setup';
     }
-  });
+  }
 </script>
 </body>
 </html>
