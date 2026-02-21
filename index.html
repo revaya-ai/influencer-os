@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0040)file:///Users/short/Downloads/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>InfluencerOS — Miss Jones Brands</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
   :root {
     --pink: #FF0080;
@@ -371,6 +371,31 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+  }
+
+  .stat-card-link {
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .stat-card-link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .stat-card-link::after {
+    content: '→';
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    font-size: 10px;
+    color: var(--gray-3);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .stat-card-link:hover::after {
+    opacity: 1;
   }
 
   /* ── PIPELINE ── */
@@ -887,6 +912,11 @@
     min-height: 0;
   }
 
+
+  .pagination-bar { display:flex; align-items:center; gap:12px; padding:12px 0; flex-wrap:wrap; }
+  .pagination-bar select, .pagination-bar button { padding:6px 12px; border:1px solid #ddd; border-radius:6px; cursor:pointer; background:#fff; font-size:13px; }
+  .pagination-bar button:disabled { opacity:0.4; cursor:default; }
+  .pagination-bar .page-info { font-size:13px; color:#666; margin-left:auto; }
 </style>
 </head>
 <body>
@@ -903,34 +933,34 @@
 
   <nav class="sidebar-nav">
     <div class="nav-section-label">Overview</div>
-    <div class="nav-item" onclick="showScreen('dashboard')">
+    <div class="nav-item" onclick="showScreen(&#39;dashboard&#39;)">
       <div class="nav-icon">⊞</div>
       <div class="nav-label">Dashboard</div>
     </div>
 
     <div class="nav-section-label">Campaigns</div>
-    <div class="nav-item active" onclick="showScreen('campaign-board')">
+    <div class="nav-item" onclick="showScreen(&#39;campaign-board&#39;)">
       <div class="nav-icon">◈</div>
       <div class="nav-label">Campaign Board</div>
     </div>
-    <div class="nav-item" onclick="showScreen('new-campaign')">
+    <div class="nav-item" onclick="showScreen(&#39;new-campaign&#39;)">
       <div class="nav-icon">＋</div>
       <div class="nav-label">New Campaign</div>
     </div>
 
     <div class="nav-section-label">Influencers</div>
-    <div class="nav-item" onclick="showScreen('rolodex')">
+    <div class="nav-item" onclick="showScreen(&#39;rolodex&#39;)">
       <div class="nav-icon">◎</div>
       <div class="nav-label">Rolodex</div>
     </div>
 
     <div class="nav-section-label">Finance</div>
-    <div class="nav-item" onclick="showScreen('payment-queue')">
+    <div class="nav-item" onclick="showScreen(&#39;payment-queue&#39;)">
       <div class="nav-icon">$</div>
       <div class="nav-label">Payment Queue</div>
       <div class="nav-badge">2</div>
     </div>
-    <div class="nav-item" onclick="showScreen('chase-list')">
+    <div class="nav-item" onclick="showScreen(&#39;chase-list&#39;)">
       <div class="nav-icon">⚠</div>
       <div class="nav-label">Chase List</div>
       <div class="nav-badge">3</div>
@@ -956,22 +986,12 @@
 
   <!-- TOPBAR -->
   <div class="topbar" id="topbar">
-    <div class="topbar-title" id="topbar-title">Campaign Board</div>
-    <div class="topbar-controls" id="topbar-controls">
-      <select class="select-control">
-        <option>WFM — Everyday Doughs Q1</option>
-        <option>WFM — Spring Dough Kits</option>
-        <option>Sprouts — Everyday Dough</option>
-        <option>Walmart — Girl Scouts</option>
-        <option>Costco — Protein Muffin</option>
-      </select>
-      <button class="btn btn-ghost" onclick="showScreen('rolodex')">View Rolodex</button>
-      <button class="btn btn-primary" onclick="showScreen('new-campaign')">+ New Campaign</button>
-    </div>
+    <div class="topbar-title" id="topbar-title">Influencer Rolodex</div>
+    <div class="topbar-controls" id="topbar-controls"><button class="btn btn-primary">+ Add Influencer</button></div>
   </div>
 
   <!-- ALERT STRIP -->
-  <div class="alert-strip" id="alert-strip">
+  <div class="alert-strip" id="alert-strip" style="display: none;">
     <div class="alert-item">
       <div class="alert-dot"></div>
       3 influencers past posting date with no content submitted
@@ -993,27 +1013,27 @@
           <h2>Good morning, Angela 👋</h2>
           <p>Q1 2026 is live across 3 campaigns. Here's where things stand.</p>
         </div>
-        <button class="btn btn-primary" onclick="showScreen('new-campaign')">+ New Campaign</button>
+        <button class="btn btn-primary" onclick="showScreen(&#39;new-campaign&#39;)">+ New Campaign</button>
       </div>
 
       <div class="stats-row">
-        <div class="stat-card" style="border-left-color: var(--blue)">
+        <div class="stat-card stat-card-link" style="border-left-color: var(--blue)" onclick="showScreen(&#39;rolodex&#39;)" title="View full rolodex">
           <div class="stat-value" style="color:var(--blue)">66</div>
           <div class="stat-label">Total Influencers</div>
         </div>
-        <div class="stat-card" style="border-left-color: var(--pink)">
+        <div class="stat-card stat-card-link" style="border-left-color: var(--pink)" onclick="showScreen(&#39;campaign-board&#39;)" title="View campaign board">
           <div class="stat-value" style="color:var(--pink)">9</div>
           <div class="stat-label">Active This Campaign</div>
         </div>
-        <div class="stat-card" style="border-left-color: #059669">
+        <div class="stat-card stat-card-link" style="border-left-color: #059669" onclick="showScreen(&#39;campaign-board&#39;)" title="View campaign board">
           <div class="stat-value" style="color:#059669">$2,625</div>
           <div class="stat-label">Budget Allocated</div>
         </div>
-        <div class="stat-card" style="border-left-color: #f59e0b">
+        <div class="stat-card stat-card-link" style="border-left-color: #f59e0b" onclick="showScreen(&#39;payment-queue&#39;)" title="View payment queue">
           <div class="stat-value" style="color:#f59e0b">$545</div>
           <div class="stat-label">Paid Out</div>
         </div>
-        <div class="stat-card" style="border-left-color: #dc2626">
+        <div class="stat-card stat-card-link" style="border-left-color: #dc2626" onclick="showScreen(&#39;chase-list&#39;)" title="View chase list">
           <div class="stat-value" style="color:#dc2626">3</div>
           <div class="stat-label">Overdue</div>
         </div>
@@ -1025,7 +1045,7 @@
             <div class="table-title">🔥 Needs Attention</div>
           </div>
           <table>
-            <tr>
+            <tbody><tr>
               <td><strong>Andrea Ovard</strong><br><span style="color:var(--gray-4);font-size:11px">@dietitian.andie</span></td>
               <td><span class="pill pill-yellow">Content Due</span></td>
               <td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px">Chase →</button></td>
@@ -1040,7 +1060,33 @@
               <td><span class="pill pill-yellow">3 Days Late</span></td>
               <td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px">Chase →</button></td>
             </tr>
-          </table>
+          </tbody></table>
+<div class="pagination-bar" id="pagination-bar">
+  <label>Show <select id="rpp-select" onchange="recordsPerPage=this.value==='all'?0:parseInt(this.value);currentPage=1;filterRolodex()">
+    <option value="25">25</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+    <option value="all">All</option>
+  </select> per page</label>
+  <button id="prev-btn" onclick="currentPage--;filterRolodex()">Prev</button>
+  <button id="next-btn" onclick="currentPage++;filterRolodex()">Next</button>
+  <span class="page-info" id="page-info"></span>
+</div>
+<script>
+function updatePaginationBar(total, totalPages) {
+  const info = document.getElementById('page-info');
+  const prev = document.getElementById('prev-btn');
+  const next = document.getElementById('next-btn');
+  if (!info) return;
+  const rpp = recordsPerPage === 0 ? total : recordsPerPage;
+  const start = Math.min((currentPage-1)*rpp+1, total);
+  const end = recordsPerPage === 0 ? total : Math.min(currentPage*rpp, total);
+  info.textContent = total === 0 ? 'No results' : `${start}-${end} of ${total}`;
+  if (prev) prev.disabled = currentPage <= 1;
+  if (next) next.disabled = currentPage >= totalPages;
+}
+</script>
+
         </div>
 
         <div class="table-container">
@@ -1048,7 +1094,7 @@
             <div class="table-title">📋 Active Campaigns</div>
           </div>
           <table>
-            <tr>
+            <tbody><tr>
               <td><strong>WFM — Everyday Doughs</strong></td>
               <td><span class="pill pill-green">Q1 2026</span></td>
               <td style="color:var(--gray-4);font-size:12px">9 influencers</td>
@@ -1063,31 +1109,31 @@
               <td><span class="pill pill-yellow">Planning</span></td>
               <td style="color:var(--gray-4);font-size:12px">0 assigned</td>
             </tr>
-          </table>
+          </tbody></table>
         </div>
       </div>
     </div>
 
     <!-- ── SCREEN: CAMPAIGN BOARD ── -->
-    <div class="screen active" id="screen-campaign-board">
+    <div class="screen" id="screen-campaign-board">
       <div class="stats-row" style="margin-bottom:16px">
-        <div class="stat-card" style="border-left-color:var(--blue)">
+        <div class="stat-card stat-card-link" style="border-left-color:var(--blue)" onclick="showScreen(&#39;rolodex&#39;)">
           <div class="stat-value" style="color:var(--blue)">9</div>
           <div class="stat-label">Influencers</div>
         </div>
-        <div class="stat-card" style="border-left-color:var(--pink)">
+        <div class="stat-card stat-card-link" style="border-left-color:var(--pink)" onclick="showScreen(&#39;campaign-board&#39;)">
           <div class="stat-value" style="color:var(--pink)">$2,625</div>
           <div class="stat-label">Budget Allocated</div>
         </div>
-        <div class="stat-card" style="border-left-color:#059669">
+        <div class="stat-card stat-card-link" style="border-left-color:#059669" onclick="showScreen(&#39;campaign-board&#39;)">
           <div class="stat-value" style="color:#059669">3 of 9</div>
           <div class="stat-label">Content Received</div>
         </div>
-        <div class="stat-card" style="border-left-color:#f59e0b">
+        <div class="stat-card stat-card-link" style="border-left-color:#f59e0b" onclick="showScreen(&#39;payment-queue&#39;)">
           <div class="stat-value" style="color:#f59e0b">$545</div>
           <div class="stat-label">Paid Out</div>
         </div>
-        <div class="stat-card" style="border-left-color:#dc2626">
+        <div class="stat-card stat-card-link" style="border-left-color:#dc2626" onclick="showScreen(&#39;chase-list&#39;)">
           <div class="stat-value" style="color:#dc2626">3</div>
           <div class="stat-label">Overdue</div>
         </div>
@@ -1121,7 +1167,7 @@
         <div class="pipeline-columns">
           <!-- Contacted -->
           <div class="pipeline-col">
-            <div class="inf-card" style="border-top-color:var(--s-contacted)" onclick="openProfile('Melanie Marroquin','@earsbymellie','16.2K','$175','UGC Reel','Mom/Kids Baking','WFM')">
+            <div class="inf-card" style="border-top-color:var(--s-contacted)" onclick="openProfile(&#39;Melanie Marroquin&#39;,&#39;@earsbymellie&#39;,&#39;16.2K&#39;,&#39;$175&#39;,&#39;UGC Reel&#39;,&#39;Mom/Kids Baking&#39;,&#39;WFM&#39;)">
               <div class="card-top">
                 <div class="avatar">MM</div>
                 <div class="card-info">
@@ -1136,7 +1182,7 @@
               </div>
               <div class="card-deliverable">UGC Reel</div>
             </div>
-            <div class="inf-card" style="border-top-color:var(--s-contacted)" onclick="openProfile('Heather Brickell','@mysweetsavings','13K','$250','Reel & 2 Stories','Lifestyle','WFM')">
+            <div class="inf-card" style="border-top-color:var(--s-contacted)" onclick="openProfile(&#39;Heather Brickell&#39;,&#39;@mysweetsavings&#39;,&#39;13K&#39;,&#39;$250&#39;,&#39;Reel &amp; 2 Stories&#39;,&#39;Lifestyle&#39;,&#39;WFM&#39;)">
               <div class="card-top">
                 <div class="avatar">HB</div>
                 <div class="card-info">
@@ -1149,13 +1195,13 @@
                 <div class="card-followers">👥 13K</div>
                 <div class="card-price">$250</div>
               </div>
-              <div class="card-deliverable">Reel & 2 Stories</div>
+              <div class="card-deliverable">Reel &amp; 2 Stories</div>
             </div>
           </div>
 
           <!-- Brief Sent -->
           <div class="pipeline-col">
-            <div class="inf-card" style="border-top-color:var(--s-brief)" onclick="openProfile('Alyssa Barcena','@alyssabarcenaphotography','657','$200','Video, Photo, Stories','Food Photographer','WFM')">
+            <div class="inf-card" style="border-top-color:var(--s-brief)" onclick="openProfile(&#39;Alyssa Barcena&#39;,&#39;@alyssabarcenaphotography&#39;,&#39;657&#39;,&#39;$200&#39;,&#39;Video, Photo, Stories&#39;,&#39;Food Photographer&#39;,&#39;WFM&#39;)">
               <div class="card-top">
                 <div class="avatar">AB</div>
                 <div class="card-info">
@@ -1170,7 +1216,7 @@
               </div>
               <div class="card-deliverable">Video, Photo, Stories</div>
             </div>
-            <div class="inf-card" style="border-top-color:var(--s-brief)" onclick="openProfile('Shayla Mackenzie','@shaylamackenzie','12K','$300','IG Reel','Mom / Lifestyle','WFM')">
+            <div class="inf-card" style="border-top-color:var(--s-brief)" onclick="openProfile(&#39;Shayla Mackenzie&#39;,&#39;@shaylamackenzie&#39;,&#39;12K&#39;,&#39;$300&#39;,&#39;IG Reel&#39;,&#39;Mom / Lifestyle&#39;,&#39;WFM&#39;)">
               <div class="card-top">
                 <div class="avatar">SM</div>
                 <div class="card-info">
@@ -1189,7 +1235,7 @@
 
           <!-- Content Received -->
           <div class="pipeline-col">
-            <div class="inf-card" style="border-top-color:var(--s-content)" onclick="openProfile('Andrea Ovard','@dietitian.andie','64.9K','$350','IG Reel','Dietitian','WFM')">
+            <div class="inf-card" style="border-top-color:var(--s-content)" onclick="openProfile(&#39;Andrea Ovard&#39;,&#39;@dietitian.andie&#39;,&#39;64.9K&#39;,&#39;$350&#39;,&#39;IG Reel&#39;,&#39;Dietitian&#39;,&#39;WFM&#39;)">
               <div class="card-top">
                 <div class="avatar">AO</div>
                 <div class="card-info">
@@ -1208,11 +1254,11 @@
 
           <!-- W9 Done -->
           <div class="pipeline-col">
-            <div class="inf-card" style="border-top-color:var(--s-w9)" onclick="openProfile('Olivia & Connor','@stemandplate','3K','$330','10-sec Collab Reel','Healthy Recipes','WFM')">
+            <div class="inf-card" style="border-top-color:var(--s-w9)" onclick="openProfile(&#39;Olivia &amp; Connor&#39;,&#39;@stemandplate&#39;,&#39;3K&#39;,&#39;$330&#39;,&#39;10-sec Collab Reel&#39;,&#39;Healthy Recipes&#39;,&#39;WFM&#39;)">
               <div class="card-top">
                 <div class="avatar">OC</div>
                 <div class="card-info">
-                  <div class="card-name">Olivia & Connor</div>
+                  <div class="card-name">Olivia &amp; Connor</div>
                   <div class="card-handle">@stemandplate</div>
                 </div>
               </div>
@@ -1227,7 +1273,7 @@
 
           <!-- Invoice Received -->
           <div class="pipeline-col">
-            <div class="inf-card" style="border-top-color:var(--s-invoice)" onclick="openProfile('Krystal Goodman','@thekleannutritionist','11K','$250','IG Reel','Health/Wellness','WFM')">
+            <div class="inf-card" style="border-top-color:var(--s-invoice)" onclick="openProfile(&#39;Krystal Goodman&#39;,&#39;@thekleannutritionist&#39;,&#39;11K&#39;,&#39;$250&#39;,&#39;IG Reel&#39;,&#39;Health/Wellness&#39;,&#39;WFM&#39;)">
               <div class="card-top">
                 <div class="avatar">KG</div>
                 <div class="card-info">
@@ -1246,7 +1292,7 @@
 
           <!-- Paid -->
           <div class="pipeline-col">
-            <div class="inf-card" style="border-top-color:var(--s-paid)" onclick="openProfile('Tara McDonald','@taraalexandra_','34K','$195','TikTok + IG','Lifestyle','WFM')">
+            <div class="inf-card" style="border-top-color:var(--s-paid)" onclick="openProfile(&#39;Tara McDonald&#39;,&#39;@taraalexandra_&#39;,&#39;34K&#39;,&#39;$195&#39;,&#39;TikTok + IG&#39;,&#39;Lifestyle&#39;,&#39;WFM&#39;)">
               <div class="card-top">
                 <div class="avatar">TM</div>
                 <div class="card-info">
@@ -1265,7 +1311,7 @@
 
           <!-- Posted -->
           <div class="pipeline-col">
-            <div class="inf-card" style="border-top-color:var(--s-posted)" onclick="openProfile('Marissa Barcena','@marissaswholelife','99.3K','$300','UGC','Mom/Food','WFM')">
+            <div class="inf-card" style="border-top-color:var(--s-posted)" onclick="openProfile(&#39;Marissa Barcena&#39;,&#39;@marissaswholelife&#39;,&#39;99.3K&#39;,&#39;$300&#39;,&#39;UGC&#39;,&#39;Mom/Food&#39;,&#39;WFM&#39;)">
               <div class="card-top">
                 <div class="avatar">MB</div>
                 <div class="card-info">
@@ -1286,27 +1332,32 @@
     </div>
 
     <!-- ── SCREEN: ROLODEX ── -->
-    <div class="screen" id="screen-rolodex">
+    <div class="screen active" id="screen-rolodex">
       <div class="table-container">
         <div class="table-header">
-          <div class="table-title">Influencer Rolodex</div>
+          <div>
+            <div class="table-title">Influencer Rolodex</div>
+            <div id="rolodex-count" style="font-size:12px;color:var(--gray-4);margin-top:2px">65 influencers</div>
+          </div>
           <div style="display:flex;gap:8px;align-items:center">
-            <input class="search-input" placeholder="Search by name or handle..." />
-            <select class="select-control">
-              <option>All Content Types</option>
-              <option>Food / Recipes</option>
-              <option>Mom / Lifestyle</option>
-              <option>Health / Wellness</option>
-              <option>Vegan</option>
-              <option>Gluten Free</option>
-              <option>Costco Finds</option>
+            <input id="rolodex-search" class="search-input" placeholder="Search by name or handle..." oninput="filterRolodex()">
+            <select id="rolodex-type" class="select-control" onchange="filterRolodex()">
+              <option value="">All Content Types</option>
+              <option value="food">Food / Recipes</option>
+              <option value="mom">Mom / Lifestyle</option>
+              <option value="wellness">Health / Wellness</option>
+              <option value="vegan">Vegan</option>
+              <option value="GF">Gluten Free</option>
+              <option value="costco">Costco</option>
+              <option value="ugc">UGC</option>
+              <option value="fitness">Fitness</option>
             </select>
-            <select class="select-control">
-              <option>All Follower Ranges</option>
-              <option>Under 5K</option>
-              <option>5K – 25K</option>
-              <option>25K – 100K</option>
-              <option>100K+</option>
+            <select id="rolodex-range" class="select-control" onchange="filterRolodex()">
+              <option value="">All Follower Ranges</option>
+              <option value="under5">Under 5K</option>
+              <option value="5to25">5K – 25K</option>
+              <option value="25to100">25K – 100K</option>
+              <option value="100plus">100K+</option>
             </select>
             <button class="btn btn-primary">+ Add Influencer</button>
           </div>
@@ -1323,62 +1374,527 @@
               <th>Performance</th>
             </tr>
           </thead>
-          <tbody>
-            <tr onclick="openProfile('Tara McDonald','@taraalexandra_','34.4K IG / 201.3K TT','$195','TikTok + IG Reel','Lifestyle / Food','WFM, Sprouts')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">TM</div><div><div style="font-weight:600">Tara McDonald</div><div style="font-size:11px;color:var(--gray-4)">taraalexandramcdonald@gmail.com</div></div></div></td>
-              <td><span class="pill pill-pink">IG + TikTok</span></td>
-              <td><span class="tag">Lifestyle / Food</span></td>
-              <td style="color:var(--gray-4);font-size:12px">Orlando, FL</td>
-              <td style="font-weight:600;color:#059669">$195/video</td>
-              <td><span class="pill pill-blue">3 campaigns</span></td>
-              <td><span class="pill pill-green">High Eng.</span></td>
-            </tr>
-            <tr onclick="openProfile('Shayla Mackenzie','@shaylamackenzie','12K IG / 112K TT','$300','IG Reel','Mom / Lifestyle','WFM')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SM</div><div><div style="font-weight:600">Shayla Mackenzie</div><div style="font-size:11px;color:var(--gray-4)">shaylamackenzieofficial@gmail.com</div></div></div></td>
-              <td><span class="pill pill-pink">IG + TikTok</span></td>
-              <td><span class="tag">Mom / Lifestyle</span></td>
-              <td style="color:var(--gray-4);font-size:12px">Rocklin, CA</td>
-              <td style="font-weight:600;color:#059669">$300/reel</td>
-              <td><span class="pill pill-blue">2 campaigns</span></td>
-              <td><span class="pill pill-yellow">Avg Eng.</span></td>
-            </tr>
-            <tr onclick="openProfile('Nicole Bruno','@nobread','218K','Custom','TBD','GF / Wellness','—')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">NB</div><div><div style="font-weight:600">Nicole Bruno</div><div style="font-size:11px;color:var(--gray-4)">via DM</div></div></div></td>
-              <td><span class="pill pill-blue">Instagram</span></td>
-              <td><span class="tag">GF / Wellness</span></td>
-              <td style="color:var(--gray-4);font-size:12px">—</td>
-              <td style="font-weight:600;color:var(--gray-4)">TBD</td>
-              <td><span class="pill pill-gray">Prospecting</span></td>
-              <td><span class="pill pill-gray">Unknown</span></td>
-            </tr>
-            <tr onclick="openProfile('Sophia Hoff','@wholesomelysophia','102K','$2,500/reel','IG Reel','Health / OT','—')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SH</div><div><div style="font-weight:600">Sophia Hoff</div><div style="font-size:11px;color:var(--gray-4)">sophiamhoff@gmail.com</div></div></div></td>
-              <td><span class="pill pill-blue">Instagram</span></td>
-              <td><span class="tag">Health / Wellness</span></td>
-              <td style="color:var(--gray-4);font-size:12px">Jax Beach, FL</td>
-              <td style="font-weight:600;color:#059669">$2,500/reel</td>
-              <td><span class="pill pill-gray">Prospecting</span></td>
-              <td><span class="pill pill-gray">Unknown</span></td>
-            </tr>
-            <tr onclick="openProfile('Jane & Margie','@noshing.sisters','25.3K TikTok','Custom','TikTok Video','Sisters / Food','—')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JM</div><div><div style="font-weight:600">Jane & Margie</div><div style="font-size:11px;color:var(--gray-4)">grandmasgonoshing@gmail.com</div></div></div></td>
-              <td><span class="pill pill-pink">TikTok + IG</span></td>
-              <td><span class="tag">Sisters / Noshing</span></td>
-              <td style="color:var(--gray-4);font-size:12px">—</td>
-              <td style="font-weight:600;color:var(--gray-4)">Negotiate</td>
-              <td><span class="pill pill-gray">Prospecting</span></td>
-              <td><span class="pill pill-gray">Unknown</span></td>
-            </tr>
-            <tr onclick="openProfile('Mariah Thomas','@seasonal_bridges','16K IG / 11.6K TT','$200–$400','Reel or Bundle','Cozy / Holiday','—')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MT</div><div><div style="font-weight:600">Mariah Thomas</div><div style="font-size:11px;color:var(--gray-4)">seasonalbridges@gmail.com</div></div></div></td>
-              <td><span class="pill pill-pink">IG + TikTok</span></td>
-              <td><span class="tag">Cozy / Lifestyle</span></td>
-              <td style="color:var(--gray-4);font-size:12px">—</td>
-              <td style="font-weight:600;color:#059669">$200–$400</td>
-              <td><span class="pill pill-gray">Prospecting</span></td>
-              <td><span class="pill pill-gray">Unknown</span></td>
-            </tr>
-          </tbody>
+          <tbody id="rolodex-tbody"><tr onclick="openProfile(&#39;Madiha Saeed, MD&#39;,&#39;@holisticmommd&#39;,&#39;19k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Holistic / Family&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MS</div><div><div style="font-weight:600">Madiha Saeed, MD</div><div style="font-size:11px;color:var(--gray-4)">@holisticmommd</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Holistic / Family</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Clare Manicom Kenyon&#39;,&#39;@clare_force_one&#39;,&#39;7k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Vegan / Fashion&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">CM</div><div><div style="font-weight:600">Clare Manicom Kenyon</div><div style="font-size:11px;color:var(--gray-4)">@clare_force_one</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Vegan / Fashion</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Frances Kellar&#39;,&#39;@franceskellar&#39;,&#39;2k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Seasonal / UGC&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">FK</div><div><div style="font-weight:600">Frances Kellar</div><div style="font-size:11px;color:var(--gray-4)">@franceskellar</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Seasonal / UGC</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Baylee&#39;,&#39;@fitpeanutbay&#39;,&#39;20k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mom / Wellness&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">B</div><div><div style="font-weight:600">Baylee</div><div style="font-size:11px;color:var(--gray-4)">@fitpeanutbay</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Wellness</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Nicole Bruno&#39;,&#39;@nobread&#39;,&#39;218k IG&#39;,&#39;TBD&#39;,&#39;—&#39;,&#39;GF / Wellness&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">NB</div><div><div style="font-weight:600">Nicole Bruno</div><div style="font-size:11px;color:var(--gray-4)">@nobread</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">GF / Wellness</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">TBD</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Marissa Barcena&#39;,&#39;@marissaswholelife&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MB</div><div><div style="font-weight:600">Marissa Barcena</div><div style="font-size:11px;color:var(--gray-4)">@marissaswholelife</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">—</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Katherine Langeland&#39;,&#39;@thekcpatisserie&#39;,&#39;1k TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">KL</div><div><div style="font-weight:600">Katherine Langeland</div><div style="font-size:11px;color:var(--gray-4)">thekcpatisserie@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">—</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Krystal Goodman&#39;,&#39;@thekleannutritionist&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Nutrition / Wellness&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">KG</div><div><div style="font-weight:600">Krystal Goodman</div><div style="font-size:11px;color:var(--gray-4)">@thekleannutritionist</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Nutrition / Wellness</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Anastasia Anderson&#39;,&#39;@anastasiazwilling&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">AA</div><div><div style="font-weight:600">Anastasia Anderson</div><div style="font-size:11px;color:var(--gray-4)">@anastasiazwilling</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">—</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Amanda Robyn&#39;,&#39;@healthbyamandarobyn&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Health&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">AR</div><div><div style="font-weight:600">Amanda Robyn</div><div style="font-size:11px;color:var(--gray-4)">@healthbyamandarobyn</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Health</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Brittany&#39;,&#39;@myviewfromuphere&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">B</div><div><div style="font-weight:600">Brittany</div><div style="font-size:11px;color:var(--gray-4)">@myviewfromuphere</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">—</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Lauren Less&#39;,&#39;@lesswithlaur&#39;,&#39;147k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;GF / DF Recipes&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">LL</div><div><div style="font-weight:600">Lauren Less</div><div style="font-size:11px;color:var(--gray-4)">lesswithlaur@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">GF / DF Recipes</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Rebecca Lilly&#39;,&#39;@xxrlilly&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">RL</div><div><div style="font-weight:600">Rebecca Lilly</div><div style="font-size:11px;color:var(--gray-4)">@xxrlilly</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">—</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Alison (Ali Kat)&#39;,&#39;@alison_violet19&#39;,&#39;2.4k TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">AK</div><div><div style="font-weight:600">Alison (Ali Kat)</div><div style="font-size:11px;color:var(--gray-4)">alikathol13@hotmail.com</div></div></div></td>
+        <td><span class="pill pill-purple" style="background:#f3e8ff;color:#7c3aed">TikTok</span></td>
+        <td><span class="tag">—</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Shayla Mackenzie&#39;,&#39;@shaylamackenzie&#39;,&#39;11k IG / 112k TT&#39;,&#39;$300/reel&#39;,&#39;—&#39;,&#39;Mom / Recipes / Lifestyle&#39;,&#39;2&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SM</div><div><div style="font-weight:600">Shayla Mackenzie</div><div style="font-size:11px;color:var(--gray-4)">shaylamackenzieofficial@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Mom / Recipes / Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Rocklin, CA</td>
+        <td><span style="font-weight:600;color:#059669">$300/reel</span></td>
+        <td><span class="pill pill-blue">2 campaigns</span></td>
+        <td><span class="pill pill-yellow">Avg Eng.</span></td>
+      </tr><tr onclick="openProfile(&#39;Jenna Bailey&#39;,&#39;@byjennabailey&#39;,&#39;1.3k TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mom / Hobbies&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JB</div><div><div style="font-weight:600">Jenna Bailey</div><div style="font-size:11px;color:var(--gray-4)">—</div></div></div></td>
+        <td><span class="pill pill-purple" style="background:#f3e8ff;color:#7c3aed">TikTok</span></td>
+        <td><span class="tag">Mom / Hobbies</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Jane &amp; Margie&#39;,&#39;@grandmasgonoshing&#39;,&#39;13.6k IG / 25.3k TT&#39;,&#39;Negotiate&#39;,&#39;—&#39;,&#39;Sisters / Food&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JM</div><div><div style="font-weight:600">Jane &amp; Margie</div><div style="font-size:11px;color:var(--gray-4)">grandmasgonoshing@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Sisters / Food</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">Negotiate</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Jessie Costantino&#39;,&#39;@jessiecostantino&#39;,&#39;369k TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Cozy / Cooking&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JC</div><div><div style="font-weight:600">Jessie Costantino</div><div style="font-size:11px;color:var(--gray-4)">jesscostatino@neonroseagency.com</div></div></div></td>
+        <td><span class="pill pill-purple" style="background:#f3e8ff;color:#7c3aed">TikTok</span></td>
+        <td><span class="tag">Cozy / Cooking</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Dani Lutin&#39;,&#39;@lutinni&#39;,&#39;46.3k IG / 141.5k TT&#39;,&#39;$7.5k TT / $4k IG&#39;,&#39;—&#39;,&#39;Food / Lifestyle&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">DL</div><div><div style="font-weight:600">Dani Lutin</div><div style="font-size:11px;color:var(--gray-4)">contact.danilutin@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Food / Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Florida</td>
+        <td><span style="font-weight:600;color:#059669">$7.5k TT / $4k IG</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Shelly Jaronski&#39;,&#39;@cookiesandcups&#39;,&#39;375k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Recipes&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SJ</div><div><div style="font-weight:600">Shelly Jaronski</div><div style="font-size:11px;color:var(--gray-4)">cookiesandcups@live.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Recipes</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Jenn Ordway&#39;,&#39;@itsssjen&#39;,&#39;22.7k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mom / Lifestyle&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JO</div><div><div style="font-weight:600">Jenn Ordway</div><div style="font-size:11px;color:var(--gray-4)">itsssjennn@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Heather Brickell&#39;,&#39;@mysweetsavings&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Savings / Deals&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">HB</div><div><div style="font-weight:600">Heather Brickell</div><div style="font-size:11px;color:var(--gray-4)">mysweetsavings@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Savings / Deals</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Breeanna Cox&#39;,&#39;@bodybybreefitness&#39;,&#39;170k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mom / Fitness&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">BC</div><div><div style="font-weight:600">Breeanna Cox</div><div style="font-size:11px;color:var(--gray-4)">hello@bodybybree.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Fitness</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Krysten\&#39;s Kitchen&#39;,&#39;&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Food&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">KK</div><div><div style="font-weight:600">Krysten's Kitchen</div><div style="font-size:11px;color:var(--gray-4)">krystenskitchen@icloud.com</div></div></div></td>
+        <td><span class="pill pill-gray">—</span></td>
+        <td><span class="tag">Food</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Ben &amp; Karley DeCocker&#39;,&#39;@DadsFoodToday&#39;,&#39;435k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Dad / Recipes&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">BK</div><div><div style="font-weight:600">Ben &amp; Karley DeCocker</div><div style="font-size:11px;color:var(--gray-4)">karleytosociety@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Dad / Recipes</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Danielle Gootman&#39;,&#39;@healthywithdani&#39;,&#39;10.3k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Health / Food / Lifestyle&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">DG</div><div><div style="font-weight:600">Danielle Gootman</div><div style="font-size:11px;color:var(--gray-4)">daniellegootman@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Health / Food / Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Alexandra Azary&#39;,&#39;@brighteyedbaker&#39;,&#39;11.1k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;GF Baking&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">AA</div><div><div style="font-weight:600">Alexandra Azary</div><div style="font-size:11px;color:var(--gray-4)">alexandra@brighteyedbaker.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">GF Baking</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Jonah Abueg&#39;,&#39;@j.xnah&#39;,&#39;43.5k IG&#39;,&#39;$3k/reel&#39;,&#39;—&#39;,&#39;Lifestyle / Baking&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JA</div><div><div style="font-weight:600">Jonah Abueg</div><div style="font-size:11px;color:var(--gray-4)">jonahcollabs@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Lifestyle / Baking</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$3k/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Kat Stickler&#39;,&#39;@katstickler&#39;,&#39;3.7M IG&#39;,&#39;$135k IG / $145k TT&#39;,&#39;—&#39;,&#39;Mom / Lifestyle&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">KS</div><div><div style="font-weight:600">Kat Stickler</div><div style="font-size:11px;color:var(--gray-4)">alice@acp-management.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$135k IG / $145k TT</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Melissa Garcia-Martinez&#39;,&#39;&#39;,&#39;—&#39;,&#39;$4k IG Reel&#39;,&#39;—&#39;,&#39;—&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MG</div><div><div style="font-weight:600">Melissa Garcia-Martinez</div><div style="font-size:11px;color:var(--gray-4)">meli@pearpoptalent.com</div></div></div></td>
+        <td><span class="pill pill-gray">—</span></td>
+        <td><span class="tag">—</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$4k IG Reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Kayla Breeden Falconer&#39;,&#39;@kaylaskitchandfix&#39;,&#39;229k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;GF Recipes&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">KB</div><div><div style="font-weight:600">Kayla Breeden Falconer</div><div style="font-size:11px;color:var(--gray-4)">kaylaskitchandfix@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">GF Recipes</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Morgan Peaceman&#39;,&#39;@nomaste.hungry&#39;,&#39;10k IG&#39;,&#39;$800/reel&#39;,&#39;—&#39;,&#39;Mom / Easy Recipes&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MP</div><div><div style="font-weight:600">Morgan Peaceman</div><div style="font-size:11px;color:var(--gray-4)">nomastehungry@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Easy Recipes</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$800/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Mary Katherine&#39;,&#39;&#39;,&#39;—&#39;,&#39;$8k IG Reel&#39;,&#39;—&#39;,&#39;—&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MK</div><div><div style="font-weight:600">Mary Katherine</div><div style="font-size:11px;color:var(--gray-4)">alex@eckodigitalmedia.com</div></div></div></td>
+        <td><span class="pill pill-gray">—</span></td>
+        <td><span class="tag">—</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$8k IG Reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Julie Sandjaja&#39;,&#39;@costcoaisles&#39;,&#39;219k IG&#39;,&#39;$1,850/reel&#39;,&#39;—&#39;,&#39;Costco Finds&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JS</div><div><div style="font-weight:600">Julie Sandjaja</div><div style="font-size:11px;color:var(--gray-4)">costcoaisles@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Costco Finds</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$1,850/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Allan and Rachel&#39;,&#39;@discovering_costco&#39;,&#39;96k IG&#39;,&#39;$3.5k/reel&#39;,&#39;—&#39;,&#39;Costco Finds&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">AA</div><div><div style="font-weight:600">Allan and Rachel</div><div style="font-size:11px;color:var(--gray-4)">info@shoppertalent.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Costco Finds</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$3.5k/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Jen &amp; Laura&#39;,&#39;@costco_doesitagain&#39;,&#39;1.1M IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Healthy / Costco&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JL</div><div><div style="font-weight:600">Jen &amp; Laura</div><div style="font-size:11px;color:var(--gray-4)">ascothart@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Healthy / Costco</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Majed Kassis&#39;,&#39;@costcobuys&#39;,&#39;1.2M IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Costco Finds&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MK</div><div><div style="font-weight:600">Majed Kassis</div><div style="font-size:11px;color:var(--gray-4)">CostcoBuysInfo@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Costco Finds</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Claudia Green&#39;,&#39;@claudiaegreen&#39;,&#39;143k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mom / Medicine&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">CG</div><div><div style="font-weight:600">Claudia Green</div><div style="font-size:11px;color:var(--gray-4)">claudiamedtalk@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Medicine</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Nicole Nyerick RDN&#39;,&#39;@nicolesnutrition&#39;,&#39;3.4k IG&#39;,&#39;$175 UGC / $275 demo&#39;,&#39;—&#39;,&#39;Thyroid / Women&#39;s Health&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">NN</div><div><div style="font-weight:600">Nicole Nyerick RDN</div><div style="font-size:11px;color:var(--gray-4)">NutritionWithNicoleRD@outlook.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Thyroid / Women's Health</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$175 UGC / $275 demo</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Jamie Milne&#39;,&#39;@everything_delish&#39;,&#39;833k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mom / Recipes&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JM</div><div><div style="font-weight:600">Jamie Milne</div><div style="font-size:11px;color:var(--gray-4)">everythingsdelish@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Recipes</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Snack Wire (Madisen Stolz)&#39;,&#39;@snackwire&#39;,&#39;600k IG&#39;,&#39;$1,200 static&#39;,&#39;—&#39;,&#39;Snack / Food&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SW</div><div><div style="font-weight:600">Snack Wire (Madisen Stolz)</div><div style="font-size:11px;color:var(--gray-4)">madisen@thesnackwire.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Snack / Food</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$1,200 static</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Julia Sartini&#39;,&#39;@juliasartini1&#39;,&#39;131k IG&#39;,&#39;$1,500/reel&#39;,&#39;—&#39;,&#39;Mom / Healthy&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JS</div><div><div style="font-weight:600">Julia Sartini</div><div style="font-size:11px;color:var(--gray-4)">juuhsartini@icloud.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Healthy</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$1,500/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Tati&#39;,&#39;@tativegancooking&#39;,&#39;55k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Vegan Recipes&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">T</div><div><div style="font-weight:600">Tati</div><div style="font-size:11px;color:var(--gray-4)">info@tativegancooking.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Vegan Recipes</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Mariah Thomas&#39;,&#39;@seasonal_bridges&#39;,&#39;16k IG / 11.6k TT&#39;,&#39;$200 IG / $150 TT&#39;,&#39;—&#39;,&#39;Cozy / Holiday / Lifestyle&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MT</div><div><div style="font-weight:600">Mariah Thomas</div><div style="font-size:11px;color:var(--gray-4)">seasonalbridges@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Cozy / Holiday / Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$200 IG / $150 TT</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Tara Alexandra McDonald&#39;,&#39;@taraalexandra_&#39;,&#39;34.4k IG / 201.3k TT&#39;,&#39;$195/video&#39;,&#39;—&#39;,&#39;Lifestyle / Food&#39;,&#39;3&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">TA</div><div><div style="font-weight:600">Tara Alexandra McDonald</div><div style="font-size:11px;color:var(--gray-4)">taraalexandramcdonald@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Lifestyle / Food</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Orlando, FL</td>
+        <td><span style="font-weight:600;color:#059669">$195/video</span></td>
+        <td><span class="pill pill-blue">3 campaigns</span></td>
+        <td><span class="pill pill-green">High Eng.</span></td>
+      </tr><tr onclick="openProfile(&#39;Ruth Swingler&#39;,&#39;@ruth_swing316&#39;,&#39;64.2k IG&#39;,&#39;$1,500/reel&#39;,&#39;—&#39;,&#39;Lifestyle / Fitness&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">RS</div><div><div style="font-weight:600">Ruth Swingler</div><div style="font-size:11px;color:var(--gray-4)">ruthswingler316@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Lifestyle / Fitness</span></td>
+        <td style="color:var(--gray-4);font-size:12px">York, PA</td>
+        <td><span style="font-weight:600;color:#059669">$1,500/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Dayami Emory&#39;,&#39;@dayamifrommiami&#39;,&#39;87k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mom / Wellness&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">DE</div><div><div style="font-weight:600">Dayami Emory</div><div style="font-size:11px;color:var(--gray-4)">dayamifrommiami@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Wellness</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Miami</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Sophia Hoff&#39;,&#39;@wholesomelysophia&#39;,&#39;102k IG&#39;,&#39;$2,500/reel&#39;,&#39;—&#39;,&#39;Health / Wellness&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SH</div><div><div style="font-weight:600">Sophia Hoff</div><div style="font-size:11px;color:var(--gray-4)">sophiamhoff@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Health / Wellness</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Jax Beach, FL</td>
+        <td><span style="font-weight:600;color:#059669">$2,500/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Jessica Chen&#39;,&#39;@jessieugc&#39;,&#39;~49 IG / 700 TT&#39;,&#39;$400/reel&#39;,&#39;—&#39;,&#39;Mom / UGC&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JC</div><div><div style="font-weight:600">Jessica Chen</div><div style="font-size:11px;color:var(--gray-4)">hellojessiecollabs@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Mom / UGC</span></td>
+        <td style="color:var(--gray-4);font-size:12px">San Francisco</td>
+        <td><span style="font-weight:600;color:#059669">$400/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Maggie Ortlieb&#39;,&#39;@maggieeatsvegan&#39;,&#39;19.6k IG / 16.8k TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Vegan&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MO</div><div><div style="font-weight:600">Maggie Ortlieb</div><div style="font-size:11px;color:var(--gray-4)">hi@maggieeatsvegan.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Vegan</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Kaitlyn Anderson&#39;,&#39;@k8lynanderson&#39;,&#39;72.7k IG / 180.4k TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Health / Seasonal Living&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">KA</div><div><div style="font-weight:600">Kaitlyn Anderson</div><div style="font-size:11px;color:var(--gray-4)">collabwkaitlyn@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Health / Seasonal Living</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Tyler, TX</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Angie Rodas&#39;,&#39;@angiee.rodas&#39;,&#39;1.4k IG / 38 TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;UGC Creator&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">AR</div><div><div style="font-weight:600">Angie Rodas</div><div style="font-size:11px;color:var(--gray-4)">angieerodas3@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">UGC Creator</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Jillian Tulowitzky&#39;,&#39;@jilliantulo.ugc&#39;,&#39;28 IG / 1.1k TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mom / Wellness / Homemaking&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JT</div><div><div style="font-weight:600">Jillian Tulowitzky</div><div style="font-size:11px;color:var(--gray-4)">jilliantdigitalmarketing@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Mom / Wellness / Homemaking</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Christiansburg, VA</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Rachelle Rose&#39;,&#39;@reppin.with.rosebuds&#39;,&#39;6.1k IG / 326 TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Lifestyle&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">RR</div><div><div style="font-weight:600">Rachelle Rose</div><div style="font-size:11px;color:var(--gray-4)">rachellerose127@yahoo.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Mary Catherine Jarmon&#39;,&#39;&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;—&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MC</div><div><div style="font-weight:600">Mary Catherine Jarmon</div><div style="font-size:11px;color:var(--gray-4)">mcatjarmon@gmail.com</div></div></div></td>
+        <td><span class="pill pill-gray">—</span></td>
+        <td><span class="tag">—</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Nashville, TN</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Rebecca Hrabar&#39;,&#39;@utahfamilytravels&#39;,&#39;92.5k IG&#39;,&#39;$650/reel&#39;,&#39;—&#39;,&#39;Family Travel&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">RH</div><div><div style="font-weight:600">Rebecca Hrabar</div><div style="font-size:11px;color:var(--gray-4)">utahfamilytravels@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Family Travel</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Lehi, Utah</td>
+        <td><span style="font-weight:600;color:#059669">$650/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Caite Anderson&#39;,&#39;@lovejaderuby&#39;,&#39;46.1k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mama / Lifestyle&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">CA</div><div><div style="font-weight:600">Caite Anderson</div><div style="font-size:11px;color:var(--gray-4)">lovejaderubylifestyle@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mama / Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Lydia Davenport&#39;,&#39;@lydcreatesugc&#39;,&#39;42 IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;UGC / Perimenopause&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">LD</div><div><div style="font-weight:600">Lydia Davenport</div><div style="font-size:11px;color:var(--gray-4)">lydcreatesugc@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">UGC / Perimenopause</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Woodland Hills, CA</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Gina Marie Caracci&#39;,&#39;@ginamariefit&#39;,&#39;11.9k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Fitness / Lifestyle&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">GM</div><div><div style="font-weight:600">Gina Marie Caracci</div><div style="font-size:11px;color:var(--gray-4)">createdbyginamarie@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Fitness / Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Tampa, FL</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Deann Shields&#39;,&#39;@royaltychicc&#39;,&#39;1.9k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Lifestyle / Mindset&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">DS</div><div><div style="font-weight:600">Deann Shields</div><div style="font-size:11px;color:var(--gray-4)">deannbrandise@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Lifestyle / Mindset</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Christiansburg, VA</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Taylor Camp&#39;,&#39;@tayloracamp&#39;,&#39;77.3k IG&#39;,&#39;$1,200/reel&#39;,&#39;—&#39;,&#39;Wine / Food / Lifestyle&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">TC</div><div><div style="font-weight:600">Taylor Camp</div><div style="font-size:11px;color:var(--gray-4)">thevintagetieguy@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Wine / Food / Lifestyle</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Napa Valley, CA</td>
+        <td><span style="font-weight:600;color:#059669">$1,200/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Kristen Kelbon&#39;,&#39;@kristens_eats&#39;,&#39;29.2k IG&#39;,&#39;$800/reel&#39;,&#39;—&#39;,&#39;Food Creator&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">KK</div><div><div style="font-weight:600">Kristen Kelbon</div><div style="font-size:11px;color:var(--gray-4)">kristenkelbon@gmail.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Food Creator</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="font-weight:600;color:#059669">$800/reel</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Jessica Fox&#39;,&#39;@_joyfully_jessica&#39;,&#39;1.1k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Mom / Cooking&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JF</div><div><div style="font-weight:600">Jessica Fox</div><div style="font-size:11px;color:var(--gray-4)">joyfullyjessica@icloud.com</div></div></div></td>
+        <td><span class="pill pill-blue">Instagram</span></td>
+        <td><span class="tag">Mom / Cooking</span></td>
+        <td style="color:var(--gray-4);font-size:12px">—</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Steph Osber&#39;,&#39;@newbeginningswithsteph&#39;,&#39;156 IG / 153 TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;UGC / Health&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SO</div><div><div style="font-weight:600">Steph Osber</div><div style="font-size:11px;color:var(--gray-4)">stephosberugc@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">UGC / Health</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Near Boston, MA</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr><tr onclick="openProfile(&#39;Hadasa Roman&#39;,&#39;@xohadasa&#39;,&#39;51.1k IG / 4.4k TT&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Lifestyle / Content Creation&#39;,&#39;0&#39;)">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">HR</div><div><div style="font-weight:600">Hadasa Roman</div><div style="font-size:11px;color:var(--gray-4)">thedressychick@gmail.com</div></div></div></td>
+        <td><span class="pill pill-pink">IG + TikTok</span></td>
+        <td><span class="tag">Lifestyle / Content Creation</span></td>
+        <td style="color:var(--gray-4);font-size:12px">Orange County</td>
+        <td><span style="color:var(--gray-4)">—</span></td>
+        <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
+        <td><span class="pill pill-gray">Unknown</span></td>
+      </tr></tbody>
         </table>
       </div>
     </div>
@@ -1405,13 +1921,13 @@
           </thead>
           <tbody>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:28px;height:28px;font-size:10px">OC</div><div><div style="font-weight:600">Olivia & Connor</div><div style="font-size:11px;color:var(--gray-4)">@stemandplate</div></div></div></td>
+              <td><div style="display:flex;align-items:center;gap:8px"><div class="avatar" style="width:28px;height:28px;font-size:10px">OC</div><div><div style="font-weight:600">Olivia &amp; Connor</div><div style="font-size:11px;color:var(--gray-4)">@stemandplate</div></div></div></td>
               <td style="font-size:12px;color:var(--gray-4)">WFM Everyday Doughs</td>
               <td style="font-size:12px">10-sec Collab Reel</td>
               <td style="font-weight:700;color:var(--dark)">$330</td>
               <td><span class="pill pill-green">✓ Done</span></td>
               <td><span class="pill pill-yellow">Pending</span></td>
-              <td><button class="toggle" onclick="this.classList.toggle('on')"></button></td>
+              <td><button class="toggle" onclick="this.classList.toggle(&#39;on&#39;)"></button></td>
               <td><button class="btn btn-ghost" style="padding:5px 10px;font-size:11px">Send Reminder</button></td>
             </tr>
             <tr>
@@ -1421,7 +1937,7 @@
               <td style="font-weight:700;color:var(--dark)">$250</td>
               <td><span class="pill pill-green">✓ Done</span></td>
               <td><span class="pill pill-red">Overdue</span></td>
-              <td><button class="toggle" onclick="this.classList.toggle('on')"></button></td>
+              <td><button class="toggle" onclick="this.classList.toggle(&#39;on&#39;)"></button></td>
               <td><button class="btn btn-ghost" style="padding:5px 10px;font-size:11px">Send Reminder</button></td>
             </tr>
           </tbody>
@@ -1465,7 +1981,7 @@
         <div class="avatar" style="width:36px;height:36px">HB</div>
         <div style="flex:1">
           <div style="font-weight:700;font-size:13px">Heather Brickell</div>
-          <div style="font-size:11px;color:var(--gray-4)">@mysweetsavings · WFM Everyday Doughs · Reel & 2 Stories · $250</div>
+          <div style="font-size:11px;color:var(--gray-4)">@mysweetsavings · WFM Everyday Doughs · Reel &amp; 2 Stories · $250</div>
         </div>
         <div class="chase-days">1 day overdue</div>
         <button class="btn btn-ghost" style="font-size:12px">Send Chase Email</button>
@@ -1497,7 +2013,7 @@
             </div>
             <div class="form-group">
               <label class="form-label">Campaign Name</label>
-              <input class="form-input" placeholder="e.g. Spring Dough Kits" />
+              <input class="form-input" placeholder="e.g. Spring Dough Kits">
             </div>
             <div class="form-group">
               <label class="form-label">Quarter</label>
@@ -1510,15 +2026,15 @@
             </div>
             <div class="form-group full">
               <label class="form-label">Products Being Featured</label>
-              <input class="form-input" placeholder="e.g. Sugar Cookie Dough Kit, Lemon Tart Dough Kit" />
+              <input class="form-input" placeholder="e.g. Sugar Cookie Dough Kit, Lemon Tart Dough Kit">
             </div>
             <div class="form-group">
               <label class="form-label">Budget ($)</label>
-              <input class="form-input" type="number" placeholder="3000" />
+              <input class="form-input" type="number" placeholder="3000">
             </div>
             <div class="form-group">
               <label class="form-label">Posting Deadline</label>
-              <input class="form-input" type="date" />
+              <input class="form-input" type="date">
             </div>
           </div>
         </div>
@@ -1528,7 +2044,7 @@
           <div style="background:var(--gray-1);border:1px dashed var(--gray-3);border-radius:var(--radius-sm);padding:16px;text-align:center;color:var(--gray-4);font-size:13px;margin-bottom:12px">
             Search your rolodex to add influencers to this campaign
           </div>
-          <input class="search-input" style="width:100%;margin-bottom:10px" placeholder="Search influencers..." />
+          <input class="search-input" style="width:100%;margin-bottom:10px" placeholder="Search influencers...">
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <div style="background:var(--pink-soft);border:1px solid rgba(255,0,128,0.2);border-radius:20px;padding:5px 12px;font-size:12px;display:flex;align-items:center;gap:6px">
               @taraalexandra_ <span style="cursor:pointer;color:var(--pink)">×</span>
@@ -1556,7 +2072,7 @@
       <div class="profile-avatar-lg" id="profile-avatar">TM</div>
       <div>
         <div style="font-size:16px;font-weight:700" id="profile-name">Tara McDonald</div>
-        <div style="font-size:12px;color:var(--gray-4);font-family:'DM Mono',monospace" id="profile-handle">@taraalexandra_</div>
+        <div style="font-size:12px;color:var(--gray-4);font-family:&#39;DM Mono&#39;,monospace" id="profile-handle">@taraalexandra_</div>
         <div style="margin-top:4px" id="profile-tag"><span class="tag">Lifestyle / Food</span></div>
       </div>
       <button class="close-btn" onclick="closeProfile()">×</button>
@@ -1579,7 +2095,7 @@
       </div>
 
       <div class="section-label">Contact</div>
-      <div style="background:var(--gray-1);border-radius:var(--radius-sm);padding:12px;margin-bottom:16px;font-size:12px;font-family:'DM Mono',monospace;color:var(--gray-5)" id="profile-email">
+      <div style="background:var(--gray-1);border-radius:var(--radius-sm);padding:12px;margin-bottom:16px;font-size:12px;font-family:&#39;DM Mono&#39;,monospace;color:var(--gray-5)" id="profile-email">
         taraalexandramcdonald@gmail.com
       </div>
 
@@ -1618,7 +2134,171 @@
 </div>
 
 <script>
+
+  // ── INFLUENCER DATA (all 66 from spreadsheet) ──
+  const INFLUENCERS = [
+    {name:'Madiha Saeed, MD', email:'', ig:'@holisticmommd', igF:'19k', tt:'', ttF:'', type:'Holistic / Family', loc:'', rate:''},
+    {name:'Clare Manicom Kenyon', email:'', ig:'@clare_force_one', igF:'7k', tt:'', ttF:'', type:'Vegan / Fashion', loc:'', rate:''},
+    {name:'Frances Kellar', email:'', ig:'@franceskellar', igF:'2k', tt:'', ttF:'', type:'Seasonal / UGC', loc:'', rate:''},
+    {name:'Baylee', email:'', ig:'@fitpeanutbay', igF:'20k', tt:'', ttF:'', type:'Mom / Wellness', loc:'', rate:''},
+    {name:'Nicole Bruno', email:'via DM', ig:'@nobread', igF:'218k', tt:'', ttF:'', type:'GF / Wellness', loc:'', rate:'TBD'},
+    {name:'Marissa Barcena', email:'', ig:'@marissaswholelife', igF:'', tt:'', ttF:'', type:'', loc:'', rate:''},
+    {name:'Katherine Langeland', email:'thekcpatisserie@gmail.com', ig:'@thekcpatisserie', igF:'', tt:'kcpatisserie', ttF:'1k', type:'', loc:'', rate:''},
+    {name:'Krystal Goodman', email:'', ig:'@thekleannutritionist', igF:'', tt:'', ttF:'', type:'Nutrition / Wellness', loc:'', rate:''},
+    {name:'Anastasia Anderson', email:'', ig:'@anastasiazwilling', igF:'', tt:'', ttF:'', type:'', loc:'', rate:''},
+    {name:'Amanda Robyn', email:'', ig:'@healthbyamandarobyn', igF:'', tt:'', ttF:'', type:'Health', loc:'', rate:''},
+    {name:'Brittany', email:'', ig:'@myviewfromuphere', igF:'', tt:'', ttF:'', type:'', loc:'', rate:''},
+    {name:'Lauren Less', email:'lesswithlaur@gmail.com', ig:'@lesswithlaur', igF:'147k', tt:'', ttF:'', type:'GF / DF Recipes', loc:'', rate:''},
+    {name:'Rebecca Lilly', email:'', ig:'@xxrlilly', igF:'', tt:'', ttF:'', type:'', loc:'', rate:''},
+    {name:'Alison (Ali Kat)', email:'alikathol13@hotmail.com', ig:'', igF:'', tt:'@alison_violet19', ttF:'2.4k', type:'', loc:'', rate:''},
+    {name:'Shayla Mackenzie', email:'shaylamackenzieofficial@gmail.com', ig:'@shaylamackenzie', igF:'11k', tt:'@shaylamackenzie_', ttF:'112k', type:'Mom / Recipes / Lifestyle', loc:'Rocklin, CA', rate:'$300/reel', campaigns:2, perf:'Avg'},
+    {name:'Jenna Bailey', email:'', ig:'', igF:'', tt:'@byjennabailey', ttF:'1.3k', type:'Mom / Hobbies', loc:'', rate:''},
+    {name:'Jane & Margie', email:'grandmasgonoshing@gmail.com', ig:'@grandmasgonoshing', igF:'13.6k', tt:'@noshing.sisters', ttF:'25.3k', type:'Sisters / Food', loc:'', rate:'Negotiate'},
+    {name:'Jessie Costantino', email:'jesscostatino@neonroseagency.com', ig:'', igF:'', tt:'@jessiecostantino', ttF:'369k', type:'Cozy / Cooking', loc:'', rate:''},
+    {name:'Dani Lutin', email:'contact.danilutin@gmail.com', ig:'@lutinni', igF:'46.3k', tt:'@lutinii', ttF:'141.5k', type:'Food / Lifestyle', loc:'Florida', rate:'$7.5k TT / $4k IG'},
+    {name:'Shelly Jaronski', email:'cookiesandcups@live.com', ig:'@cookiesandcups', igF:'375k', tt:'', ttF:'', type:'Recipes', loc:'', rate:''},
+    {name:'Jenn Ordway', email:'itsssjennn@gmail.com', ig:'@itsssjen', igF:'22.7k', tt:'', ttF:'', type:'Mom / Lifestyle', loc:'', rate:''},
+    {name:'Heather Brickell', email:'mysweetsavings@gmail.com', ig:'@mysweetsavings', igF:'', tt:'', ttF:'', type:'Savings / Deals', loc:'', rate:''},
+    {name:'Breeanna Cox', email:'hello@bodybybree.com', ig:'@bodybybreefitness', igF:'170k', tt:'', ttF:'', type:'Mom / Fitness', loc:'', rate:''},
+    {name:"Krysten's Kitchen", email:'krystenskitchen@icloud.com', ig:'', igF:'', tt:'', ttF:'', type:'Food', loc:'', rate:''},
+    {name:'Ben & Karley DeCocker', email:'karleytosociety@gmail.com', ig:'@DadsFoodToday', igF:'435k', tt:'', ttF:'', type:'Dad / Recipes', loc:'', rate:''},
+    {name:'Danielle Gootman', email:'daniellegootman@gmail.com', ig:'@healthywithdani', igF:'10.3k', tt:'', ttF:'', type:'Health / Food / Lifestyle', loc:'', rate:''},
+    {name:'Alexandra Azary', email:'alexandra@brighteyedbaker.com', ig:'@brighteyedbaker', igF:'11.1k', tt:'', ttF:'', type:'GF Baking', loc:'', rate:''},
+    {name:'Jonah Abueg', email:'jonahcollabs@gmail.com', ig:'@j.xnah', igF:'43.5k', tt:'', ttF:'', type:'Lifestyle / Baking', loc:'', rate:'$3k/reel'},
+    {name:'Kat Stickler', email:'alice@acp-management.com', ig:'@katstickler', igF:'3.7M', tt:'', ttF:'', type:'Mom / Lifestyle', loc:'', rate:'$135k IG / $145k TT'},
+    {name:'Melissa Garcia-Martinez', email:'meli@pearpoptalent.com', ig:'', igF:'', tt:'', ttF:'', type:'', loc:'', rate:'$4k IG Reel'},
+    {name:'Kayla Breeden Falconer', email:'kaylaskitchandfix@gmail.com', ig:'@kaylaskitchandfix', igF:'229k', tt:'', ttF:'', type:'GF Recipes', loc:'', rate:''},
+    {name:'Morgan Peaceman', email:'nomastehungry@gmail.com', ig:'@nomaste.hungry', igF:'10k', tt:'', ttF:'', type:'Mom / Easy Recipes', loc:'', rate:'$800/reel'},
+    {name:'Mary Katherine', email:'alex@eckodigitalmedia.com', ig:'', igF:'', tt:'', ttF:'', type:'', loc:'', rate:'$8k IG Reel'},
+    {name:'Julie Sandjaja', email:'costcoaisles@gmail.com', ig:'@costcoaisles', igF:'219k', tt:'', ttF:'', type:'Costco Finds', loc:'', rate:'$1,850/reel'},
+    {name:'Allan and Rachel', email:'info@shoppertalent.com', ig:'@discovering_costco', igF:'96k', tt:'', ttF:'', type:'Costco Finds', loc:'', rate:'$3.5k/reel'},
+    {name:'Jen & Laura', email:'ascothart@gmail.com', ig:'@costco_doesitagain', igF:'1.1M', tt:'', ttF:'', type:'Healthy / Costco', loc:'', rate:''},
+    {name:'Majed Kassis', email:'CostcoBuysInfo@gmail.com', ig:'@costcobuys', igF:'1.2M', tt:'', ttF:'', type:'Costco Finds', loc:'', rate:''},
+    {name:'Claudia Green', email:'claudiamedtalk@gmail.com', ig:'@claudiaegreen', igF:'143k', tt:'', ttF:'', type:'Mom / Medicine', loc:'', rate:''},
+    {name:'Nicole Nyerick RDN', email:'NutritionWithNicoleRD@outlook.com', ig:'@nicolesnutrition', igF:'3.4k', tt:'', ttF:'', type:"Thyroid / Women's Health", loc:'', rate:'$175 UGC / $275 demo'},
+    {name:'Jamie Milne', email:'everythingsdelish@gmail.com', ig:'@everything_delish', igF:'833k', tt:'', ttF:'', type:'Mom / Recipes', loc:'', rate:''},
+    {name:'Snack Wire (Madisen Stolz)', email:'madisen@thesnackwire.com', ig:'@snackwire', igF:'600k', tt:'', ttF:'', type:'Snack / Food', loc:'', rate:'$1,200 static'},
+    {name:'Julia Sartini', email:'juuhsartini@icloud.com', ig:'@juliasartini1', igF:'131k', tt:'', ttF:'', type:'Mom / Healthy', loc:'', rate:'$1,500/reel'},
+    {name:'Tati', email:'info@tativegancooking.com', ig:'@tativegancooking', igF:'55k', tt:'', ttF:'', type:'Vegan Recipes', loc:'', rate:''},
+    {name:'Mariah Thomas', email:'seasonalbridges@gmail.com', ig:'@seasonal_bridges', igF:'16k', tt:'@seasonalbridges', ttF:'11.6k', type:'Cozy / Holiday / Lifestyle', loc:'', rate:'$200 IG / $150 TT'},
+    {name:'Tara Alexandra McDonald', email:'taraalexandramcdonald@gmail.com', ig:'@taraalexandra_', igF:'34.4k', tt:'@taraalexandra_', ttF:'201.3k', type:'Lifestyle / Food', loc:'Orlando, FL', rate:'$195/video', campaigns:3, perf:'High'},
+    {name:'Ruth Swingler', email:'ruthswingler316@gmail.com', ig:'@ruth_swing316', igF:'64.2k', tt:'', ttF:'', type:'Lifestyle / Fitness', loc:'York, PA', rate:'$1,500/reel'},
+    {name:'Dayami Emory', email:'dayamifrommiami@gmail.com', ig:'@dayamifrommiami', igF:'87k', tt:'', ttF:'', type:'Mom / Wellness', loc:'Miami', rate:''},
+    {name:'Sophia Hoff', email:'sophiamhoff@gmail.com', ig:'@wholesomelysophia', igF:'102k', tt:'', ttF:'', type:'Health / Wellness', loc:'Jax Beach, FL', rate:'$2,500/reel'},
+    {name:'Jessica Chen', email:'hellojessiecollabs@gmail.com', ig:'@jessieugc', igF:'~49', tt:'@ugcjessie', ttF:'700', type:'Mom / UGC', loc:'San Francisco', rate:'$400/reel'},
+    {name:'Maggie Ortlieb', email:'hi@maggieeatsvegan.com', ig:'@maggieeatsvegan', igF:'19.6k', tt:'@maggieeatsvegan', ttF:'16.8k', type:'Vegan', loc:'', rate:''},
+    {name:'Kaitlyn Anderson', email:'collabwkaitlyn@gmail.com', ig:'@k8lynanderson', igF:'72.7k', tt:'@k8lynanderson', ttF:'180.4k', type:'Health / Seasonal Living', loc:'Tyler, TX', rate:''},
+    {name:'Angie Rodas', email:'angieerodas3@gmail.com', ig:'@angiee.rodas', igF:'1.4k', tt:'@angierodas', ttF:'38', type:'UGC Creator', loc:'', rate:''},
+    {name:'Jillian Tulowitzky', email:'jilliantdigitalmarketing@gmail.com', ig:'@jilliantulo.ugc', igF:'28', tt:'@jilliantulowitzky', ttF:'1.1k', type:'Mom / Wellness / Homemaking', loc:'Christiansburg, VA', rate:''},
+    {name:'Rachelle Rose', email:'rachellerose127@yahoo.com', ig:'@reppin.with.rosebuds', igF:'6.1k', tt:'@rachelle84404', ttF:'326', type:'Lifestyle', loc:'', rate:''},
+    {name:'Mary Catherine Jarmon', email:'mcatjarmon@gmail.com', ig:'', igF:'', tt:'', ttF:'', type:'', loc:'Nashville, TN', rate:''},
+    {name:'Rebecca Hrabar', email:'utahfamilytravels@gmail.com', ig:'@utahfamilytravels', igF:'92.5k', tt:'', ttF:'', type:'Family Travel', loc:'Lehi, Utah', rate:'$650/reel'},
+    {name:'Caite Anderson', email:'lovejaderubylifestyle@gmail.com', ig:'@lovejaderuby', igF:'46.1k', tt:'', ttF:'', type:'Mama / Lifestyle', loc:'', rate:''},
+    {name:'Lydia Davenport', email:'lydcreatesugc@gmail.com', ig:'@lydcreatesugc', igF:'42', tt:'', ttF:'', type:'UGC / Perimenopause', loc:'Woodland Hills, CA', rate:''},
+    {name:'Gina Marie Caracci', email:'createdbyginamarie@gmail.com', ig:'@ginamariefit', igF:'11.9k', tt:'', ttF:'', type:'Fitness / Lifestyle', loc:'Tampa, FL', rate:''},
+    {name:'Deann Shields', email:'deannbrandise@gmail.com', ig:'@royaltychicc', igF:'1.9k', tt:'', ttF:'', type:'Lifestyle / Mindset', loc:'Christiansburg, VA', rate:''},
+    {name:'Taylor Camp', email:'thevintagetieguy@gmail.com', ig:'@tayloracamp', igF:'77.3k', tt:'', ttF:'', type:'Wine / Food / Lifestyle', loc:'Napa Valley, CA', rate:'$1,200/reel'},
+    {name:'Kristen Kelbon', email:'kristenkelbon@gmail.com', ig:'@kristens_eats', igF:'29.2k', tt:'', ttF:'', type:'Food Creator', loc:'', rate:'$800/reel'},
+    {name:'Jessica Fox', email:'joyfullyjessica@icloud.com', ig:'@_joyfully_jessica', igF:'1.1k', tt:'', ttF:'', type:'Mom / Cooking', loc:'', rate:''},
+    {name:'Steph Osber', email:'stephosberugc@gmail.com', ig:'@newbeginningswithsteph', igF:'156', tt:'@newbeginningswithsteph', ttF:'153', type:'UGC / Health', loc:'Near Boston, MA', rate:''},
+    {name:'Hadasa Roman', email:'thedressychick@gmail.com', ig:'@xohadasa', igF:'51.1k', tt:'@xohadasa', ttF:'4.4k', type:'Lifestyle / Content Creation', loc:'Orange County', rate:''},
+  ];
+
+  function getPlatformPill(inf) {
+    if (inf.ig && inf.tt) return `<span class="pill pill-pink">IG + TikTok</span>`;
+    if (inf.ig) return `<span class="pill pill-blue">Instagram</span>`;
+    if (inf.tt) return `<span class="pill pill-purple" style="background:#f3e8ff;color:#7c3aed">TikTok</span>`;
+    return `<span class="pill pill-gray">—</span>`;
+  }
+
+  function getFollowers(inf) {
+    const parts = [];
+    if (inf.ig && inf.igF) parts.push(inf.igF + ' IG');
+    if (inf.tt && inf.ttF) parts.push(inf.ttF + ' TT');
+    return parts.join(' / ') || '—';
+  }
+
+  function getPerfPill(inf) {
+    if (inf.perf === 'High') return `<span class="pill pill-green">High Eng.</span>`;
+    if (inf.perf === 'Avg') return `<span class="pill pill-yellow">Avg Eng.</span>`;
+    return `<span class="pill pill-gray">Unknown</span>`;
+  }
+
+  function getCampaignPill(inf) {
+    if (inf.campaigns) return `<span class="pill pill-blue">${inf.campaigns} campaigns</span>`;
+    return `<span style="color:var(--gray-4);font-size:12px">Prospecting</span>`;
+  }
+
+  function getRateDisplay(inf) {
+    if (!inf.rate) return `<span style="color:var(--gray-4)">—</span>`;
+    if (inf.rate === 'TBD') return `<span style="color:var(--gray-4)">TBD</span>`;
+    if (inf.rate === 'Negotiate') return `<span style="color:var(--gray-4)">Negotiate</span>`;
+    return `<span style="font-weight:600;color:#059669">${inf.rate}</span>`;
+  }
+
+  function initials(name) {
+    return name.split(' ').filter(w => w && /[A-Za-z]/.test(w[0])).map(w => w[0]).join('').slice(0,2).toUpperCase();
+  }
+
+  let currentPage = 1;
+let recordsPerPage = 25;
+function renderRolodex(list) {
+    const tbody = document.getElementById('rolodex-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = list.map(inf => {
+      const ini = initials(inf.name);
+      const email = inf.email && inf.email.includes('@') ? inf.email : (inf.ig ? inf.ig : '—');
+      const followers = getFollowers(inf);
+      return `<tr onclick="openProfile('${inf.name.replace(/'/g,"\\'")}','${(inf.ig||inf.tt||'').replace(/'/g,"\\'")}','${followers}','${inf.rate||'—'}','—','${inf.type||'—'}','${inf.campaigns||0}')">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">${ini}</div><div><div style="font-weight:600">${inf.name}</div><div style="font-size:11px;color:var(--gray-4)">${inf.email && inf.email.includes('@') ? inf.email : (inf.ig ? inf.ig : '—')}</div></div></div></td>
+        <td>${getPlatformPill(inf)}</td>
+        <td><span class="tag">${inf.type||'—'}</span></td>
+        <td style="color:var(--gray-4);font-size:12px">${inf.loc||'—'}</td>
+        <td>${getRateDisplay(inf)}</td>
+        <td>${getCampaignPill(inf)}</td>
+        <td>${getPerfPill(inf)}</td>
+      </tr>`;
+    }).join('');
+    document.getElementById('rolodex-count').textContent = list.length + ' influencers';
+  }
+
+  function filterRolodex() { currentPage = 1; }
+function filterRolodex() {
+    const q = (document.getElementById('rolodex-search')?.value || '').toLowerCase();
+    const type = document.getElementById('rolodex-type')?.value || '';
+    const range = document.getElementById('rolodex-range')?.value || '';
+
+    let list = INFLUENCERS.filter(inf => {
+      const matchQ = !q || inf.name.toLowerCase().includes(q) || (inf.ig && inf.ig.toLowerCase().includes(q)) || (inf.tt && inf.tt.toLowerCase().includes(q));
+      const matchType = !type || inf.type.toLowerCase().includes(type.toLowerCase());
+      const matchRange = !range || checkRange(inf, range);
+      return matchQ && matchType && matchRange;
+    });
+    renderRolodex(list);
+  }
+
+  function parseFollowerNum(s) {
+    if (!s) return 0;
+    s = String(s).toLowerCase().replace(/,/g,'');
+    if (s.includes('m')) return parseFloat(s)*1000000;
+    if (s.includes('k')) return parseFloat(s)*1000;
+    return parseFloat(s)||0;
+  }
+
+  function checkRange(inf, range) {
+    const igN = parseFollowerNum(inf.igF);
+    const ttN = parseFollowerNum(inf.ttF);
+    const max = Math.max(igN, ttN);
+    if (range === 'under5') return max < 5000;
+    if (range === '5to25') return max >= 5000 && max < 25000;
+    if (range === '25to100') return max >= 25000 && max < 100000;
+    if (range === '100plus') return max >= 100000;
+    return true;
+  }
+
+  // ── SCREEN NAV ──
   function showScreen(id) {
+    if (id === 'rolodex') renderRolodex(INFLUENCERS);
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
@@ -1691,6 +2371,8 @@
       document.getElementById('slideout-overlay').classList.remove('open');
     }
   }
+  document.addEventListener('DOMContentLoaded', () => renderRolodex(INFLUENCERS));
 </script>
-</body>
-</html>
+
+
+</body></html>
