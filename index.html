@@ -177,51 +177,125 @@
     line-height: 16px;
   }
 
+  /* ── SIDEBAR FOOTER & BRAND SELECTOR ── */
   .sidebar-footer {
     padding: 16px;
     border-top: 1px solid rgba(255,255,255,0.06);
+    position: relative;
   }
 
   .brand-selector {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: var(--radius-sm);
-    padding: 10px 12px;
+    border-radius: var(--radius);
+    padding: 14px 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
     transition: background 0.15s;
+    position: relative;
   }
 
   .brand-selector:hover { background: rgba(255,255,255,0.1); }
 
-  .brand-info { display: flex; align-items: center; gap: 8px; }
+  .brand-info { display: flex; align-items: center; gap: 10px; }
 
   .brand-avatar {
-    width: 24px; height: 24px;
+    width: 36px; height: 36px;
     background: var(--pink);
-    border-radius: 4px;
-    font-size: 10px;
+    border-radius: 8px;
+    font-size: 13px;
     font-weight: 700;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
   }
 
   .brand-name {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.2px;
+  }
+
+  .brand-role {
+    font-size: 11px;
+    color: var(--gray-4);
+    margin-top: 1px;
+  }
+
+  .brand-chevron {
+    color: var(--gray-4);
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+
+  /* Brand dropdown */
+  .brand-dropdown {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 0; right: 0;
+    background: #242424;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.4);
+    z-index: 50;
+  }
+
+  .brand-dropdown.open { display: block; }
+
+  .brand-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .brand-option:hover { background: rgba(255,255,255,0.06); }
+  .brand-option.selected { background: rgba(255,0,128,0.1); }
+  .brand-option + .brand-option { border-top: 1px solid rgba(255,255,255,0.06); }
+
+  .brand-option-avatar {
+    width: 32px; height: 32px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .brand-option-name {
+    font-size: 13px;
     font-weight: 600;
     color: var(--white);
   }
 
-  .brand-role {
-    font-size: 10px;
+  .brand-option-sub {
+    font-size: 11px;
     color: var(--gray-4);
+    margin-top: 1px;
   }
 
-  .brand-chevron { color: var(--gray-4); font-size: 12px; }
+  .brand-option-check {
+    margin-left: auto;
+    color: var(--pink);
+    font-size: 14px;
+    opacity: 0;
+  }
+
+  .brand-option.selected .brand-option-check { opacity: 1; }
 
   /* ── MAIN ── */
   .main {
@@ -963,15 +1037,35 @@
   </nav>
 
   <div class="sidebar-footer">
-    <div class="brand-selector">
+    <div class="brand-selector" onclick="toggleBrandDropdown(event)">
+      <!-- Dropdown (opens upward) -->
+      <div class="brand-dropdown" id="brand-dropdown">
+        <div class="brand-option selected" onclick="selectBrand('Miss Jones Bakery', 'MJ', '#FF0080', event)">
+          <div class="brand-option-avatar" style="background:#FF0080">MJ</div>
+          <div>
+            <div class="brand-option-name">Miss Jones Bakery</div>
+            <div class="brand-option-sub">Active Brand</div>
+          </div>
+          <div class="brand-option-check">✓</div>
+        </div>
+        <div class="brand-option" onclick="selectBrand('Wine and Cola', 'WC', '#8B5CF6', event)">
+          <div class="brand-option-avatar" style="background:#8B5CF6">WC</div>
+          <div>
+            <div class="brand-option-name">Wine and Cola</div>
+            <div class="brand-option-sub">No data yet</div>
+          </div>
+          <div class="brand-option-check">✓</div>
+        </div>
+      </div>
+      <!-- Active brand display -->
       <div class="brand-info">
-        <div class="brand-avatar">MJ</div>
+        <div class="brand-avatar" id="active-brand-avatar">MJ</div>
         <div>
-          <div class="brand-name">Miss Jones</div>
+          <div class="brand-name" id="active-brand-name">Miss Jones Bakery</div>
           <div class="brand-role">Active Brand</div>
         </div>
       </div>
-      <div class="brand-chevron">⌄</div>
+      <div class="brand-chevron" id="brand-chevron">⌄</div>
     </div>
   </div>
 </aside>
@@ -1507,8 +1601,8 @@
             <div class="form-group">
               <label class="form-label">Brand</label>
               <select class="form-input">
-                <option>Miss Jones Brands</option>
-                <option>Winanola</option>
+                <option>Miss Jones Bakery</option>
+                <option>Wine and Cola</option>
               </select>
             </div>
             <div class="form-group">
@@ -1716,6 +1810,37 @@
       document.getElementById('slideout-overlay').classList.remove('open');
     }
   }
+
+  function toggleBrandDropdown(event) {
+    event.stopPropagation();
+    const dd = document.getElementById('brand-dropdown');
+    const chevron = document.getElementById('brand-chevron');
+    dd.classList.toggle('open');
+    chevron.style.transform = dd.classList.contains('open') ? 'rotate(180deg)' : '';
+  }
+
+  function selectBrand(name, initials, color, event) {
+    event.stopPropagation();
+    document.getElementById('active-brand-name').textContent = name;
+    const avatar = document.getElementById('active-brand-avatar');
+    avatar.textContent = initials;
+    avatar.style.background = color;
+
+    document.querySelectorAll('.brand-option').forEach(opt => opt.classList.remove('selected'));
+    event.currentTarget.classList.add('selected');
+
+    document.getElementById('brand-dropdown').classList.remove('open');
+    document.getElementById('brand-chevron').style.transform = '';
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function() {
+    const dd = document.getElementById('brand-dropdown');
+    if (dd && dd.classList.contains('open')) {
+      dd.classList.remove('open');
+      document.getElementById('brand-chevron').style.transform = '';
+    }
+  });
 </script>
 </body>
 </html>
