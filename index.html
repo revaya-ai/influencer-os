@@ -1017,7 +1017,6 @@
       </div>
 
       <div class="stats-row">
-<<<<<<< HEAD
         <div class="stat-card stat-card-link" style="border-left-color: var(--blue)" onclick="showScreen(&#39;rolodex&#39;)" title="View full rolodex">
           <div class="stat-value" style="color:var(--blue)">66</div>
           <div class="stat-label">Total Influencers</div>
@@ -1035,25 +1034,6 @@
           <div class="stat-label">Paid Out</div>
         </div>
         <div class="stat-card stat-card-link" style="border-left-color: #dc2626" onclick="showScreen(&#39;chase-list&#39;)" title="View chase list">
-=======
-        <div class="stat-card stat-card-link" style="border-left-color: var(--blue)" onclick="showScreen('rolodex')" title="View full rolodex">
-          <div class="stat-value" style="color:var(--blue)">66</div>
-          <div class="stat-label">Total Influencers</div>
-        </div>
-        <div class="stat-card stat-card-link" style="border-left-color: var(--pink)" onclick="showScreen('campaign-board')" title="View campaign board">
-          <div class="stat-value" style="color:var(--pink)">9</div>
-          <div class="stat-label">Active This Campaign</div>
-        </div>
-        <div class="stat-card stat-card-link" style="border-left-color: #059669" onclick="showScreen('campaign-board')" title="View campaign board">
-          <div class="stat-value" style="color:#059669">$2,625</div>
-          <div class="stat-label">Budget Allocated</div>
-        </div>
-        <div class="stat-card stat-card-link" style="border-left-color: #f59e0b" onclick="showScreen('payment-queue')" title="View payment queue">
-          <div class="stat-value" style="color:#f59e0b">$545</div>
-          <div class="stat-label">Paid Out</div>
-        </div>
-        <div class="stat-card stat-card-link" style="border-left-color: #dc2626" onclick="showScreen('chase-list')" title="View chase list">
->>>>>>> claude-backup
           <div class="stat-value" style="color:#dc2626">3</div>
           <div class="stat-label">Overdue</div>
         </div>
@@ -1137,7 +1117,6 @@ function updatePaginationBar(total, totalPages) {
     <!-- ── SCREEN: CAMPAIGN BOARD ── -->
     <div class="screen" id="screen-campaign-board">
       <div class="stats-row" style="margin-bottom:16px">
-<<<<<<< HEAD
         <div class="stat-card stat-card-link" style="border-left-color:var(--blue)" onclick="showScreen(&#39;rolodex&#39;)">
           <div class="stat-value" style="color:var(--blue)">9</div>
           <div class="stat-label">Influencers</div>
@@ -1155,25 +1134,6 @@ function updatePaginationBar(total, totalPages) {
           <div class="stat-label">Paid Out</div>
         </div>
         <div class="stat-card stat-card-link" style="border-left-color:#dc2626" onclick="showScreen(&#39;chase-list&#39;)">
-=======
-        <div class="stat-card stat-card-link" style="border-left-color:var(--blue)" onclick="showScreen('rolodex')">
-          <div class="stat-value" style="color:var(--blue)">9</div>
-          <div class="stat-label">Influencers</div>
-        </div>
-        <div class="stat-card stat-card-link" style="border-left-color:var(--pink)" onclick="showScreen('campaign-board')">
-          <div class="stat-value" style="color:var(--pink)">$2,625</div>
-          <div class="stat-label">Budget Allocated</div>
-        </div>
-        <div class="stat-card stat-card-link" style="border-left-color:#059669" onclick="showScreen('campaign-board')">
-          <div class="stat-value" style="color:#059669">3 of 9</div>
-          <div class="stat-label">Content Received</div>
-        </div>
-        <div class="stat-card stat-card-link" style="border-left-color:#f59e0b" onclick="showScreen('payment-queue')">
-          <div class="stat-value" style="color:#f59e0b">$545</div>
-          <div class="stat-label">Paid Out</div>
-        </div>
-        <div class="stat-card stat-card-link" style="border-left-color:#dc2626" onclick="showScreen('chase-list')">
->>>>>>> claude-backup
           <div class="stat-value" style="color:#dc2626">3</div>
           <div class="stat-label">Overdue</div>
         </div>
@@ -1377,17 +1337,10 @@ function updatePaginationBar(total, totalPages) {
         <div class="table-header">
           <div>
             <div class="table-title">Influencer Rolodex</div>
-<<<<<<< HEAD
             <div id="rolodex-count" style="font-size:12px;color:var(--gray-4);margin-top:2px">65 influencers</div>
           </div>
           <div style="display:flex;gap:8px;align-items:center">
             <input id="rolodex-search" class="search-input" placeholder="Search by name or handle..." oninput="filterRolodex()">
-=======
-            <div id="rolodex-count" style="font-size:12px;color:var(--gray-4);margin-top:2px">66 influencers</div>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center">
-            <input id="rolodex-search" class="search-input" placeholder="Search by name or handle..." oninput="filterRolodex()" />
->>>>>>> claude-backup
             <select id="rolodex-type" class="select-control" onchange="filterRolodex()">
               <option value="">All Content Types</option>
               <option value="food">Food / Recipes</option>
@@ -1421,7 +1374,6 @@ function updatePaginationBar(total, totalPages) {
               <th>Performance</th>
             </tr>
           </thead>
-<<<<<<< HEAD
           <tbody id="rolodex-tbody"><tr onclick="openProfile(&#39;Madiha Saeed, MD&#39;,&#39;@holisticmommd&#39;,&#39;19k IG&#39;,&#39;—&#39;,&#39;—&#39;,&#39;Holistic / Family&#39;,&#39;0&#39;)">
         <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MS</div><div><div style="font-weight:600">Madiha Saeed, MD</div><div style="font-size:11px;color:var(--gray-4)">@holisticmommd</div></div></div></td>
         <td><span class="pill pill-blue">Instagram</span></td>
@@ -1943,11 +1895,6 @@ function updatePaginationBar(total, totalPages) {
         <td><span style="color:var(--gray-4);font-size:12px">Prospecting</span></td>
         <td><span class="pill pill-gray">Unknown</span></td>
       </tr></tbody>
-=======
-          <tbody id="rolodex-tbody">
-            <!-- Populated by JS -->
-          </tbody>
->>>>>>> claude-backup
         </table>
       </div>
     </div>
@@ -2293,13 +2240,9 @@ function updatePaginationBar(total, totalPages) {
     return name.split(' ').filter(w => w && /[A-Za-z]/.test(w[0])).map(w => w[0]).join('').slice(0,2).toUpperCase();
   }
 
-<<<<<<< HEAD
   let currentPage = 1;
 let recordsPerPage = 25;
 function renderRolodex(list) {
-=======
-  function renderRolodex(list) {
->>>>>>> claude-backup
     const tbody = document.getElementById('rolodex-tbody');
     if (!tbody) return;
     tbody.innerHTML = list.map(inf => {
@@ -2319,12 +2262,8 @@ function renderRolodex(list) {
     document.getElementById('rolodex-count').textContent = list.length + ' influencers';
   }
 
-<<<<<<< HEAD
   function filterRolodex() { currentPage = 1; }
 function filterRolodex() {
-=======
-  function filterRolodex() {
->>>>>>> claude-backup
     const q = (document.getElementById('rolodex-search')?.value || '').toLowerCase();
     const type = document.getElementById('rolodex-type')?.value || '';
     const range = document.getElementById('rolodex-range')?.value || '';
