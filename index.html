@@ -15,14 +15,13 @@
     --cream-soft: rgba(243,236,178,0.3);
     --blue: #1A6BFF;
     --blue-soft: rgba(26,107,255,0.1);
-    --purple: #8B5CF6;
     --white: #ffffff;
     --gray-1: #f7f7f6;
     --gray-2: #efefed;
     --gray-3: #d4d4d0;
     --gray-4: #9a9a94;
     --gray-5: #6b6b65;
-    --sidebar-w: 240px;
+    --sidebar-w: 228px;
     --topbar-h: 60px;
     --radius: 10px;
     --radius-sm: 6px;
@@ -178,112 +177,51 @@
     line-height: 16px;
   }
 
-  /* ── SIDEBAR FOOTER & BRAND SELECTOR ── */
   .sidebar-footer {
     padding: 16px;
     border-top: 1px solid rgba(255,255,255,0.06);
-    position: relative;
   }
 
-  /* Brand switcher header label */
-  .brand-switcher-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--gray-5);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .brand-switcher-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
+  .brand-selector {
     background: rgba(255,255,255,0.06);
-  }
-
-  /* Dual brand display — always visible */
-  .brand-list {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .brand-pill {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
     padding: 10px 12px;
-    border-radius: var(--radius);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     transition: background 0.15s;
-    border: 1px solid transparent;
-    position: relative;
   }
 
-  .brand-pill:hover {
-    background: rgba(255,255,255,0.06);
-  }
+  .brand-selector:hover { background: rgba(255,255,255,0.1); }
 
-  .brand-pill.active-brand {
-    background: rgba(255,255,255,0.07);
-    border-color: rgba(255,255,255,0.1);
-  }
+  .brand-info { display: flex; align-items: center; gap: 8px; }
 
-  .brand-pill-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    font-size: 13px;
+  .brand-avatar {
+    width: 24px; height: 24px;
+    background: var(--pink);
+    border-radius: 4px;
+    font-size: 10px;
     font-weight: 700;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    letter-spacing: 0.02em;
   }
 
-  .brand-pill-text { flex: 1; min-width: 0; }
-
-  .brand-pill-name {
-    font-size: 13px;
-    font-weight: 700;
+  .brand-name {
+    font-size: 12px;
+    font-weight: 600;
     color: var(--white);
-    letter-spacing: -0.2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .brand-pill-sub {
-    font-size: 11px;
-    color: var(--gray-4);
-    margin-top: 1px;
-  }
-
-  .brand-pill-badge {
-    flex-shrink: 0;
-    font-size: 9px;
-    font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 20px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  .brand-pill-badge.active {
-    background: rgba(255,0,128,0.2);
-    color: var(--pink);
-  }
-
-  .brand-pill-badge.inactive {
-    background: rgba(255,255,255,0.07);
+  .brand-role {
+    font-size: 10px;
     color: var(--gray-4);
   }
+
+  .brand-chevron { color: var(--gray-4); font-size: 12px; }
 
   /* ── MAIN ── */
   .main {
@@ -1024,28 +962,16 @@
     </div>
   </nav>
 
-  <!-- ── BRAND SWITCHER ── -->
   <div class="sidebar-footer">
-    <div class="brand-switcher-label">Brands</div>
-    <div class="brand-list">
-      <!-- Miss Jones Bakery -->
-      <div class="brand-pill active-brand" id="brand-mj" onclick="selectBrand('mj')">
-        <div class="brand-pill-avatar" style="background:#FF0080">MJ</div>
-        <div class="brand-pill-text">
-          <div class="brand-pill-name">Miss Jones Bakery</div>
-          <div class="brand-pill-sub">67 influencers</div>
+    <div class="brand-selector">
+      <div class="brand-info">
+        <div class="brand-avatar">MJ</div>
+        <div>
+          <div class="brand-name">Miss Jones</div>
+          <div class="brand-role">Active Brand</div>
         </div>
-        <div class="brand-pill-badge active" id="badge-mj">Active</div>
       </div>
-      <!-- Wine and Cola -->
-      <div class="brand-pill" id="brand-wc" onclick="selectBrand('wc')">
-        <div class="brand-pill-avatar" style="background:#8B5CF6">WC</div>
-        <div class="brand-pill-text">
-          <div class="brand-pill-name">Wine and Cola</div>
-          <div class="brand-pill-sub">Coming soon</div>
-        </div>
-        <div class="brand-pill-badge inactive" id="badge-wc">Setup</div>
-      </div>
+      <div class="brand-chevron">⌄</div>
     </div>
   </div>
 </aside>
@@ -1096,23 +1022,23 @@
       </div>
 
       <div class="stats-row">
-        <div class="stat-card" style="border-left-color: var(--blue)">
+        <div class="stat-card stat-card-link" style="border-left-color: var(--blue)" onclick="showScreen('rolodex')" title="View full rolodex">
           <div class="stat-value" style="color:var(--blue)">66</div>
           <div class="stat-label">Total Influencers</div>
         </div>
-        <div class="stat-card" style="border-left-color: var(--pink)">
+        <div class="stat-card stat-card-link" style="border-left-color: var(--pink)" onclick="showScreen('campaign-board')" title="View campaign board">
           <div class="stat-value" style="color:var(--pink)">9</div>
           <div class="stat-label">Active This Campaign</div>
         </div>
-        <div class="stat-card" style="border-left-color: #059669">
+        <div class="stat-card stat-card-link" style="border-left-color: #059669" onclick="showScreen('campaign-board')" title="View campaign board">
           <div class="stat-value" style="color:#059669">$2,625</div>
           <div class="stat-label">Budget Allocated</div>
         </div>
-        <div class="stat-card" style="border-left-color: #f59e0b">
+        <div class="stat-card stat-card-link" style="border-left-color: #f59e0b" onclick="showScreen('payment-queue')" title="View payment queue">
           <div class="stat-value" style="color:#f59e0b">$545</div>
           <div class="stat-label">Paid Out</div>
         </div>
-        <div class="stat-card" style="border-left-color: #dc2626">
+        <div class="stat-card stat-card-link" style="border-left-color: #dc2626" onclick="showScreen('chase-list')" title="View chase list">
           <div class="stat-value" style="color:#dc2626">3</div>
           <div class="stat-label">Overdue</div>
         </div>
@@ -1388,24 +1314,29 @@
     <div class="screen" id="screen-rolodex">
       <div class="table-container">
         <div class="table-header">
-          <div class="table-title">Influencer Rolodex</div>
+          <div>
+            <div class="table-title">Influencer Rolodex</div>
+            <div id="rolodex-count" style="font-size:12px;color:var(--gray-4);margin-top:2px">66 influencers</div>
+          </div>
           <div style="display:flex;gap:8px;align-items:center">
-            <input class="search-input" placeholder="Search by name or handle..." />
-            <select class="select-control">
-              <option>All Content Types</option>
-              <option>Food / Recipes</option>
-              <option>Mom / Lifestyle</option>
-              <option>Health / Wellness</option>
-              <option>Vegan</option>
-              <option>Gluten Free</option>
-              <option>Costco Finds</option>
+            <input id="rolodex-search" class="search-input" placeholder="Search by name or handle..." oninput="filterRolodex()" />
+            <select id="rolodex-type" class="select-control" onchange="filterRolodex()">
+              <option value="">All Content Types</option>
+              <option value="food">Food / Recipes</option>
+              <option value="mom">Mom / Lifestyle</option>
+              <option value="wellness">Health / Wellness</option>
+              <option value="vegan">Vegan</option>
+              <option value="GF">Gluten Free</option>
+              <option value="costco">Costco</option>
+              <option value="ugc">UGC</option>
+              <option value="fitness">Fitness</option>
             </select>
-            <select class="select-control">
-              <option>All Follower Ranges</option>
-              <option>Under 5K</option>
-              <option>5K – 25K</option>
-              <option>25K – 100K</option>
-              <option>100K+</option>
+            <select id="rolodex-range" class="select-control" onchange="filterRolodex()">
+              <option value="">All Follower Ranges</option>
+              <option value="under5">Under 5K</option>
+              <option value="5to25">5K – 25K</option>
+              <option value="25to100">25K – 100K</option>
+              <option value="100plus">100K+</option>
             </select>
             <button class="btn btn-primary">+ Add Influencer</button>
           </div>
@@ -1422,61 +1353,8 @@
               <th>Performance</th>
             </tr>
           </thead>
-          <tbody>
-            <tr onclick="openProfile('Tara McDonald','@taraalexandra_','34.4K IG / 201.3K TT','$195','TikTok + IG Reel','Lifestyle / Food','WFM, Sprouts')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">TM</div><div><div style="font-weight:600">Tara McDonald</div><div style="font-size:11px;color:var(--gray-4)">taraalexandramcdonald@gmail.com</div></div></div></td>
-              <td><span class="pill pill-pink">IG + TikTok</span></td>
-              <td><span class="tag">Lifestyle / Food</span></td>
-              <td style="color:var(--gray-4);font-size:12px">Orlando, FL</td>
-              <td style="font-weight:600;color:#059669">$195/video</td>
-              <td><span class="pill pill-blue">3 campaigns</span></td>
-              <td><span class="pill pill-green">High Eng.</span></td>
-            </tr>
-            <tr onclick="openProfile('Shayla Mackenzie','@shaylamackenzie','12K IG / 112K TT','$300','IG Reel','Mom / Lifestyle','WFM')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SM</div><div><div style="font-weight:600">Shayla Mackenzie</div><div style="font-size:11px;color:var(--gray-4)">shaylamackenzieofficial@gmail.com</div></div></div></td>
-              <td><span class="pill pill-pink">IG + TikTok</span></td>
-              <td><span class="tag">Mom / Lifestyle</span></td>
-              <td style="color:var(--gray-4);font-size:12px">Rocklin, CA</td>
-              <td style="font-weight:600;color:#059669">$300/reel</td>
-              <td><span class="pill pill-blue">2 campaigns</span></td>
-              <td><span class="pill pill-yellow">Avg Eng.</span></td>
-            </tr>
-            <tr onclick="openProfile('Nicole Bruno','@nobread','218K','Custom','TBD','GF / Wellness','—')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">NB</div><div><div style="font-weight:600">Nicole Bruno</div><div style="font-size:11px;color:var(--gray-4)">via DM</div></div></div></td>
-              <td><span class="pill pill-blue">Instagram</span></td>
-              <td><span class="tag">GF / Wellness</span></td>
-              <td style="color:var(--gray-4);font-size:12px">—</td>
-              <td style="font-weight:600;color:var(--gray-4)">TBD</td>
-              <td><span class="pill pill-gray">Prospecting</span></td>
-              <td><span class="pill pill-gray">Unknown</span></td>
-            </tr>
-            <tr onclick="openProfile('Sophia Hoff','@wholesomelysophia','102K','$2,500/reel','IG Reel','Health / OT','—')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">SH</div><div><div style="font-weight:600">Sophia Hoff</div><div style="font-size:11px;color:var(--gray-4)">sophiamhoff@gmail.com</div></div></div></td>
-              <td><span class="pill pill-blue">Instagram</span></td>
-              <td><span class="tag">Health / Wellness</span></td>
-              <td style="color:var(--gray-4);font-size:12px">Jax Beach, FL</td>
-              <td style="font-weight:600;color:#059669">$2,500/reel</td>
-              <td><span class="pill pill-gray">Prospecting</span></td>
-              <td><span class="pill pill-gray">Unknown</span></td>
-            </tr>
-            <tr onclick="openProfile('Jane & Margie','@noshing.sisters','25.3K TikTok','Custom','TikTok Video','Sisters / Food','—')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">JM</div><div><div style="font-weight:600">Jane & Margie</div><div style="font-size:11px;color:var(--gray-4)">grandmasgonoshing@gmail.com</div></div></div></td>
-              <td><span class="pill pill-pink">TikTok + IG</span></td>
-              <td><span class="tag">Sisters / Noshing</span></td>
-              <td style="color:var(--gray-4);font-size:12px">—</td>
-              <td style="font-weight:600;color:var(--gray-4)">Negotiate</td>
-              <td><span class="pill pill-gray">Prospecting</span></td>
-              <td><span class="pill pill-gray">Unknown</span></td>
-            </tr>
-            <tr onclick="openProfile('Mariah Thomas','@seasonal_bridges','16K IG / 11.6K TT','$200–$400','Reel or Bundle','Cozy / Holiday','—')">
-              <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">MT</div><div><div style="font-weight:600">Mariah Thomas</div><div style="font-size:11px;color:var(--gray-4)">seasonalbridges@gmail.com</div></div></div></td>
-              <td><span class="pill pill-pink">IG + TikTok</span></td>
-              <td><span class="tag">Cozy / Lifestyle</span></td>
-              <td style="color:var(--gray-4);font-size:12px">—</td>
-              <td style="font-weight:600;color:#059669">$200–$400</td>
-              <td><span class="pill pill-gray">Prospecting</span></td>
-              <td><span class="pill pill-gray">Unknown</span></td>
-            </tr>
+          <tbody id="rolodex-tbody">
+            <!-- Populated by JS -->
           </tbody>
         </table>
       </div>
@@ -1581,8 +1459,8 @@
             <div class="form-group">
               <label class="form-label">Brand</label>
               <select class="form-input">
-                <option>Miss Jones Bakery</option>
-                <option>Wine and Cola</option>
+                <option>Miss Jones Brands</option>
+                <option>Winanola</option>
               </select>
             </div>
             <div class="form-group">
@@ -1717,7 +1595,168 @@
 </div>
 
 <script>
+
+  // ── INFLUENCER DATA (all 66 from spreadsheet) ──
+  const INFLUENCERS = [
+    {name:'Madiha Saeed, MD', email:'', ig:'@holisticmommd', igF:'19k', tt:'', ttF:'', type:'Holistic / Family', loc:'', rate:''},
+    {name:'Clare Manicom Kenyon', email:'', ig:'@clare_force_one', igF:'7k', tt:'', ttF:'', type:'Vegan / Fashion', loc:'', rate:''},
+    {name:'Frances Kellar', email:'', ig:'@franceskellar', igF:'2k', tt:'', ttF:'', type:'Seasonal / UGC', loc:'', rate:''},
+    {name:'Baylee', email:'', ig:'@fitpeanutbay', igF:'20k', tt:'', ttF:'', type:'Mom / Wellness', loc:'', rate:''},
+    {name:'Nicole Bruno', email:'via DM', ig:'@nobread', igF:'218k', tt:'', ttF:'', type:'GF / Wellness', loc:'', rate:'TBD'},
+    {name:'Marissa Barcena', email:'', ig:'@marissaswholelife', igF:'', tt:'', ttF:'', type:'', loc:'', rate:''},
+    {name:'Katherine Langeland', email:'thekcpatisserie@gmail.com', ig:'@thekcpatisserie', igF:'', tt:'kcpatisserie', ttF:'1k', type:'', loc:'', rate:''},
+    {name:'Krystal Goodman', email:'', ig:'@thekleannutritionist', igF:'', tt:'', ttF:'', type:'Nutrition / Wellness', loc:'', rate:''},
+    {name:'Anastasia Anderson', email:'', ig:'@anastasiazwilling', igF:'', tt:'', ttF:'', type:'', loc:'', rate:''},
+    {name:'Amanda Robyn', email:'', ig:'@healthbyamandarobyn', igF:'', tt:'', ttF:'', type:'Health', loc:'', rate:''},
+    {name:'Brittany', email:'', ig:'@myviewfromuphere', igF:'', tt:'', ttF:'', type:'', loc:'', rate:''},
+    {name:'Lauren Less', email:'lesswithlaur@gmail.com', ig:'@lesswithlaur', igF:'147k', tt:'', ttF:'', type:'GF / DF Recipes', loc:'', rate:''},
+    {name:'Rebecca Lilly', email:'', ig:'@xxrlilly', igF:'', tt:'', ttF:'', type:'', loc:'', rate:''},
+    {name:'Alison (Ali Kat)', email:'alikathol13@hotmail.com', ig:'', igF:'', tt:'@alison_violet19', ttF:'2.4k', type:'', loc:'', rate:''},
+    {name:'Shayla Mackenzie', email:'shaylamackenzieofficial@gmail.com', ig:'@shaylamackenzie', igF:'11k', tt:'@shaylamackenzie_', ttF:'112k', type:'Mom / Recipes / Lifestyle', loc:'Rocklin, CA', rate:'$300/reel', campaigns:2, perf:'Avg'},
+    {name:'Jenna Bailey', email:'', ig:'', igF:'', tt:'@byjennabailey', ttF:'1.3k', type:'Mom / Hobbies', loc:'', rate:''},
+    {name:'Jane & Margie', email:'grandmasgonoshing@gmail.com', ig:'@grandmasgonoshing', igF:'13.6k', tt:'@noshing.sisters', ttF:'25.3k', type:'Sisters / Food', loc:'', rate:'Negotiate'},
+    {name:'Jessie Costantino', email:'jesscostatino@neonroseagency.com', ig:'', igF:'', tt:'@jessiecostantino', ttF:'369k', type:'Cozy / Cooking', loc:'', rate:''},
+    {name:'Dani Lutin', email:'contact.danilutin@gmail.com', ig:'@lutinni', igF:'46.3k', tt:'@lutinii', ttF:'141.5k', type:'Food / Lifestyle', loc:'Florida', rate:'$7.5k TT / $4k IG'},
+    {name:'Shelly Jaronski', email:'cookiesandcups@live.com', ig:'@cookiesandcups', igF:'375k', tt:'', ttF:'', type:'Recipes', loc:'', rate:''},
+    {name:'Jenn Ordway', email:'itsssjennn@gmail.com', ig:'@itsssjen', igF:'22.7k', tt:'', ttF:'', type:'Mom / Lifestyle', loc:'', rate:''},
+    {name:'Heather Brickell', email:'mysweetsavings@gmail.com', ig:'@mysweetsavings', igF:'', tt:'', ttF:'', type:'Savings / Deals', loc:'', rate:''},
+    {name:'Breeanna Cox', email:'hello@bodybybree.com', ig:'@bodybybreefitness', igF:'170k', tt:'', ttF:'', type:'Mom / Fitness', loc:'', rate:''},
+    {name:"Krysten's Kitchen", email:'krystenskitchen@icloud.com', ig:'', igF:'', tt:'', ttF:'', type:'Food', loc:'', rate:''},
+    {name:'Ben & Karley DeCocker', email:'karleytosociety@gmail.com', ig:'@DadsFoodToday', igF:'435k', tt:'', ttF:'', type:'Dad / Recipes', loc:'', rate:''},
+    {name:'Danielle Gootman', email:'daniellegootman@gmail.com', ig:'@healthywithdani', igF:'10.3k', tt:'', ttF:'', type:'Health / Food / Lifestyle', loc:'', rate:''},
+    {name:'Alexandra Azary', email:'alexandra@brighteyedbaker.com', ig:'@brighteyedbaker', igF:'11.1k', tt:'', ttF:'', type:'GF Baking', loc:'', rate:''},
+    {name:'Jonah Abueg', email:'jonahcollabs@gmail.com', ig:'@j.xnah', igF:'43.5k', tt:'', ttF:'', type:'Lifestyle / Baking', loc:'', rate:'$3k/reel'},
+    {name:'Kat Stickler', email:'alice@acp-management.com', ig:'@katstickler', igF:'3.7M', tt:'', ttF:'', type:'Mom / Lifestyle', loc:'', rate:'$135k IG / $145k TT'},
+    {name:'Melissa Garcia-Martinez', email:'meli@pearpoptalent.com', ig:'', igF:'', tt:'', ttF:'', type:'', loc:'', rate:'$4k IG Reel'},
+    {name:'Kayla Breeden Falconer', email:'kaylaskitchandfix@gmail.com', ig:'@kaylaskitchandfix', igF:'229k', tt:'', ttF:'', type:'GF Recipes', loc:'', rate:''},
+    {name:'Morgan Peaceman', email:'nomastehungry@gmail.com', ig:'@nomaste.hungry', igF:'10k', tt:'', ttF:'', type:'Mom / Easy Recipes', loc:'', rate:'$800/reel'},
+    {name:'Mary Katherine', email:'alex@eckodigitalmedia.com', ig:'', igF:'', tt:'', ttF:'', type:'', loc:'', rate:'$8k IG Reel'},
+    {name:'Julie Sandjaja', email:'costcoaisles@gmail.com', ig:'@costcoaisles', igF:'219k', tt:'', ttF:'', type:'Costco Finds', loc:'', rate:'$1,850/reel'},
+    {name:'Allan and Rachel', email:'info@shoppertalent.com', ig:'@discovering_costco', igF:'96k', tt:'', ttF:'', type:'Costco Finds', loc:'', rate:'$3.5k/reel'},
+    {name:'Jen & Laura', email:'ascothart@gmail.com', ig:'@costco_doesitagain', igF:'1.1M', tt:'', ttF:'', type:'Healthy / Costco', loc:'', rate:''},
+    {name:'Majed Kassis', email:'CostcoBuysInfo@gmail.com', ig:'@costcobuys', igF:'1.2M', tt:'', ttF:'', type:'Costco Finds', loc:'', rate:''},
+    {name:'Claudia Green', email:'claudiamedtalk@gmail.com', ig:'@claudiaegreen', igF:'143k', tt:'', ttF:'', type:'Mom / Medicine', loc:'', rate:''},
+    {name:'Nicole Nyerick RDN', email:'NutritionWithNicoleRD@outlook.com', ig:'@nicolesnutrition', igF:'3.4k', tt:'', ttF:'', type:"Thyroid / Women's Health", loc:'', rate:'$175 UGC / $275 demo'},
+    {name:'Jamie Milne', email:'everythingsdelish@gmail.com', ig:'@everything_delish', igF:'833k', tt:'', ttF:'', type:'Mom / Recipes', loc:'', rate:''},
+    {name:'Snack Wire (Madisen Stolz)', email:'madisen@thesnackwire.com', ig:'@snackwire', igF:'600k', tt:'', ttF:'', type:'Snack / Food', loc:'', rate:'$1,200 static'},
+    {name:'Julia Sartini', email:'juuhsartini@icloud.com', ig:'@juliasartini1', igF:'131k', tt:'', ttF:'', type:'Mom / Healthy', loc:'', rate:'$1,500/reel'},
+    {name:'Tati', email:'info@tativegancooking.com', ig:'@tativegancooking', igF:'55k', tt:'', ttF:'', type:'Vegan Recipes', loc:'', rate:''},
+    {name:'Mariah Thomas', email:'seasonalbridges@gmail.com', ig:'@seasonal_bridges', igF:'16k', tt:'@seasonalbridges', ttF:'11.6k', type:'Cozy / Holiday / Lifestyle', loc:'', rate:'$200 IG / $150 TT'},
+    {name:'Tara Alexandra McDonald', email:'taraalexandramcdonald@gmail.com', ig:'@taraalexandra_', igF:'34.4k', tt:'@taraalexandra_', ttF:'201.3k', type:'Lifestyle / Food', loc:'Orlando, FL', rate:'$195/video', campaigns:3, perf:'High'},
+    {name:'Ruth Swingler', email:'ruthswingler316@gmail.com', ig:'@ruth_swing316', igF:'64.2k', tt:'', ttF:'', type:'Lifestyle / Fitness', loc:'York, PA', rate:'$1,500/reel'},
+    {name:'Dayami Emory', email:'dayamifrommiami@gmail.com', ig:'@dayamifrommiami', igF:'87k', tt:'', ttF:'', type:'Mom / Wellness', loc:'Miami', rate:''},
+    {name:'Sophia Hoff', email:'sophiamhoff@gmail.com', ig:'@wholesomelysophia', igF:'102k', tt:'', ttF:'', type:'Health / Wellness', loc:'Jax Beach, FL', rate:'$2,500/reel'},
+    {name:'Jessica Chen', email:'hellojessiecollabs@gmail.com', ig:'@jessieugc', igF:'~49', tt:'@ugcjessie', ttF:'700', type:'Mom / UGC', loc:'San Francisco', rate:'$400/reel'},
+    {name:'Maggie Ortlieb', email:'hi@maggieeatsvegan.com', ig:'@maggieeatsvegan', igF:'19.6k', tt:'@maggieeatsvegan', ttF:'16.8k', type:'Vegan', loc:'', rate:''},
+    {name:'Kaitlyn Anderson', email:'collabwkaitlyn@gmail.com', ig:'@k8lynanderson', igF:'72.7k', tt:'@k8lynanderson', ttF:'180.4k', type:'Health / Seasonal Living', loc:'Tyler, TX', rate:''},
+    {name:'Angie Rodas', email:'angieerodas3@gmail.com', ig:'@angiee.rodas', igF:'1.4k', tt:'@angierodas', ttF:'38', type:'UGC Creator', loc:'', rate:''},
+    {name:'Jillian Tulowitzky', email:'jilliantdigitalmarketing@gmail.com', ig:'@jilliantulo.ugc', igF:'28', tt:'@jilliantulowitzky', ttF:'1.1k', type:'Mom / Wellness / Homemaking', loc:'Christiansburg, VA', rate:''},
+    {name:'Rachelle Rose', email:'rachellerose127@yahoo.com', ig:'@reppin.with.rosebuds', igF:'6.1k', tt:'@rachelle84404', ttF:'326', type:'Lifestyle', loc:'', rate:''},
+    {name:'Mary Catherine Jarmon', email:'mcatjarmon@gmail.com', ig:'', igF:'', tt:'', ttF:'', type:'', loc:'Nashville, TN', rate:''},
+    {name:'Rebecca Hrabar', email:'utahfamilytravels@gmail.com', ig:'@utahfamilytravels', igF:'92.5k', tt:'', ttF:'', type:'Family Travel', loc:'Lehi, Utah', rate:'$650/reel'},
+    {name:'Caite Anderson', email:'lovejaderubylifestyle@gmail.com', ig:'@lovejaderuby', igF:'46.1k', tt:'', ttF:'', type:'Mama / Lifestyle', loc:'', rate:''},
+    {name:'Lydia Davenport', email:'lydcreatesugc@gmail.com', ig:'@lydcreatesugc', igF:'42', tt:'', ttF:'', type:'UGC / Perimenopause', loc:'Woodland Hills, CA', rate:''},
+    {name:'Gina Marie Caracci', email:'createdbyginamarie@gmail.com', ig:'@ginamariefit', igF:'11.9k', tt:'', ttF:'', type:'Fitness / Lifestyle', loc:'Tampa, FL', rate:''},
+    {name:'Deann Shields', email:'deannbrandise@gmail.com', ig:'@royaltychicc', igF:'1.9k', tt:'', ttF:'', type:'Lifestyle / Mindset', loc:'Christiansburg, VA', rate:''},
+    {name:'Taylor Camp', email:'thevintagetieguy@gmail.com', ig:'@tayloracamp', igF:'77.3k', tt:'', ttF:'', type:'Wine / Food / Lifestyle', loc:'Napa Valley, CA', rate:'$1,200/reel'},
+    {name:'Kristen Kelbon', email:'kristenkelbon@gmail.com', ig:'@kristens_eats', igF:'29.2k', tt:'', ttF:'', type:'Food Creator', loc:'', rate:'$800/reel'},
+    {name:'Jessica Fox', email:'joyfullyjessica@icloud.com', ig:'@_joyfully_jessica', igF:'1.1k', tt:'', ttF:'', type:'Mom / Cooking', loc:'', rate:''},
+    {name:'Steph Osber', email:'stephosberugc@gmail.com', ig:'@newbeginningswithsteph', igF:'156', tt:'@newbeginningswithsteph', ttF:'153', type:'UGC / Health', loc:'Near Boston, MA', rate:''},
+    {name:'Hadasa Roman', email:'thedressychick@gmail.com', ig:'@xohadasa', igF:'51.1k', tt:'@xohadasa', ttF:'4.4k', type:'Lifestyle / Content Creation', loc:'Orange County', rate:''},
+  ];
+
+  function getPlatformPill(inf) {
+    if (inf.ig && inf.tt) return `<span class="pill pill-pink">IG + TikTok</span>`;
+    if (inf.ig) return `<span class="pill pill-blue">Instagram</span>`;
+    if (inf.tt) return `<span class="pill pill-purple" style="background:#f3e8ff;color:#7c3aed">TikTok</span>`;
+    return `<span class="pill pill-gray">—</span>`;
+  }
+
+  function getFollowers(inf) {
+    const parts = [];
+    if (inf.ig && inf.igF) parts.push(inf.igF + ' IG');
+    if (inf.tt && inf.ttF) parts.push(inf.ttF + ' TT');
+    return parts.join(' / ') || '—';
+  }
+
+  function getPerfPill(inf) {
+    if (inf.perf === 'High') return `<span class="pill pill-green">High Eng.</span>`;
+    if (inf.perf === 'Avg') return `<span class="pill pill-yellow">Avg Eng.</span>`;
+    return `<span class="pill pill-gray">Unknown</span>`;
+  }
+
+  function getCampaignPill(inf) {
+    if (inf.campaigns) return `<span class="pill pill-blue">${inf.campaigns} campaigns</span>`;
+    return `<span style="color:var(--gray-4);font-size:12px">Prospecting</span>`;
+  }
+
+  function getRateDisplay(inf) {
+    if (!inf.rate) return `<span style="color:var(--gray-4)">—</span>`;
+    if (inf.rate === 'TBD') return `<span style="color:var(--gray-4)">TBD</span>`;
+    if (inf.rate === 'Negotiate') return `<span style="color:var(--gray-4)">Negotiate</span>`;
+    return `<span style="font-weight:600;color:#059669">${inf.rate}</span>`;
+  }
+
+  function initials(name) {
+    return name.split(' ').filter(w => w && /[A-Za-z]/.test(w[0])).map(w => w[0]).join('').slice(0,2).toUpperCase();
+  }
+
+  function renderRolodex(list) {
+    const tbody = document.getElementById('rolodex-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = list.map(inf => {
+      const ini = initials(inf.name);
+      const email = inf.email && inf.email.includes('@') ? inf.email : (inf.ig ? inf.ig : '—');
+      const followers = getFollowers(inf);
+      return `<tr onclick="openProfile('${inf.name.replace(/'/g,"\\'")}','${(inf.ig||inf.tt||'').replace(/'/g,"\\'")}','${followers}','${inf.rate||'—'}','—','${inf.type||'—'}','${inf.campaigns||0}')">
+        <td><div style="display:flex;align-items:center;gap:10px"><div class="avatar" style="width:32px;height:32px;font-size:11px">${ini}</div><div><div style="font-weight:600">${inf.name}</div><div style="font-size:11px;color:var(--gray-4)">${inf.email && inf.email.includes('@') ? inf.email : (inf.ig ? inf.ig : '—')}</div></div></div></td>
+        <td>${getPlatformPill(inf)}</td>
+        <td><span class="tag">${inf.type||'—'}</span></td>
+        <td style="color:var(--gray-4);font-size:12px">${inf.loc||'—'}</td>
+        <td>${getRateDisplay(inf)}</td>
+        <td>${getCampaignPill(inf)}</td>
+        <td>${getPerfPill(inf)}</td>
+      </tr>`;
+    }).join('');
+    document.getElementById('rolodex-count').textContent = list.length + ' influencers';
+  }
+
+  function filterRolodex() {
+    const q = (document.getElementById('rolodex-search')?.value || '').toLowerCase();
+    const type = document.getElementById('rolodex-type')?.value || '';
+    const range = document.getElementById('rolodex-range')?.value || '';
+
+    let list = INFLUENCERS.filter(inf => {
+      const matchQ = !q || inf.name.toLowerCase().includes(q) || (inf.ig && inf.ig.toLowerCase().includes(q)) || (inf.tt && inf.tt.toLowerCase().includes(q));
+      const matchType = !type || inf.type.toLowerCase().includes(type.toLowerCase());
+      const matchRange = !range || checkRange(inf, range);
+      return matchQ && matchType && matchRange;
+    });
+    renderRolodex(list);
+  }
+
+  function parseFollowerNum(s) {
+    if (!s) return 0;
+    s = String(s).toLowerCase().replace(/,/g,'');
+    if (s.includes('m')) return parseFloat(s)*1000000;
+    if (s.includes('k')) return parseFloat(s)*1000;
+    return parseFloat(s)||0;
+  }
+
+  function checkRange(inf, range) {
+    const igN = parseFollowerNum(inf.igF);
+    const ttN = parseFollowerNum(inf.ttF);
+    const max = Math.max(igN, ttN);
+    if (range === 'under5') return max < 5000;
+    if (range === '5to25') return max >= 5000 && max < 25000;
+    if (range === '25to100') return max >= 25000 && max < 100000;
+    if (range === '100plus') return max >= 100000;
+    return true;
+  }
+
+  // ── SCREEN NAV ──
   function showScreen(id) {
+    if (id === 'rolodex') renderRolodex(INFLUENCERS);
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
@@ -1790,31 +1829,7 @@
       document.getElementById('slideout-overlay').classList.remove('open');
     }
   }
-
-  function selectBrand(brandId) {
-    // Update active states
-    document.querySelectorAll('.brand-pill').forEach(p => p.classList.remove('active-brand'));
-    document.getElementById('brand-' + brandId).classList.add('active-brand');
-
-    // Update badges
-    document.querySelectorAll('.brand-pill-badge').forEach(b => {
-      b.classList.remove('active');
-      b.classList.add('inactive');
-      b.textContent = 'Setup';
-    });
-
-    const activeBadge = document.getElementById('badge-' + brandId);
-    activeBadge.classList.remove('inactive');
-    activeBadge.classList.add('active');
-    activeBadge.textContent = 'Active';
-
-    // Reset the inactive badge labels
-    if (brandId === 'mj') {
-      document.getElementById('badge-wc').textContent = 'Setup';
-    } else {
-      document.getElementById('badge-mj').textContent = 'Setup';
-    }
-  }
+  document.addEventListener('DOMContentLoaded', () => renderRolodex(INFLUENCERS));
 </script>
 </body>
 </html>
