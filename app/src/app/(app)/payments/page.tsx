@@ -72,7 +72,7 @@ function StatusPill({ status }: { status: string }) {
   const { bg, text } = getPillColors(status)
   return (
     <span
-      className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium whitespace-nowrap"
+      className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium whitespace-nowrap"
       style={{ backgroundColor: bg, color: text }}
     >
       {formatLabel(status)}
@@ -125,7 +125,7 @@ function EditableStatusPill({
       <button
         onClick={() => setOpen(!open)}
         disabled={saving}
-        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium cursor-pointer hover:ring-2 hover:ring-offset-1 hover:ring-gray-200 transition-all disabled:opacity-50"
+        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium cursor-pointer hover:ring-2 hover:ring-offset-1 hover:ring-gray-200 transition-all disabled:opacity-50"
         style={{ backgroundColor: bg, color: text }}
       >
         {saving ? (
@@ -142,7 +142,7 @@ function EditableStatusPill({
             <button
               key={opt}
               onClick={() => handleSelect(opt)}
-              className="w-full flex items-center gap-2 px-3 py-1.5 text-[11px] text-gray-700 hover:bg-gray-50 transition-colors text-left"
+              className="w-full flex items-center gap-2 px-3 py-1.5 text-xs text-gray-700 hover:bg-gray-50 transition-colors text-left"
             >
               <span
                 className="w-2 h-2 rounded-full shrink-0"
@@ -189,7 +189,7 @@ function FilterableHeader({
   const isActive = activeFilter !== null
 
   return (
-    <th className="text-left px-4 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+    <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
       <div className="relative" ref={ref}>
         <button
           onClick={() => setOpen(!open)}
@@ -205,7 +205,7 @@ function FilterableHeader({
           <div className="absolute z-50 mt-2 left-0 bg-white rounded-lg shadow-lg border border-gray-100 py-1 min-w-[140px] normal-case font-normal">
             <button
               onClick={() => { onFilter(null); setOpen(false) }}
-              className={`w-full flex items-center gap-2 px-3 py-1.5 text-[11px] hover:bg-gray-50 transition-colors text-left ${
+              className={`w-full flex items-center gap-2 px-3 py-1.5 text-xs hover:bg-gray-50 transition-colors text-left ${
                 !isActive ? 'text-[#1A6BFF] font-medium' : 'text-gray-700'
               }`}
             >
@@ -216,7 +216,7 @@ function FilterableHeader({
               <button
                 key={opt}
                 onClick={() => { onFilter(opt); setOpen(false) }}
-                className={`w-full flex items-center gap-2 px-3 py-1.5 text-[11px] hover:bg-gray-50 transition-colors text-left ${
+                className={`w-full flex items-center gap-2 px-3 py-1.5 text-xs hover:bg-gray-50 transition-colors text-left ${
                   activeFilter === opt ? 'text-[#1A6BFF] font-medium' : 'text-gray-700'
                 }`}
               >
@@ -412,12 +412,12 @@ export default function PaymentQueuePage() {
         {/* Active filter count indicator */}
         {(w9Filter || invoiceFilter || paymentFilter || pipelineFilter) && (
           <div className="mb-3 flex items-center gap-2">
-            <span className="text-[11px] text-gray-500">
+            <span className="text-xs text-gray-500">
               Filters active: showing {filteredItems.length} of {items.length}
             </span>
             <button
               onClick={() => { setW9Filter(null); setInvoiceFilter(null); setPaymentFilter(null); setPipelineFilter(null) }}
-              className="text-[11px] text-[#1A6BFF] hover:underline"
+              className="text-xs text-[#1A6BFF] hover:underline"
             >
               Clear all
             </button>
@@ -428,13 +428,13 @@ export default function PaymentQueuePage() {
           <table className="w-full">
             <thead>
               <tr className="bg-gray-50/80">
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Name
                 </th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Handle
                 </th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Campaign
                 </th>
                 <FilterableHeader
@@ -461,10 +461,10 @@ export default function PaymentQueuePage() {
                   activeFilter={pipelineFilter}
                   onFilter={setPipelineFilter}
                 />
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Rate
                 </th>
-                <th className="text-left px-4 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Action
                 </th>
               </tr>
@@ -473,19 +473,19 @@ export default function PaymentQueuePage() {
               {loading ? (
                 <tr>
                   <td colSpan={9} className="px-4 py-12 text-center">
-                    <p className="text-sm text-gray-400">Loading payment queue...</p>
+                    <p className="text-base text-gray-400">Loading payment queue...</p>
                   </td>
                 </tr>
               ) : filteredItems.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="px-4 py-12 text-center">
                     <FileText size={24} className="mx-auto text-gray-300 mb-2" />
-                    <p className="text-sm text-gray-400">
+                    <p className="text-base text-gray-400">
                       {items.length === 0
                         ? 'No influencers in the payment queue'
                         : 'No results match the active filters'}
                     </p>
-                    <p className="text-xs text-gray-300 mt-1">
+                    <p className="text-sm text-gray-300 mt-1">
                       {items.length === 0
                         ? 'Influencers appear here after content is received'
                         : 'Try adjusting your filters above'}
@@ -506,19 +506,19 @@ export default function PaymentQueuePage() {
                         className="flex items-center gap-2.5 hover:underline"
                       >
                         <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FF0080] to-[#1A6BFF] flex items-center justify-center shrink-0">
-                          <span className="text-white text-[9px] font-bold">
+                          <span className="text-white text-[11px] font-bold">
                             {getInitials(item.name)}
                           </span>
                         </div>
-                        <span className="text-xs font-medium text-gray-900">
+                        <span className="text-sm font-medium text-gray-900">
                           {item.name}
                         </span>
                       </button>
                     </td>
-                    <td className="px-4 py-3 text-xs text-gray-500 font-mono">
+                    <td className="px-4 py-3 text-sm text-gray-500 font-mono">
                       {item.handle ? `@${item.handle}` : '-'}
                     </td>
-                    <td className="px-4 py-3 text-xs text-gray-700">
+                    <td className="px-4 py-3 text-sm text-gray-700">
                       {item.campaign_name}
                     </td>
                     <td className="px-4 py-3">
@@ -545,19 +545,19 @@ export default function PaymentQueuePage() {
                     <td className="px-4 py-3">
                       <StatusPill status={item.pipeline_stage} />
                     </td>
-                    <td className="px-4 py-3 text-xs font-medium text-gray-900">
+                    <td className="px-4 py-3 text-sm font-medium text-gray-900">
                       {item.rate != null ? `$${item.rate.toLocaleString()}` : '-'}
                     </td>
                     <td className="px-4 py-3">
                       {item.ready_to_pay ? (
-                        <span className="inline-flex items-center px-2.5 py-1 rounded text-[10px] font-medium bg-[#ecfdf5] text-[#059669]">
+                        <span className="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-medium bg-[#ecfdf5] text-[#059669]">
                           Ready to Pay
                         </span>
                       ) : item.invoice_status === 'pending' ? (
                         <button
                           onClick={() => handleRequestInvoice(item.id)}
                           disabled={requestingInvoice === item.id}
-                          className="flex items-center gap-1 px-2.5 py-1 text-[10px] font-medium text-[#1A6BFF] bg-[#eff6ff] rounded hover:bg-[#dbeafe] disabled:opacity-50 transition-colors"
+                          className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-[#1A6BFF] bg-[#eff6ff] rounded hover:bg-[#dbeafe] disabled:opacity-50 transition-colors"
                         >
                           {requestingInvoice === item.id ? (
                             <Loader2 size={10} className="animate-spin" />
@@ -567,7 +567,7 @@ export default function PaymentQueuePage() {
                           Request Invoice
                         </button>
                       ) : item.invoice_status === 'sent' ? (
-                        <span className="text-[10px] text-gray-400">
+                        <span className="text-xs text-gray-400">
                           Invoice sent
                         </span>
                       ) : null}

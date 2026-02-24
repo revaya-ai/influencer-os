@@ -199,7 +199,7 @@ export default function RolodexPage() {
       <Topbar title="Influencer Rolodex">
         <button
           onClick={() => setShowAddModal(true)}
-          className="flex items-center gap-2 px-3 py-1.5 bg-[#1A6BFF] text-white text-xs font-medium rounded-lg hover:bg-[#1558d4] transition-colors"
+          className="flex items-center gap-2 px-3 py-1.5 bg-[#1A6BFF] text-white text-sm font-medium rounded-lg hover:bg-[#1558d4] transition-colors"
         >
           <Plus size={14} />
           Add Influencer
@@ -219,7 +219,7 @@ export default function RolodexPage() {
               placeholder="Search by name or handle..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+              className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-base bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
             />
           </div>
 
@@ -228,7 +228,7 @@ export default function RolodexPage() {
             <select
               value={platformFilter}
               onChange={(e) => setPlatformFilter(e.target.value)}
-              className="appearance-none pl-3 pr-8 py-2 border border-gray-200 rounded-lg text-sm bg-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
+              className="appearance-none pl-3 pr-8 py-2 border border-gray-200 rounded-lg text-base bg-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
             >
               {PLATFORMS.map((p) => (
                 <option key={p} value={p}>
@@ -247,7 +247,7 @@ export default function RolodexPage() {
             <select
               value={contentTypeFilter}
               onChange={(e) => setContentTypeFilter(e.target.value)}
-              className="appearance-none pl-3 pr-8 py-2 border border-gray-200 rounded-lg text-sm bg-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
+              className="appearance-none pl-3 pr-8 py-2 border border-gray-200 rounded-lg text-base bg-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
             >
               {CONTENT_TYPES.map((ct) => (
                 <option key={ct} value={ct}>
@@ -271,7 +271,7 @@ export default function RolodexPage() {
                   {columns.map((col) => (
                     <th
                       key={col.key}
-                      className={`text-left px-4 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 select-none ${col.width ?? ''}`}
+                      className={`text-left px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-700 select-none ${col.width ?? ''}`}
                       onClick={() => handleSort(col.key)}
                     >
                       <div className="flex items-center gap-1">
@@ -293,13 +293,13 @@ export default function RolodexPage() {
                 {loading ? (
                   <tr>
                     <td colSpan={8} className="px-4 py-12 text-center">
-                      <p className="text-sm text-gray-400">Loading influencers...</p>
+                      <p className="text-base text-gray-400">Loading influencers...</p>
                     </td>
                   </tr>
                 ) : paged.length === 0 ? (
                   <tr>
                     <td colSpan={8} className="px-4 py-12 text-center">
-                      <p className="text-sm text-gray-400">No influencers found</p>
+                      <p className="text-base text-gray-400">No influencers found</p>
                     </td>
                   </tr>
                 ) : (
@@ -312,31 +312,31 @@ export default function RolodexPage() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2.5">
                           <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FF0080] to-[#1A6BFF] flex items-center justify-center shrink-0">
-                            <span className="text-white text-[9px] font-bold">
+                            <span className="text-white text-[11px] font-bold">
                               {getInitials(inf.name)}
                             </span>
                           </div>
-                          <span className="text-xs font-medium text-gray-900">
+                          <span className="text-sm font-medium text-gray-900">
                             {inf.name}
                           </span>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-xs text-gray-500 font-mono">
+                      <td className="px-4 py-3 text-sm text-gray-500 font-mono">
                         {inf.handle ? `@${inf.handle}` : '-'}
                       </td>
-                      <td className="px-4 py-3 text-xs text-gray-600 capitalize">
+                      <td className="px-4 py-3 text-sm text-gray-600 capitalize">
                         {inf.platform ?? '-'}
                       </td>
-                      <td className="px-4 py-3 text-xs text-gray-600 capitalize">
+                      <td className="px-4 py-3 text-sm text-gray-600 capitalize">
                         {inf.content_type ?? '-'}
                       </td>
-                      <td className="px-4 py-3 text-xs text-gray-600">
+                      <td className="px-4 py-3 text-sm text-gray-600">
                         {inf.location ?? '-'}
                       </td>
-                      <td className="px-4 py-3 text-xs text-gray-900 font-medium">
+                      <td className="px-4 py-3 text-sm text-gray-900 font-medium">
                         {inf.rate != null ? `$${inf.rate.toLocaleString()}` : '-'}
                       </td>
-                      <td className="px-4 py-3 text-xs text-gray-600 text-center">
+                      <td className="px-4 py-3 text-sm text-gray-600 text-center">
                         {inf.campaign_count}
                       </td>
                       <td className="px-4 py-3">
@@ -347,12 +347,12 @@ export default function RolodexPage() {
                               className="text-[#f59e0b]"
                               fill="#f59e0b"
                             />
-                            <span className="text-xs text-gray-700">
+                            <span className="text-sm text-gray-700">
                               {inf.performance_rating.toFixed(1)}
                             </span>
                           </div>
                         ) : (
-                          <span className="text-xs text-gray-300">-</span>
+                          <span className="text-sm text-gray-300">-</span>
                         )}
                       </td>
                     </tr>
@@ -365,25 +365,25 @@ export default function RolodexPage() {
           {/* Pagination */}
           {!loading && filtered.length > 0 && (
             <div className="flex items-center justify-between mt-4">
-              <p className="text-xs text-gray-500">
+              <p className="text-sm text-gray-500">
                 Showing {showingFrom}-{showingTo} of {filtered.length}
               </p>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className="flex items-center gap-1 px-3 py-1.5 border border-gray-200 rounded-lg text-xs text-gray-600 hover:bg-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  className="flex items-center gap-1 px-3 py-1.5 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 >
                   <ChevronLeft size={12} />
                   Prev
                 </button>
-                <span className="text-xs text-gray-500">
+                <span className="text-sm text-gray-500">
                   Page {page} of {totalPages}
                 </span>
                 <button
                   onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                   disabled={page === totalPages}
-                  className="flex items-center gap-1 px-3 py-1.5 border border-gray-200 rounded-lg text-xs text-gray-600 hover:bg-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  className="flex items-center gap-1 px-3 py-1.5 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 >
                   Next
                   <ChevronRight size={12} />
@@ -476,7 +476,7 @@ function AddInfluencerModal({
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
           <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-            <h2 className="text-sm font-bold text-gray-900">Add Influencer</h2>
+            <h2 className="text-base font-bold text-gray-900">Add Influencer</h2>
             <button
               onClick={onClose}
               className="p-1 rounded-md hover:bg-gray-100 text-gray-400"
@@ -487,20 +487,20 @@ function AddInfluencerModal({
 
           <form onSubmit={handleSubmit} className="p-6 space-y-4">
             {error && (
-              <div className="px-3 py-2 bg-[#fef2f2] text-[#dc2626] text-xs rounded-lg">
+              <div className="px-3 py-2 bg-[#fef2f2] text-[#dc2626] text-sm rounded-lg">
                 {error}
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Name *
               </label>
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => updateField('name', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                 placeholder="Full name"
                 required
               />
@@ -508,26 +508,26 @@ function AddInfluencerModal({
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Handle
                 </label>
                 <input
                   type="text"
                   value={form.handle}
                   onChange={(e) => updateField('handle', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                   placeholder="@handle"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Email
                 </label>
                 <input
                   type="email"
                   value={form.email}
                   onChange={(e) => updateField('email', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                   placeholder="email@example.com"
                 />
               </div>
@@ -535,13 +535,13 @@ function AddInfluencerModal({
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Platform
                 </label>
                 <select
                   value={form.platform}
                   onChange={(e) => updateField('platform', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
                 >
                   <option value="instagram">Instagram</option>
                   <option value="tiktok">TikTok</option>
@@ -550,14 +550,14 @@ function AddInfluencerModal({
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Content Type
                 </label>
                 <input
                   type="text"
                   value={form.content_type}
                   onChange={(e) => updateField('content_type', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                   placeholder="Photo, Video, Reel..."
                 />
               </div>
@@ -565,26 +565,26 @@ function AddInfluencerModal({
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Location
                 </label>
                 <input
                   type="text"
                   value={form.location}
                   onChange={(e) => updateField('location', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                   placeholder="City, State"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Rate ($)
                 </label>
                 <input
                   type="number"
                   value={form.rate}
                   onChange={(e) => updateField('rate', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                   placeholder="500"
                   min="0"
                   step="1"
@@ -593,14 +593,14 @@ function AddInfluencerModal({
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Follower Count
               </label>
               <input
                 type="number"
                 value={form.follower_count}
                 onChange={(e) => updateField('follower_count', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                 placeholder="10000"
                 min="0"
               />
@@ -610,14 +610,14 @@ function AddInfluencerModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 border border-gray-200 text-sm text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                className="px-4 py-2 border border-gray-200 text-base text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={saving}
-                className="flex items-center gap-2 px-4 py-2 bg-[#1A6BFF] text-white text-sm font-medium rounded-lg hover:bg-[#1558d4] disabled:opacity-50 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-[#1A6BFF] text-white text-base font-medium rounded-lg hover:bg-[#1558d4] disabled:opacity-50 transition-colors"
               >
                 {saving && <Loader2 size={14} className="animate-spin" />}
                 {saving ? 'Adding...' : 'Add Influencer'}

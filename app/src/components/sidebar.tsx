@@ -91,8 +91,8 @@ export default function Sidebar() {
             <span className="text-white text-xs font-bold">IO</span>
           </div>
           <div>
-            <div className="text-sm font-bold leading-tight">InfluencerOS</div>
-            <div className="text-[10px] text-[#9a9a94] leading-tight">
+            <div className="text-base font-bold leading-tight">InfluencerOS</div>
+            <div className="text-xs text-[#9a9a94] leading-tight">
               Campaign Management
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function Sidebar() {
           <div key={section.title}>
             <div
               className="px-2 mb-1.5 text-[#6b6b65] font-medium uppercase tracking-wider"
-              style={{ fontSize: 10 }}
+              style={{ fontSize: 12 }}
             >
               {section.title}
             </div>
@@ -122,7 +122,7 @@ export default function Sidebar() {
                         ? 'bg-[rgba(255,0,128,0.12)] text-white border-l-[3px] border-pink'
                         : 'text-[#9a9a94] hover:bg-[rgba(255,255,255,0.05)] border-l-[3px] border-transparent'
                     }`}
-                    style={{ fontSize: 13, fontWeight: 500 }}
+                    style={{ fontSize: 14, fontWeight: 500 }}
                   >
                     <Icon size={16} className={active ? 'text-white' : 'text-[#9a9a94]'} />
                     {item.label}
@@ -140,7 +140,7 @@ export default function Sidebar() {
         <div className="relative">
           <div
             className="px-2 mb-1.5 text-[#6b6b65] font-medium uppercase tracking-wider"
-            style={{ fontSize: 11.5 }}
+            style={{ fontSize: 13 }}
           >
             Active Brand
           </div>
@@ -150,12 +150,12 @@ export default function Sidebar() {
           >
             <div className="flex items-center gap-2 min-w-0">
               <div className="w-6 h-6 bg-pink rounded flex items-center justify-center shrink-0">
-                <span className="text-white text-[9px] font-bold">
+                <span className="text-white text-[11px] font-bold">
                   {selectedBrand?.name?.split(' ').map(w => w[0]).join('').slice(0, 2) ?? '?'}
                 </span>
               </div>
               <div className="min-w-0">
-                <div className="text-xs font-semibold text-white truncate">
+                <div className="text-sm font-semibold text-white truncate">
                   {selectedBrand?.name ?? 'No brand'}
                 </div>
               </div>
@@ -175,14 +175,14 @@ export default function Sidebar() {
                     setSelectedBrand(brand)
                     setBrandDropdownOpen(false)
                   }}
-                  className={`w-full text-left px-3 py-2.5 text-xs flex items-center gap-2 transition-colors ${
+                  className={`w-full text-left px-3 py-2.5 text-sm flex items-center gap-2 transition-colors ${
                     brand.id === selectedBrand?.id
                       ? 'text-white bg-[rgba(255,0,128,0.12)]'
                       : 'text-[#9a9a94] hover:bg-[rgba(255,255,255,0.05)]'
                   }`}
                 >
                   <div className="w-5 h-5 bg-pink/20 rounded flex items-center justify-center shrink-0">
-                    <span className="text-pink text-[8px] font-bold">
+                    <span className="text-pink text-[11px] font-bold">
                       {brand.name.split(' ').map(w => w[0]).join('').slice(0, 2)}
                     </span>
                   </div>
@@ -196,7 +196,7 @@ export default function Sidebar() {
         {/* Logout */}
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 px-2 py-1.5 text-xs text-[#6b6b65] hover:text-[#9a9a94] transition-colors w-full"
+          className="flex items-center gap-2 px-2 py-1.5 text-sm text-[#6b6b65] hover:text-[#9a9a94] transition-colors w-full"
         >
           <LogOut size={14} />
           Sign out

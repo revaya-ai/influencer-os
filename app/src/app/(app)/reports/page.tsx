@@ -358,7 +358,7 @@ export default function ReportsPage() {
                     {card.value}
                   </p>
                 )}
-                <p className="text-xs text-gray-500 mt-1">{card.label}</p>
+                <p className="text-sm text-gray-500 mt-1">{card.label}</p>
               </div>
             )
           })}
@@ -369,7 +369,7 @@ export default function ReportsPage() {
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
               <BarChart3 size={16} className="text-gray-400" />
-              <h3 className="text-sm font-semibold text-gray-900">
+              <h3 className="text-base font-semibold text-gray-900">
                 Campaign Performance
               </h3>
             </div>
@@ -385,7 +385,7 @@ export default function ReportsPage() {
             ) : campaignRows.length === 0 ? (
               <div className="p-8 text-center">
                 <Megaphone size={24} className="text-gray-300 mx-auto mb-2" />
-                <p className="text-sm text-gray-400">
+                <p className="text-base text-gray-400">
                   No campaigns found for this brand
                 </p>
               </div>
@@ -394,25 +394,25 @@ export default function ReportsPage() {
                 <table className="w-full text-left">
                   <thead>
                     <tr className="border-b border-gray-100">
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                         Campaign
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                         Retailer
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                         Quarter
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider text-center">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
                         Influencers
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider text-right">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">
                         Budget
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider text-right">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">
                         Paid Out
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                         Completion Rate
                       </th>
                     </tr>
@@ -423,28 +423,28 @@ export default function ReportsPage() {
                         key={row.id}
                         className="hover:bg-gray-50/50 transition-colors"
                       >
-                        <td className="px-5 py-3 text-xs font-medium text-gray-900">
+                        <td className="px-5 py-3 text-sm font-medium text-gray-900">
                           {row.name}
                         </td>
-                        <td className="px-5 py-3 text-xs text-gray-600">
+                        <td className="px-5 py-3 text-sm text-gray-600">
                           {row.retailer ?? '-'}
                         </td>
                         <td className="px-5 py-3">
                           {row.quarter ? (
-                            <span className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-[#eff6ff] text-[#2563eb]">
+                            <span className="px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#eff6ff] text-[#2563eb]">
                               {row.quarter}
                             </span>
                           ) : (
-                            <span className="text-xs text-gray-400">-</span>
+                            <span className="text-base text-gray-400">-</span>
                           )}
                         </td>
-                        <td className="px-5 py-3 text-xs text-gray-600 text-center">
+                        <td className="px-5 py-3 text-sm text-gray-600 text-center">
                           {row.influencerCount}
                         </td>
-                        <td className="px-5 py-3 text-xs text-gray-600 text-right">
+                        <td className="px-5 py-3 text-sm text-gray-600 text-right">
                           ${row.budget.toLocaleString()}
                         </td>
-                        <td className="px-5 py-3 text-xs text-gray-600 text-right">
+                        <td className="px-5 py-3 text-sm text-gray-600 text-right">
                           ${row.paidOut.toLocaleString()}
                         </td>
                         <td className="px-5 py-3">
@@ -458,7 +458,7 @@ export default function ReportsPage() {
                                 }}
                               />
                             </div>
-                            <span className="text-[11px] font-medium text-gray-600 w-8 text-right">
+                            <span className="text-xs font-medium text-gray-600 w-8 text-right">
                               {row.completionRate}%
                             </span>
                           </div>
@@ -478,10 +478,10 @@ export default function ReportsPage() {
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
               <TrendingUp size={16} className="text-gray-400" />
-              <h3 className="text-sm font-semibold text-gray-900">
+              <h3 className="text-base font-semibold text-gray-900">
                 Pipeline Distribution
               </h3>
-              <span className="ml-auto text-[10px] text-gray-400">
+              <span className="ml-auto text-xs text-gray-400">
                 Active campaigns only
               </span>
             </div>
@@ -492,7 +492,7 @@ export default function ReportsPage() {
             ) : pipelineTotal === 0 ? (
               <div className="p-8 text-center">
                 <BarChart3 size={24} className="text-gray-300 mx-auto mb-2" />
-                <p className="text-sm text-gray-400">
+                <p className="text-base text-gray-400">
                   No active pipeline data
                 </p>
               </div>
@@ -505,7 +505,7 @@ export default function ReportsPage() {
                       p.count > 0 && (
                         <div
                           key={p.stage}
-                          className="flex items-center justify-center text-[10px] font-bold text-white transition-all"
+                          className="flex items-center justify-center text-[11px] font-bold text-white transition-all"
                           style={{
                             width: `${(p.count / pipelineTotal) * 100}%`,
                             backgroundColor: STAGE_COLORS[p.stage],
@@ -529,10 +529,10 @@ export default function ReportsPage() {
                           backgroundColor: STAGE_COLORS[p.stage],
                         }}
                       />
-                      <span className="text-[11px] text-gray-600">
+                      <span className="text-xs text-gray-600">
                         {STAGE_LABELS[p.stage]}
                       </span>
-                      <span className="text-[11px] font-medium text-gray-900">
+                      <span className="text-xs font-medium text-gray-900">
                         ({p.count})
                       </span>
                     </div>
@@ -546,7 +546,7 @@ export default function ReportsPage() {
           <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
               <Crown size={16} className="text-gray-400" />
-              <h3 className="text-sm font-semibold text-gray-900">
+              <h3 className="text-base font-semibold text-gray-900">
                 Top Influencers
               </h3>
             </div>
@@ -562,7 +562,7 @@ export default function ReportsPage() {
             ) : topInfluencers.length === 0 ? (
               <div className="p-8 text-center">
                 <Users size={24} className="text-gray-300 mx-auto mb-2" />
-                <p className="text-sm text-gray-400">
+                <p className="text-base text-gray-400">
                   No influencer data yet
                 </p>
               </div>
@@ -571,19 +571,19 @@ export default function ReportsPage() {
                 <table className="w-full text-left">
                   <thead>
                     <tr className="border-b border-gray-100">
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                         Name
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                         Handle
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider text-center">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
                         Campaigns
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider text-right">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">
                         Total Earned
                       </th>
-                      <th className="px-5 py-3 text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
+                      <th className="px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                         Avg Stage
                       </th>
                     </tr>
@@ -597,7 +597,7 @@ export default function ReportsPage() {
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-2">
                             <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FF0080] to-[#1A6BFF] flex items-center justify-center shrink-0">
-                              <span className="text-white text-[9px] font-bold">
+                              <span className="text-white text-[11px] font-bold">
                                 {inf.name
                                   .split(' ')
                                   .map((n) => n[0])
@@ -606,23 +606,23 @@ export default function ReportsPage() {
                                   .slice(0, 2)}
                               </span>
                             </div>
-                            <span className="text-xs font-medium text-gray-900">
+                            <span className="text-sm font-medium text-gray-900">
                               {inf.name}
                             </span>
                           </div>
                         </td>
-                        <td className="px-5 py-3 text-xs text-gray-500 font-mono">
+                        <td className="px-5 py-3 text-sm text-gray-500 font-mono">
                           {inf.handle ? `@${inf.handle}` : '-'}
                         </td>
-                        <td className="px-5 py-3 text-xs text-gray-600 text-center">
+                        <td className="px-5 py-3 text-sm text-gray-600 text-center">
                           {inf.campaignCount}
                         </td>
-                        <td className="px-5 py-3 text-xs text-gray-600 text-right">
+                        <td className="px-5 py-3 text-sm text-gray-600 text-right">
                           ${inf.totalEarned.toLocaleString()}
                         </td>
                         <td className="px-5 py-3">
                           <span
-                            className="px-2 py-0.5 rounded-full text-[10px] font-medium text-white"
+                            className="px-2 py-0.5 rounded-full text-[11px] font-medium text-white"
                             style={{
                               backgroundColor:
                                 STAGE_COLORS[

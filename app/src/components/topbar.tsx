@@ -13,7 +13,7 @@ export default function Topbar({ title, children }: TopbarProps) {
       className="flex items-center justify-between px-6 border-b border-[#efefed] bg-white shrink-0"
       style={{ height: 60 }}
     >
-      <h1 className="font-bold" style={{ fontSize: 17 }}>
+      <h1 className="font-bold" style={{ fontSize: 19 }}>
         {title}
       </h1>
       {children && <div className="ml-auto flex items-center gap-3">{children}</div>}

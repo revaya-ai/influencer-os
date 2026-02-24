@@ -208,7 +208,7 @@ export default function NewCampaignPage() {
       <div className="flex-1 overflow-y-auto bg-[#fafaf9] p-6">
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto space-y-6">
           {error && (
-            <div className="px-4 py-3 bg-[#fef2f2] text-[#dc2626] text-sm rounded-xl border border-red-100">
+            <div className="px-4 py-3 bg-[#fef2f2] text-[#dc2626] text-base rounded-xl border border-red-100">
               {error}
             </div>
           )}
@@ -216,7 +216,7 @@ export default function NewCampaignPage() {
           {/* Campaign Details */}
           <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-100">
-              <h2 className="text-sm font-bold text-gray-900">
+              <h2 className="text-base font-bold text-gray-900">
                 Campaign Details
               </h2>
             </div>
@@ -224,13 +224,13 @@ export default function NewCampaignPage() {
             <div className="p-6 space-y-4">
               {/* Brand Selector */}
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Brand *
                 </label>
                 <select
                   value={form.brand_id}
                   onChange={(e) => updateField('brand_id', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
                   required
                 >
                   <option value="">Select brand</option>
@@ -245,14 +245,14 @@ export default function NewCampaignPage() {
               {/* Conditional fields */}
               {isMissJones && (
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
                     Retailer
                   </label>
                   <input
                     type="text"
                     value={form.retailer}
                     onChange={(e) => updateField('retailer', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                     placeholder="e.g., Target, Walmart"
                   />
                 </div>
@@ -260,14 +260,14 @@ export default function NewCampaignPage() {
 
               {isWineAndCola && (
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
                     Region
                   </label>
                   <input
                     type="text"
                     value={form.region}
                     onChange={(e) => updateField('region', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                     placeholder="e.g., Southeast, Midwest"
                   />
                 </div>
@@ -275,14 +275,14 @@ export default function NewCampaignPage() {
 
               {/* Campaign Name */}
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Campaign Name *
                 </label>
                 <input
                   type="text"
                   value={form.name}
                   onChange={(e) => updateField('name', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                   placeholder="e.g., Summer Launch 2026"
                   required
                 />
@@ -291,13 +291,13 @@ export default function NewCampaignPage() {
               <div className="grid grid-cols-2 gap-4">
                 {/* Quarter */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
                     Quarter
                   </label>
                   <select
                     value={form.quarter}
                     onChange={(e) => updateField('quarter', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20"
                   >
                     {QUARTERS.map((q) => (
                       <option key={q} value={q}>
@@ -309,14 +309,14 @@ export default function NewCampaignPage() {
 
                 {/* Budget */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
                     Budget ($)
                   </label>
                   <input
                     type="number"
                     value={form.budget}
                     onChange={(e) => updateField('budget', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                     placeholder="5000"
                     min="0"
                     step="1"
@@ -326,28 +326,28 @@ export default function NewCampaignPage() {
 
               {/* Products */}
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Products
                 </label>
                 <input
                   type="text"
                   value={form.products}
                   onChange={(e) => updateField('products', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                   placeholder="Product names, separated by commas"
                 />
               </div>
 
               {/* Posting Deadline */}
               <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
                   Posting Deadline
                 </label>
                 <input
                   type="date"
                   value={form.posting_deadline}
                   onChange={(e) => updateField('posting_deadline', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                  className="w-full px-3 py-2 border border-gray-200 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                 />
               </div>
             </div>
@@ -356,7 +356,7 @@ export default function NewCampaignPage() {
           {/* Assign Influencers */}
           <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-100">
-              <h2 className="text-sm font-bold text-gray-900">
+              <h2 className="text-base font-bold text-gray-900">
                 Assign Influencers
               </h2>
             </div>
@@ -373,7 +373,7 @@ export default function NewCampaignPage() {
                   placeholder="Search influencers by name or handle..."
                   value={influencerSearch}
                   onChange={(e) => setInfluencerSearch(e.target.value)}
-                  className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                  className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-base bg-white focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                 />
               </div>
 
@@ -389,16 +389,16 @@ export default function NewCampaignPage() {
                     >
                       <div className="flex items-center gap-2.5">
                         <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FF0080] to-[#1A6BFF] flex items-center justify-center shrink-0">
-                          <span className="text-white text-[9px] font-bold">
+                          <span className="text-white text-[11px] font-bold">
                             {getInitials(inf.name)}
                           </span>
                         </div>
                         <div>
-                          <p className="text-xs font-medium text-gray-900">
+                          <p className="text-sm font-medium text-gray-900">
                             {inf.name}
                           </p>
                           {inf.handle && (
-                            <p className="text-[10px] text-gray-400 font-mono">
+                            <p className="text-xs text-gray-400 font-mono">
                               @{inf.handle}
                             </p>
                           )}
@@ -406,7 +406,7 @@ export default function NewCampaignPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         {inf.rate != null && (
-                          <span className="text-[10px] text-gray-400">
+                          <span className="text-xs text-gray-400">
                             ${inf.rate.toLocaleString()}
                           </span>
                         )}
@@ -418,7 +418,7 @@ export default function NewCampaignPage() {
               )}
 
               {influencerSearch.trim() && searchResults.length === 0 && (
-                <p className="mt-2 text-xs text-gray-400">
+                <p className="mt-2 text-sm text-gray-400">
                   No matching influencers found
                 </p>
               )}
@@ -426,7 +426,7 @@ export default function NewCampaignPage() {
               {/* Assigned Influencers */}
               {assigned.length > 0 && (
                 <div className="mt-4 space-y-2">
-                  <p className="text-xs font-medium text-gray-500 mb-2">
+                  <p className="text-sm font-medium text-gray-500 mb-2">
                     Assigned ({assigned.length})
                   </p>
                   {assigned.map((a) => (
@@ -435,23 +435,23 @@ export default function NewCampaignPage() {
                       className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
                     >
                       <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FF0080] to-[#1A6BFF] flex items-center justify-center shrink-0">
-                        <span className="text-white text-[9px] font-bold">
+                        <span className="text-white text-[11px] font-bold">
                           {getInitials(a.name)}
                         </span>
                       </div>
                       <div className="min-w-0 shrink-0">
-                        <p className="text-xs font-medium text-gray-900">
+                        <p className="text-sm font-medium text-gray-900">
                           {a.name}
                         </p>
                         {a.handle && (
-                          <p className="text-[10px] text-gray-400 font-mono">
+                          <p className="text-xs text-gray-400 font-mono">
                             @{a.handle}
                           </p>
                         )}
                       </div>
 
                       {a.rate != null && (
-                        <span className="px-1.5 py-0.5 rounded bg-[#ecfdf5] text-[#059669] text-[10px] font-medium shrink-0">
+                        <span className="px-1.5 py-0.5 rounded bg-[#ecfdf5] text-[#059669] text-[11px] font-medium shrink-0">
                           ${a.rate.toLocaleString()}
                         </span>
                       )}
@@ -461,7 +461,7 @@ export default function NewCampaignPage() {
                         placeholder="Deliverable (e.g., 1 Reel + 2 Stories)"
                         value={a.deliverable}
                         onChange={(e) => updateDeliverable(a.id, e.target.value)}
-                        className="flex-1 px-2 py-1 border border-gray-200 rounded text-xs focus:outline-none focus:ring-1 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF] bg-white"
+                        className="flex-1 px-2 py-1 border border-gray-200 rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF] bg-white"
                       />
 
                       <button
@@ -477,7 +477,7 @@ export default function NewCampaignPage() {
               )}
 
               {assigned.length === 0 && !influencerSearch && (
-                <p className="mt-4 text-xs text-gray-300 text-center py-4">
+                <p className="mt-4 text-sm text-gray-300 text-center py-4">
                   Search and add influencers to this campaign
                 </p>
               )}
@@ -489,14 +489,14 @@ export default function NewCampaignPage() {
             <button
               type="button"
               onClick={() => router.push('/campaigns')}
-              className="px-5 py-2.5 border border-gray-200 text-sm text-gray-700 rounded-lg hover:bg-white transition-colors"
+              className="px-5 py-2.5 border border-gray-200 text-base text-gray-700 rounded-lg hover:bg-white transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-2 px-5 py-2.5 bg-[#1A6BFF] text-white text-sm font-medium rounded-lg hover:bg-[#1558d4] disabled:opacity-50 transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 bg-[#1A6BFF] text-white text-base font-medium rounded-lg hover:bg-[#1558d4] disabled:opacity-50 transition-colors"
             >
               {saving && <Loader2 size={14} className="animate-spin" />}
               {saving ? 'Creating...' : 'Create Campaign'}

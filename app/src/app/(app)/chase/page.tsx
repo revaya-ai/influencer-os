@@ -146,7 +146,7 @@ export default function ChaseListPage() {
         {items.length > 0 && (
           <button
             onClick={() => setShowEmailPreview(true)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-[#f59e0b] text-white text-xs font-medium rounded-lg hover:bg-[#d97706] transition-colors"
+            className="flex items-center gap-2 px-3 py-1.5 bg-[#f59e0b] text-white text-sm font-medium rounded-lg hover:bg-[#d97706] transition-colors"
           >
             <Send size={14} />
             Send All Reminders
@@ -157,13 +157,13 @@ export default function ChaseListPage() {
       <div className="flex-1 overflow-y-auto bg-[#fafaf9] p-6">
         {loading ? (
           <div className="flex items-center justify-center h-64">
-            <p className="text-sm text-gray-400">Loading chase list...</p>
+            <p className="text-base text-gray-400">Loading chase list...</p>
           </div>
         ) : items.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-64">
             <AlertTriangle size={32} className="text-gray-300 mb-3" />
-            <p className="text-sm text-gray-400">No overdue influencers</p>
-            <p className="text-xs text-gray-300 mt-1">
+            <p className="text-base text-gray-400">No overdue influencers</p>
+            <p className="text-sm text-gray-300 mt-1">
               All influencers are on track
             </p>
           </div>
@@ -182,7 +182,7 @@ export default function ChaseListPage() {
                       onClick={() => setSelectedInfluencerId(item.influencer_id)}
                       className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF0080] to-[#1A6BFF] flex items-center justify-center shrink-0"
                     >
-                      <span className="text-white text-xs font-bold">
+                      <span className="text-white text-sm font-bold">
                         {getInitials(item.name)}
                       </span>
                     </button>
@@ -192,12 +192,12 @@ export default function ChaseListPage() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => setSelectedInfluencerId(item.influencer_id)}
-                          className="text-sm font-semibold text-gray-900 hover:underline"
+                          className="text-base font-semibold text-gray-900 hover:underline"
                         >
                           {item.name}
                         </button>
                         {item.handle && (
-                          <span className="text-xs text-gray-400 font-mono">
+                          <span className="text-sm text-gray-400 font-mono">
                             @{item.handle}
                           </span>
                         )}
@@ -205,17 +205,17 @@ export default function ChaseListPage() {
 
                       <div className="flex items-center gap-3 mt-1.5">
                         {item.deliverable && (
-                          <span className="text-xs text-gray-500">
+                          <span className="text-sm text-gray-500">
                             {item.deliverable}
                           </span>
                         )}
-                        <span className="text-xs text-gray-400">
+                        <span className="text-sm text-gray-400">
                           {item.campaign_name}
                         </span>
                       </div>
 
                       <div className="flex items-center gap-2 mt-2">
-                        <span className="text-[10px] text-gray-400 capitalize">
+                        <span className="text-xs text-gray-400 capitalize">
                           {formatStageName(item.pipeline_stage)}
                         </span>
                       </div>
@@ -227,7 +227,7 @@ export default function ChaseListPage() {
                     {/* Days overdue badge */}
                     <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#fefce8]">
                       <Clock size={11} className="text-[#a16207]" />
-                      <span className="text-[10px] font-medium text-[#a16207]">
+                      <span className="text-[11px] font-medium text-[#a16207]">
                         {item.days_overdue}d overdue
                       </span>
                     </div>
@@ -235,7 +235,7 @@ export default function ChaseListPage() {
                     {/* Send Reminder */}
                     <button
                       onClick={() => setShowEmailPreview(true)}
-                      className="flex items-center gap-1.5 px-3 py-1.5 bg-[#f59e0b] text-white text-xs font-medium rounded-lg hover:bg-[#d97706] transition-colors"
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-[#f59e0b] text-white text-sm font-medium rounded-lg hover:bg-[#d97706] transition-colors"
                     >
                       <Send size={12} />
                       Send Reminder
@@ -260,7 +260,7 @@ export default function ChaseListPage() {
               <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Mail size={16} className="text-gray-500" />
-                  <h2 className="text-sm font-bold text-gray-900">
+                  <h2 className="text-base font-bold text-gray-900">
                     Email Preview
                   </h2>
                 </div>
@@ -274,10 +274,10 @@ export default function ChaseListPage() {
               <div className="p-6">
                 <div className="bg-gray-50 rounded-lg p-6 text-center">
                   <Mail size={32} className="mx-auto text-gray-300 mb-3" />
-                  <p className="text-sm font-medium text-gray-700">
+                  <p className="text-base font-medium text-gray-700">
                     Email Preview - Phase 2
                   </p>
-                  <p className="text-xs text-gray-400 mt-2">
+                  <p className="text-sm text-gray-400 mt-2">
                     Automated email reminders will be available in the next phase.
                     For now, reach out directly via the influencer&apos;s contact info.
                   </p>
@@ -285,7 +285,7 @@ export default function ChaseListPage() {
                 <div className="flex justify-end mt-4">
                   <button
                     onClick={() => setShowEmailPreview(false)}
-                    className="px-4 py-2 border border-gray-200 text-sm text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="px-4 py-2 border border-gray-200 text-base text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     Close
                   </button>

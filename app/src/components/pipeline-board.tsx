@@ -61,10 +61,10 @@ function DroppableColumn({
           className="w-2.5 h-2.5 rounded-full shrink-0"
           style={{ backgroundColor: stageColor }}
         />
-        <span className="text-xs font-semibold text-gray-700 uppercase tracking-wider truncate">
+        <span className="text-sm font-semibold text-gray-700 uppercase tracking-wider truncate">
           {stageLabel}
         </span>
-        <span className="ml-auto text-[10px] font-medium text-gray-400 bg-gray-100 rounded-full px-1.5 py-0.5">
+        <span className="ml-auto text-[11px] font-medium text-gray-400 bg-gray-100 rounded-full px-1.5 py-0.5">
           {items.length}
         </span>
       </div>
@@ -89,7 +89,7 @@ function DroppableColumn({
         </SortableContext>
 
         {items.length === 0 && (
-          <div className="flex items-center justify-center h-20 text-[11px] text-gray-300">
+          <div className="flex items-center justify-center h-20 text-xs text-gray-300">
             Drop here
           </div>
         )}

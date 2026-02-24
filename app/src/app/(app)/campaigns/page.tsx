@@ -264,7 +264,7 @@ export default function CampaignBoardPage() {
         <div className="relative">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors min-w-[200px]"
+            className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-base text-gray-700 hover:bg-gray-50 transition-colors min-w-[200px]"
           >
             <span className="truncate">
               {selectedCampaign?.name ?? 'Select campaign'}
@@ -278,7 +278,7 @@ export default function CampaignBoardPage() {
           {dropdownOpen && (
             <div className="absolute right-0 top-full mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden z-50">
               {campaigns.length === 0 ? (
-                <div className="px-3 py-4 text-xs text-gray-400 text-center">
+                <div className="px-3 py-4 text-sm text-gray-400 text-center">
                   No campaigns found
                 </div>
               ) : (
@@ -289,7 +289,7 @@ export default function CampaignBoardPage() {
                       setSelectedCampaignId(campaign.id)
                       setDropdownOpen(false)
                     }}
-                    className={`w-full text-left px-3 py-2.5 text-sm transition-colors flex items-center justify-between ${
+                    className={`w-full text-left px-3 py-2.5 text-base transition-colors flex items-center justify-between ${
                       campaign.id === selectedCampaignId
                         ? 'bg-[#eff6ff] text-[#1A6BFF]'
                         : 'text-gray-700 hover:bg-gray-50'
@@ -297,7 +297,7 @@ export default function CampaignBoardPage() {
                   >
                     <span className="truncate">{campaign.name}</span>
                     {campaign.quarter && (
-                      <span className="text-[10px] text-gray-400 shrink-0 ml-2">
+                      <span className="text-xs text-gray-400 shrink-0 ml-2">
                         {campaign.quarter}
                       </span>
                     )}
@@ -335,12 +335,12 @@ export default function CampaignBoardPage() {
               >
                 <div className="flex items-center gap-2 mb-1">
                   <span style={{ color: card.color }}><Icon size={14} /></span>
-                  <span className="text-[10px] text-gray-500">{card.label}</span>
+                  <span className="text-xs text-gray-500">{card.label}</span>
                 </div>
                 {loading ? (
                   <div className="h-7 w-12 bg-gray-100 rounded animate-pulse" />
                 ) : (
-                  <p className="text-xl font-bold text-gray-900">{card.value}</p>
+                  <p className="text-2xl font-bold text-gray-900">{card.value}</p>
                 )}
               </button>
             )
@@ -351,13 +351,13 @@ export default function CampaignBoardPage() {
         <div className="flex-1 px-6 pb-4 overflow-hidden flex flex-col">
           {activeFilter && (
             <div className="flex items-center gap-2 mb-2 shrink-0">
-              <span className="text-xs text-gray-500">
+              <span className="text-sm text-gray-500">
                 Filtering: <span className="font-medium text-gray-700">{statCards.find(c => c.filterKey === activeFilter)?.label}</span>
                 {' '}({filteredItems.length} of {items.length})
               </span>
               <button
                 onClick={() => setActiveFilter(null)}
-                className="text-xs text-blue-500 hover:text-blue-700 underline"
+                className="text-sm text-blue-500 hover:text-blue-700 underline"
               >
                 Clear filter
               </button>
@@ -368,14 +368,14 @@ export default function CampaignBoardPage() {
             <div className="flex items-center justify-center h-full">
               <div className="text-center">
                 <Clock size={32} className="mx-auto text-gray-300 mb-2" />
-                <p className="text-sm text-gray-400">
+                <p className="text-base text-gray-400">
                   Select a campaign to view the pipeline
                 </p>
               </div>
             </div>
           ) : loading ? (
             <div className="flex items-center justify-center h-full">
-              <p className="text-sm text-gray-400">Loading pipeline...</p>
+              <p className="text-base text-gray-400">Loading pipeline...</p>
             </div>
           ) : (
             <PipelineBoard

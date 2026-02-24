@@ -73,16 +73,16 @@ export default function InfluencerCard({ data, onClick }: InfluencerCardProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FF0080] to-[#1A6BFF] flex items-center justify-center shrink-0">
-              <span className="text-white text-[10px] font-bold">
+              <span className="text-white text-xs font-bold">
                 {getInitials(data.name)}
               </span>
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-semibold text-gray-900 truncate">
+              <p className="text-sm font-semibold text-gray-900 truncate">
                 {data.name}
               </p>
               {data.handle && (
-                <p className="text-[10px] text-gray-400 font-mono truncate">
+                <p className="text-xs text-gray-400 font-mono truncate">
                   @{data.handle}
                 </p>
               )}
@@ -90,18 +90,18 @@ export default function InfluencerCard({ data, onClick }: InfluencerCardProps) {
           </div>
 
           <div className="mt-2 pt-2 border-t border-gray-100">
-            <div className="flex items-center justify-between text-[10px]">
+            <div className="flex items-center justify-between text-xs">
               <span className="text-gray-400">
                 {formatFollowers(data.follower_count)} followers
               </span>
               {data.rate != null && (
-                <span className="px-1.5 py-0.5 rounded bg-[#ecfdf5] text-[#059669] font-medium">
+                <span className="px-1.5 py-0.5 rounded bg-[#ecfdf5] text-[#059669] font-medium text-xs">
                   ${data.rate.toLocaleString()}
                 </span>
               )}
             </div>
             {data.deliverable && (
-              <p className="mt-1 text-[10px] text-gray-500 truncate">
+              <p className="mt-1 text-xs text-gray-500 truncate">
                 {data.deliverable}
               </p>
             )}

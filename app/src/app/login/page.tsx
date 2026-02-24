@@ -41,10 +41,10 @@ export default function LoginPage() {
         {/* Branding */}
         <div className="flex flex-col items-center mb-8">
           <div className="w-10 h-10 bg-pink rounded-lg flex items-center justify-center mb-3">
-            <span className="text-white text-sm font-bold">IO</span>
+            <span className="text-white text-base font-bold">IO</span>
           </div>
-          <h1 className="text-xl font-bold text-dark">InfluencerOS</h1>
-          <p className="text-xs text-gray-500 mt-0.5">Campaign Management</p>
+          <h1 className="text-2xl font-bold text-dark">InfluencerOS</h1>
+          <p className="text-sm text-gray-500 mt-0.5">Campaign Management</p>
         </div>
 
         {/* Form */}
@@ -52,7 +52,7 @@ export default function LoginPage() {
           <div>
             <label
               htmlFor="email"
-              className="block text-xs font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1"
             >
               Email
             </label>
@@ -64,14 +64,14 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="angela@example.com"
               autoComplete="email"
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent placeholder:text-gray-400"
+              className="w-full px-3 py-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent placeholder:text-gray-400"
             />
           </div>
 
           <div>
             <label
               htmlFor="password"
-              className="block text-xs font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1"
             >
               Password
             </label>
@@ -83,12 +83,12 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               autoComplete="current-password"
-              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent placeholder:text-gray-400"
+              className="w-full px-3 py-2 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent placeholder:text-gray-400"
             />
           </div>
 
           {error && (
-            <p className="text-red-500 text-xs" role="alert">
+            <p className="text-red-500 text-sm" role="alert">
               {error}
             </p>
           )}
@@ -96,7 +96,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2.5 bg-blue text-white text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-2.5 bg-blue text-white text-base font-semibold rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Signing in...' : 'Sign in'}
           </button>

@@ -334,11 +334,11 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                   <div className="h-5 w-32 bg-gray-100 rounded animate-pulse" />
                 ) : (
                   <>
-                    <h2 className="text-base font-bold text-gray-900">
+                    <h2 className="text-lg font-bold text-gray-900">
                       {influencer?.name}
                     </h2>
                     {influencer?.handle && (
-                      <p className="text-xs text-gray-400 font-mono">
+                      <p className="text-sm text-gray-400 font-mono">
                         @{influencer.handle}
                       </p>
                     )}
@@ -357,7 +357,7 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
 
         {loading ? (
           <div className="flex-1 flex items-center justify-center">
-            <p className="text-sm text-gray-400">Loading profile...</p>
+            <p className="text-base text-gray-400">Loading profile...</p>
           </div>
         ) : (
           <div className="flex-1 overflow-y-auto">
@@ -367,39 +367,39 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                 <div className="flex items-center justify-center mb-1">
                   <Megaphone size={14} className="text-[#1A6BFF]" />
                 </div>
-                <p className="text-lg font-bold text-gray-900">{stats.campaigns}</p>
-                <p className="text-[10px] text-gray-500">Campaigns</p>
+                <p className="text-xl font-bold text-gray-900">{stats.campaigns}</p>
+                <p className="text-xs text-gray-500">Campaigns</p>
               </div>
               <div className="bg-gray-50 rounded-lg p-3 text-center">
                 <div className="flex items-center justify-center mb-1">
                   <Star size={14} className="text-[#f59e0b]" />
                 </div>
-                <p className="text-lg font-bold text-gray-900">
+                <p className="text-xl font-bold text-gray-900">
                   {stats.avgRating > 0 ? stats.avgRating.toFixed(1) : '-'}
                 </p>
-                <p className="text-[10px] text-gray-500">Avg Rating</p>
+                <p className="text-xs text-gray-500">Avg Rating</p>
               </div>
               <div className="bg-gray-50 rounded-lg p-3 text-center">
                 <div className="flex items-center justify-center mb-1">
                   <DollarSign size={14} className="text-[#059669]" />
                 </div>
-                <p className="text-lg font-bold text-gray-900">
+                <p className="text-xl font-bold text-gray-900">
                   ${stats.totalEarned.toLocaleString()}
                 </p>
-                <p className="text-[10px] text-gray-500">Total Earned</p>
+                <p className="text-xs text-gray-500">Total Earned</p>
               </div>
             </div>
 
             {/* Contact Info — View or Edit */}
             <div className="px-6 pb-4">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
                   Contact Info
                 </h3>
                 {!editMode && (
                   <button
                     onClick={() => setEditMode(true)}
-                    className="text-[10px] text-[#1A6BFF] hover:text-[#1558d4] font-medium flex items-center gap-1"
+                    className="text-xs text-[#1A6BFF] hover:text-[#1558d4] font-medium flex items-center gap-1"
                   >
                     <Pencil size={10} />
                     Edit
@@ -410,27 +410,27 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
               {editMode ? (
                 <div className="space-y-2.5">
                   <div>
-                    <label className="text-[10px] text-gray-500 font-medium block mb-0.5">Name</label>
+                    <label className="text-xs text-gray-500 font-medium block mb-0.5">Name</label>
                     <input
-                      className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                      className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                       value={editForm.name}
                       onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[10px] text-gray-500 font-medium block mb-0.5">Handle</label>
+                      <label className="text-xs text-gray-500 font-medium block mb-0.5">Handle</label>
                       <input
-                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                         value={editForm.handle}
                         onChange={(e) => setEditForm({ ...editForm, handle: e.target.value })}
                         placeholder="@handle"
                       />
                     </div>
                     <div>
-                      <label className="text-[10px] text-gray-500 font-medium block mb-0.5">Platform</label>
+                      <label className="text-xs text-gray-500 font-medium block mb-0.5">Platform</label>
                       <select
-                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                         value={editForm.platform}
                         onChange={(e) => setEditForm({ ...editForm, platform: e.target.value })}
                       >
@@ -443,9 +443,9 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                     </div>
                   </div>
                   <div>
-                    <label className="text-[10px] text-gray-500 font-medium block mb-0.5">Email</label>
+                    <label className="text-xs text-gray-500 font-medium block mb-0.5">Email</label>
                     <input
-                      className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                      className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                       value={editForm.email}
                       onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
                       placeholder="email@example.com"
@@ -453,17 +453,17 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[10px] text-gray-500 font-medium block mb-0.5">Location</label>
+                      <label className="text-xs text-gray-500 font-medium block mb-0.5">Location</label>
                       <input
-                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                         value={editForm.location}
                         onChange={(e) => setEditForm({ ...editForm, location: e.target.value })}
                       />
                     </div>
                     <div>
-                      <label className="text-[10px] text-gray-500 font-medium block mb-0.5">Content Type</label>
+                      <label className="text-xs text-gray-500 font-medium block mb-0.5">Content Type</label>
                       <input
-                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                         value={editForm.content_type}
                         onChange={(e) => setEditForm({ ...editForm, content_type: e.target.value })}
                         placeholder="e.g. UGC, Reel"
@@ -472,18 +472,18 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[10px] text-gray-500 font-medium block mb-0.5">Rate ($)</label>
+                      <label className="text-xs text-gray-500 font-medium block mb-0.5">Rate ($)</label>
                       <input
-                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                         type="number"
                         value={editForm.rate}
                         onChange={(e) => setEditForm({ ...editForm, rate: e.target.value })}
                       />
                     </div>
                     <div>
-                      <label className="text-[10px] text-gray-500 font-medium block mb-0.5">Followers</label>
+                      <label className="text-xs text-gray-500 font-medium block mb-0.5">Followers</label>
                       <input
-                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                        className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                         type="number"
                         value={editForm.follower_count}
                         onChange={(e) => setEditForm({ ...editForm, follower_count: e.target.value })}
@@ -510,37 +510,37 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
               ) : (
                 <div className="space-y-2">
                   {influencer?.email && (
-                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                    <div className="flex items-center gap-2 text-base text-gray-700">
                       <Mail size={14} className="text-gray-400 shrink-0" />
                       <span className="truncate">{influencer.email}</span>
                     </div>
                   )}
                   {influencer?.platform && (
-                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                    <div className="flex items-center gap-2 text-base text-gray-700">
                       <Globe size={14} className="text-gray-400 shrink-0" />
                       <span className="capitalize">{influencer.platform}</span>
                     </div>
                   )}
                   {influencer?.location && (
-                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                    <div className="flex items-center gap-2 text-base text-gray-700">
                       <MapPin size={14} className="text-gray-400 shrink-0" />
                       <span>{influencer.location}</span>
                     </div>
                   )}
                   {influencer?.content_type && (
-                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                    <div className="flex items-center gap-2 text-base text-gray-700">
                       <Hash size={14} className="text-gray-400 shrink-0" />
                       <span>{influencer.content_type}</span>
                     </div>
                   )}
                   {influencer?.rate && (
-                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                    <div className="flex items-center gap-2 text-base text-gray-700">
                       <DollarSign size={14} className="text-gray-400 shrink-0" />
                       <span>${influencer.rate.toLocaleString()}</span>
                     </div>
                   )}
                   {influencer?.follower_count && (
-                    <div className="flex items-center gap-2 text-sm text-gray-700">
+                    <div className="flex items-center gap-2 text-base text-gray-700">
                       <Users size={14} className="text-gray-400 shrink-0" />
                       <span>{influencer.follower_count.toLocaleString()} followers</span>
                     </div>
@@ -552,7 +552,7 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
             {/* Workflow Actions — Current Campaign */}
             {currentCampaign && (
               <div className="px-6 pb-4">
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
                   Workflow — {currentCampaign.campaign_name}
                 </h3>
 
@@ -585,7 +585,7 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                   </div>
                   <div className="flex items-center justify-between">
                     <span
-                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium text-white"
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium text-white"
                       style={{ backgroundColor: STAGE_COLORS[currentCampaign.pipeline_stage] ?? '#94a3b8' }}
                     >
                       {formatStageName(currentCampaign.pipeline_stage)}
@@ -594,7 +594,7 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                       <button
                         onClick={() => handleStageChange(currentCampaign.id, PIPELINE_STAGES[currentStageIndex + 1].key)}
                         disabled={saving}
-                        className="flex items-center gap-1 text-[11px] text-[#1A6BFF] hover:text-[#1558d4] font-medium disabled:opacity-50"
+                        className="flex items-center gap-1 text-xs text-[#1A6BFF] hover:text-[#1558d4] font-medium disabled:opacity-50"
                       >
                         Advance to {PIPELINE_STAGES[currentStageIndex + 1].label}
                         <ChevronRight size={12} />
@@ -633,7 +633,7 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
 
                 {/* Deliverable */}
                 {currentCampaign.deliverable && (
-                  <div className="mt-3 text-xs text-gray-500">
+                  <div className="mt-3 text-sm text-gray-500">
                     Deliverable: <span className="text-gray-700 font-medium">{currentCampaign.deliverable}</span>
                   </div>
                 )}
@@ -643,11 +643,11 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
             {/* Campaign History */}
             {history.length > 0 && (
               <div className="px-6 pb-4">
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
                   Campaign History
                 </h3>
                 <div className="border border-gray-100 rounded-lg overflow-hidden">
-                  <table className="w-full text-xs">
+                  <table className="w-full text-sm">
                     <thead>
                       <tr className="bg-gray-50">
                         <th className="text-left px-3 py-2 font-medium text-gray-500">Campaign</th>
@@ -661,7 +661,7 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                           <td className="px-3 py-2 text-gray-700">{h.campaign_name}</td>
                           <td className="px-3 py-2">
                             <span
-                              className="inline-block px-1.5 py-0.5 rounded text-[10px] font-medium text-white"
+                              className="inline-block px-1.5 py-0.5 rounded text-[11px] font-medium text-white"
                               style={{ backgroundColor: STAGE_COLORS[h.pipeline_stage] ?? '#94a3b8' }}
                             >
                               {formatStageName(h.pipeline_stage)}
@@ -680,11 +680,11 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
 
             {/* Notes */}
             <div className="px-6 pb-4">
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
                 Notes
               </h3>
               <textarea
-                className="w-full border border-gray-200 rounded-lg p-3 text-sm text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                className="w-full border border-gray-200 rounded-lg p-3 text-base text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                 rows={4}
                 placeholder="Add notes about this influencer..."
                 value={notes}
@@ -697,9 +697,9 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
             <div className="px-6 pb-6">
               {showAddCampaign ? (
                 <div className="border border-gray-200 rounded-lg p-3 space-y-2.5">
-                  <h4 className="text-xs font-semibold text-gray-700">Add to Campaign</h4>
+                  <h4 className="text-sm font-semibold text-gray-700">Add to Campaign</h4>
                   <select
-                    className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                    className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                     value={selectedCampaignId}
                     onChange={(e) => setSelectedCampaignId(e.target.value)}
                   >
@@ -709,7 +709,7 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                     ))}
                   </select>
                   <input
-                    className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
+                    className="w-full border border-gray-200 rounded-md px-2.5 py-1.5 text-base text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#1A6BFF]/20 focus:border-[#1A6BFF]"
                     placeholder="Deliverable (e.g. 1 Reel + 2 Stories)"
                     value={newDeliverable}
                     onChange={(e) => setNewDeliverable(e.target.value)}
@@ -793,14 +793,14 @@ function StatusDropdown({
     <div className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-gray-100">
       <div className="flex items-center gap-2">
         <span className="text-gray-400">{icon}</span>
-        <span className="text-xs text-gray-600">{label}</span>
+        <span className="text-sm text-gray-600">{label}</span>
       </div>
       <div className="relative">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          className="appearance-none pl-2.5 pr-6 py-0.5 rounded-full text-[10px] font-medium text-white capitalize cursor-pointer border-0 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-300 disabled:opacity-50 disabled:cursor-wait"
+          className="appearance-none pl-2.5 pr-6 py-0.5 rounded-full text-[11px] font-medium text-white capitalize cursor-pointer border-0 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-300 disabled:opacity-50 disabled:cursor-wait"
           style={{ backgroundColor: color }}
         >
           {options.map((opt) => (
