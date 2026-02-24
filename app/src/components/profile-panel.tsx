@@ -253,14 +253,7 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
   }
 
   // Update W9/Invoice/Payment status
-  const handleStatusToggle = async (ciId: string, field: 'w9_status' | 'invoice_status' | 'payment_status', currentValue: string) => {
-    const nextValue: Record<string, Record<string, string>> = {
-      w9_status: { pending: 'received', received: 'not_required', not_required: 'pending' },
-      invoice_status: { pending: 'requested', requested: 'received', received: 'pending' },
-      payment_status: { unpaid: 'processing', processing: 'paid', paid: 'unpaid' },
-    }
-
-    const newValue = nextValue[field][currentValue] ?? currentValue
+  const handleStatusChange = async (ciId: string, field: 'w9_status' | 'invoice_status' | 'payment_status', newValue: string) => {
     setSaving(true)
     const supabase = createClient()
     const { error } = await supabase
@@ -610,30 +603,30 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
                   </div>
                 </div>
 
-                {/* Status Toggles */}
+                {/* Status Dropdowns */}
                 <div className="space-y-2">
-                  <StatusToggle
+                  <StatusDropdown
                     icon={<FileText size={14} />}
                     label="W9 Status"
                     value={currentCampaign.w9_status}
-                    colorMap={{ pending: '#94a3b8', received: '#34d399', not_required: '#60a5fa' }}
-                    onClick={() => handleStatusToggle(currentCampaign.id, 'w9_status', currentCampaign.w9_status)}
+                    options={['not_required', 'pending', 'sent', 'received', 'complete']}
+                    onChange={(val) => handleStatusChange(currentCampaign.id, 'w9_status', val)}
                     disabled={saving}
                   />
-                  <StatusToggle
+                  <StatusDropdown
                     icon={<Receipt size={14} />}
                     label="Invoice Status"
                     value={currentCampaign.invoice_status}
-                    colorMap={{ pending: '#94a3b8', requested: '#fbbf24', received: '#34d399' }}
-                    onClick={() => handleStatusToggle(currentCampaign.id, 'invoice_status', currentCampaign.invoice_status)}
+                    options={['pending', 'sent', 'received', 'paid']}
+                    onChange={(val) => handleStatusChange(currentCampaign.id, 'invoice_status', val)}
                     disabled={saving}
                   />
-                  <StatusToggle
+                  <StatusDropdown
                     icon={<CreditCard size={14} />}
                     label="Payment Status"
                     value={currentCampaign.payment_status}
-                    colorMap={{ unpaid: '#94a3b8', processing: '#fbbf24', paid: '#34d399' }}
-                    onClick={() => handleStatusToggle(currentCampaign.id, 'payment_status', currentCampaign.payment_status)}
+                    options={['unpaid', 'processing', 'paid']}
+                    onChange={(val) => handleStatusChange(currentCampaign.id, 'payment_status', val)}
                     disabled={saving}
                   />
                 </div>
@@ -765,41 +758,63 @@ export default function ProfilePanel({ influencerId, onClose, onUpdate }: Profil
   )
 }
 
-// Status toggle pill component
-function StatusToggle({
+// Color map for all status values
+const STATUS_COLORS: Record<string, string> = {
+  not_required: '#94a3b8',
+  pending: '#f59e0b',
+  sent: '#3b82f6',
+  received: '#34d399',
+  complete: '#059669',
+  paid: '#34d399',
+  unpaid: '#94a3b8',
+  processing: '#f59e0b',
+}
+
+// Status dropdown component
+function StatusDropdown({
   icon,
   label,
   value,
-  colorMap,
-  onClick,
+  options,
+  onChange,
   disabled,
 }: {
   icon: React.ReactNode
   label: string
   value: string
-  colorMap: Record<string, string>
-  onClick: () => void
+  options: string[]
+  onChange: (newValue: string) => void
   disabled: boolean
 }) {
-  const color = colorMap[value] ?? '#94a3b8'
+  const color = STATUS_COLORS[value] ?? '#94a3b8'
   const displayValue = value.replace(/_/g, ' ')
 
   return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-gray-100 hover:border-gray-200 transition-colors text-left disabled:opacity-50 disabled:cursor-wait"
-    >
+    <div className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-gray-100">
       <div className="flex items-center gap-2">
         <span className="text-gray-400">{icon}</span>
         <span className="text-xs text-gray-600">{label}</span>
       </div>
-      <span
-        className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium text-white capitalize"
-        style={{ backgroundColor: color }}
-      >
-        {displayValue}
-      </span>
-    </button>
+      <div className="relative">
+        <select
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={disabled}
+          className="appearance-none pl-2.5 pr-6 py-0.5 rounded-full text-[10px] font-medium text-white capitalize cursor-pointer border-0 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-300 disabled:opacity-50 disabled:cursor-wait"
+          style={{ backgroundColor: color }}
+        >
+          {options.map((opt) => (
+            <option key={opt} value={opt} className="text-gray-900 bg-white text-xs capitalize">
+              {opt.replace(/_/g, ' ')}
+            </option>
+          ))}
+        </select>
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-1.5">
+          <svg className="h-3 w-3 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
+    </div>
   )
 }
