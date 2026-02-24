@@ -182,7 +182,7 @@ export default function NewCampaignPage() {
         pipeline_stage: 'contacted',
         w9_status: 'pending',
         invoice_status: 'pending',
-        payment_status: 'pending',
+        payment_status: 'unpaid',
       }))
 
       const { error: ciErr } = await supabase
